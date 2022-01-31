@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Constants {
     
@@ -21,4 +22,11 @@ class Constants {
     
     static let bikeCollision: UInt32 = 0
     static let carCollision: UInt32 = 0
+    
+    static let backgroundSpeed = CGFloat(0.3)
+    static let roadSpeed = CGFloat(1.6)
+    
+    static let gameSceneLeftEdge = CGFloat(-768)
+    static let gameSceneRightEdge = CGFloat(768)
+    
 }

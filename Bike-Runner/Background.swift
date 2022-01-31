@@ -14,21 +14,16 @@ class Background {
     
     init(nodes: [SKNode]) {
         self.nodes = nodes
-        
     }
-    
-    func stopAnimation() {
-    }
-    
-    func update (deltaTime: TimeInterval) {
-        
+
+    func update (deltaTime: TimeInterval) {        
         for (index, node) in nodes.enumerated() {
             // move
-            node.position.x -= GameManager.speed * deltaTime * CGFloat(index+1) * 0.3
+            node.position.x -= GameManager.speed * deltaTime * CGFloat(index+1) * Constants.backgroundSpeed
             
             // chão infinito
-            if node.position.x <= -768 {
-                node.position.x = 768
+            if node.position.x <= Constants.gameSceneLeftEdge {
+                node.position.x = Constants.gameSceneRightEdge
             }
         }
     }

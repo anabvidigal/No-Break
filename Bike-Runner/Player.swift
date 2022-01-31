@@ -23,7 +23,7 @@ class Player {
     }
     
     func physicsSetup() {
-        let body = SKPhysicsBody(rectangleOf: CGSize(width:132, height: 132))
+        let body = SKPhysicsBody(circleOfRadius: 60)
         body.isDynamic = true
         body.affectedByGravity = false
         body.categoryBitMask = Constants.bikeTopLaneCategory
@@ -36,13 +36,13 @@ class Player {
         
         switch status {
         case .topLane:
-            node.position.y = -243
+            node.position.y = -100
             status = .bottomLane
             node.zPosition = 0
             node.physicsBody?.categoryBitMask = Constants.bikeBottomLaneCategory
 
         case .bottomLane:
-            node.position.y = -185
+            node.position.y = -55
             status = .topLane
             node.zPosition = 5
             node.physicsBody?.categoryBitMask = Constants.bikeTopLaneCategory

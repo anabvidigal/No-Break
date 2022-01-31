@@ -12,6 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: Player!
     var background: Background!
+    var road: Road!
     var car: CarManager!
     
     var gameOverNode: SKSpriteNode!
@@ -36,12 +37,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.childNode(withName: "background5") as! SKSpriteNode,
             self.childNode(withName: "background6") as! SKSpriteNode
         ]
-        
         background = Background(nodes: backgroundNodes)
         
         let carNode = self.childNode(withName: "car") as! SKSpriteNode
         car = CarManager(node: carNode)
                 
+        let roadNodes = [
+            self.childNode(withName: "road") as! SKSpriteNode,
+            self.childNode(withName: "foreground") as! SKSpriteNode
+        ]
+        road = Road(nodes: roadNodes)
         
         // game over
         gameOverNode = childNode(withName: "gameOver") as? SKSpriteNode
@@ -79,6 +84,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func playingUpdate(deltaTime: TimeInterval) {
         car.update(deltaTime: deltaTime)
         background.update(deltaTime: deltaTime)
+        road.update(deltaTime: deltaTime)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -90,7 +96,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(gameOverNode)
         player.die()
         car.die()
-        background.stopAnimation()
     }
     
     func gameScore() {

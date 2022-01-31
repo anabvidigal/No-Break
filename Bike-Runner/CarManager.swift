@@ -40,11 +40,11 @@ class CarManager {
             currentTime -= interval
         }
         
-        node.position.x -= GameManager.speed * deltaTime
+        node.position.x -= GameManager.speed * deltaTime * cos(-20 * .pi / 180) * Constants.roadSpeed
+        node.position.y -= GameManager.speed * deltaTime * sin(-20 * .pi / 180) * Constants.roadSpeed
     }
     
     func die() {
-        node.yScale = -0.9
     }
 }
     
