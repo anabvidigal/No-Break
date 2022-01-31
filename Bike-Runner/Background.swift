@@ -10,45 +10,27 @@ import SpriteKit
 
 class Background {
     
-    private var node: SKSpriteNode
-    private var position: CGPoint
-    var animIsPlaying: Bool
+    private var nodes: [SKNode]
     
-    init(node : SKSpriteNode) {
-        self.node = node
-        self.position = node.position
-        self.animIsPlaying = true
-        startAnimation()
+    init(nodes: [SKNode]) {
+        self.nodes = nodes
+        
     }
     
     func stopAnimation() {
-        node.removeAllActions()
+        print("oi")
     }
     
-    func startAnimation() {
+    func update (deltaTime: TimeInterval) {
         
-            var textures = [SKTexture]()
-            textures.append(SKTexture(imageNamed: "Layer 1"))
-            textures.append(SKTexture(imageNamed: "Layer 2"))
-            textures.append(SKTexture(imageNamed: "Layer 3"))
-            textures.append(SKTexture(imageNamed: "Layer 4"))
-            textures.append(SKTexture(imageNamed: "Layer 5"))
-            textures.append(SKTexture(imageNamed: "Layer 6"))
-            textures.append(SKTexture(imageNamed: "Layer 7"))
-            textures.append(SKTexture(imageNamed: "Layer 8"))
-            textures.append(SKTexture(imageNamed: "Layer 9"))
-            textures.append(SKTexture(imageNamed: "Layer 10"))
-            textures.append(SKTexture(imageNamed: "Layer 11"))
-            textures.append(SKTexture(imageNamed: "Layer 12"))
-            textures.append(SKTexture(imageNamed: "Layer 13"))
-            textures.append(SKTexture(imageNamed: "Layer 14"))
-            textures.append(SKTexture(imageNamed: "Layer 15"))
-            textures.append(SKTexture(imageNamed: "Layer 16"))
-            textures.append(SKTexture(imageNamed: "Layer 17"))
+        for (index, node) in nodes.enumerated() {
+            // move
+            node.position.x -= GameManager.speed * deltaTime * CGFloat(index+1)
             
-            let frames = SKAction.animate(with: textures, timePerFrame: 0.1, resize: false, restore: false)
-            let repeatAnim = SKAction.repeatForever(frames)
-            node.run(repeatAnim)
-            
+            // chão infinito
+            if node.position.x <= -1536 {
+                node.position.x = 0
+            }
+        }
     }
 }

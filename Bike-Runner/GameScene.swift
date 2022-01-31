@@ -25,13 +25,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
         player = Player(node: playerNode)
+        player.startAnimation()
         
-        let backgroundNode = self.childNode(withName: "background") as! SKSpriteNode
-        background = Background(node: backgroundNode)
+        
+        let backgroundNodes = [
+            self.childNode(withName: "background1") as! SKSpriteNode,
+            self.childNode(withName: "background2") as! SKSpriteNode,
+            self.childNode(withName: "background3") as! SKSpriteNode,
+            self.childNode(withName: "background4") as! SKSpriteNode,
+            self.childNode(withName: "background5") as! SKSpriteNode
+        ]
+        
+        background = Background(nodes: backgroundNodes)
         
         let carNode = self.childNode(withName: "car") as! SKSpriteNode
         car = CarManager(node: carNode)
                 
+        
         // game over
         gameOverNode = childNode(withName: "gameOver") as? SKSpriteNode
         gameOverNode.removeFromParent()
@@ -66,11 +76,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playingUpdate(deltaTime: TimeInterval) {
         car.update(deltaTime: deltaTime)
+        background.update(deltaTime: deltaTime)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        print("bodyA bitmask: ", contact.bodyA.contactTestBitMask)
+        print("bodyB bitmask: ", contact.bodyB.contactTestBitMask)
         status = .gameOver
         gameOver()
+        
     }
     
     func gameOver() {
@@ -78,6 +92,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.die()
         car.die()
         background.stopAnimation()
+    }
+    
+    func gameScore() {
+        
     }
     
 }
