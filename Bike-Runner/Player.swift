@@ -30,8 +30,6 @@ class Player {
         body.contactTestBitMask = 0
         body.collisionBitMask = Constants.bikeCollision
         node.physicsBody = body
-        print("bike contact: \(body.contactTestBitMask)")
-        print("bike category: \(body.categoryBitMask)")
     }
     
     func changeLane() {
@@ -49,12 +47,10 @@ class Player {
             node.zPosition = 5
             node.physicsBody?.categoryBitMask = Constants.bikeTopLaneCategory
         }
-        print("bike contact: \(node.physicsBody?.contactTestBitMask)")
-        print("bike category: \(node.physicsBody?.categoryBitMask)")
     }
     
     func die() {
-        node.yScale = -0.4
+        node.removeAllActions()
     }
     
     func startAnimation() {

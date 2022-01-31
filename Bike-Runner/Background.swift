@@ -18,7 +18,6 @@ class Background {
     }
     
     func stopAnimation() {
-        print("oi")
     }
     
     func update (deltaTime: TimeInterval) {

@@ -29,12 +29,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         let backgroundNodes = [
-            self.childNode(withName: "background2") as! SKSpriteNode,
-            self.childNode(withName: "background12") as! SKSpriteNode,
             self.childNode(withName: "background1") as! SKSpriteNode,
+            self.childNode(withName: "background2") as! SKSpriteNode,
             self.childNode(withName: "background3") as! SKSpriteNode,
             self.childNode(withName: "background4") as! SKSpriteNode,
-            self.childNode(withName: "background5") as! SKSpriteNode
+            self.childNode(withName: "background5") as! SKSpriteNode,
+            self.childNode(withName: "background6") as! SKSpriteNode
         ]
         
         background = Background(nodes: backgroundNodes)
@@ -50,13 +50,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        player.changeLane()
+        switch status {
+        case .playing:
+            player.changeLane()
+        case .gameOver:
+            break
+        }
     }
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        
         if lastUpdate == 0 {
             lastUpdate = currentTime
             return
@@ -64,7 +67,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let deltaTime = currentTime - lastUpdate
         lastUpdate = currentTime
-        
         
         switch status {
         case .playing:
@@ -74,18 +76,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
     func playingUpdate(deltaTime: TimeInterval) {
         car.update(deltaTime: deltaTime)
         background.update(deltaTime: deltaTime)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        print("bodyA bitmask: ", contact.bodyA.contactTestBitMask)
-        print("bodyB bitmask: ", contact.bodyB.contactTestBitMask)
         status = .gameOver
         gameOver()
-        
     }
     
     func gameOver() {

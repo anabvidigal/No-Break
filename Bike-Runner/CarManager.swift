@@ -30,8 +30,6 @@ class CarManager {
         body.categoryBitMask = Constants.carTopLaneCategory
         body.collisionBitMask = Constants.carCollision
         node.physicsBody = body
-        print("car contact: \(body.contactTestBitMask)")
-        print("car category: \(body.categoryBitMask)")
     }
     
     func update(deltaTime: TimeInterval) {
