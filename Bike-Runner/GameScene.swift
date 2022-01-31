@@ -29,8 +29,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         let backgroundNodes = [
-            self.childNode(withName: "background1") as! SKSpriteNode,
             self.childNode(withName: "background2") as! SKSpriteNode,
+            self.childNode(withName: "background12") as! SKSpriteNode,
+            self.childNode(withName: "background1") as! SKSpriteNode,
             self.childNode(withName: "background3") as! SKSpriteNode,
             self.childNode(withName: "background4") as! SKSpriteNode,
             self.childNode(withName: "background5") as! SKSpriteNode

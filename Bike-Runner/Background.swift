@@ -25,11 +25,11 @@ class Background {
         
         for (index, node) in nodes.enumerated() {
             // move
-            node.position.x -= GameManager.speed * deltaTime * CGFloat(index+1)
+            node.position.x -= GameManager.speed * deltaTime * CGFloat(index+1) * 0.3
             
             // chão infinito
-            if node.position.x <= -1536 {
-                node.position.x = 0
+            if node.position.x <= -768 {
+                node.position.x = 768
             }
         }
     }
