@@ -38,13 +38,11 @@ class Player {
         case .topLane:
             node.position.y = -124
             status = .bottomLane
-            node.zPosition = 0
             node.physicsBody?.categoryBitMask = Constants.bikeBottomLaneCategory
 
         case .bottomLane:
             node.position.y = -74
             status = .topLane
-            node.zPosition = 5
             node.physicsBody?.categoryBitMask = Constants.bikeTopLaneCategory
         }
     }

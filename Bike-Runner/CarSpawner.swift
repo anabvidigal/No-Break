@@ -56,7 +56,7 @@ class CarSpawner {
         let index = Int.random(in: 0...1)
         
         new.position.y = lanesHeights[index]
-        new.zPosition = index == 0 ? 0 : 5
+        new.zPosition = index == 0 ? 1 : 6
         physicsSetup(node: new, index)
         parent.addChild(new)
         cars.append(new)
