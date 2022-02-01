@@ -40,8 +40,8 @@ class CarManager {
             currentTime -= interval
         }
         
-        node.position.x -= GameManager.speed * deltaTime * cos(-20 * .pi / 180) * Constants.roadSpeed
-        node.position.y -= GameManager.speed * deltaTime * sin(-20 * .pi / 180) * Constants.roadSpeed
+        node.position.x -= GameManager.speed * deltaTime * cos(Constants.roadAngle * .pi / 180) * Constants.roadSpeed
+        node.position.y -= GameManager.speed * deltaTime * sin(Constants.roadAngle * .pi / 180) * Constants.roadSpeed
     }
     
     func die() {

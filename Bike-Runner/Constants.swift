@@ -29,4 +29,5 @@ class Constants {
     static let gameSceneLeftEdge = CGFloat(-768)
     static let gameSceneRightEdge = CGFloat(768)
     
+    static let roadAngle = CGFloat(-15)
 }
