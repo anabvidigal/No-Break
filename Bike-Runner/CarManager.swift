@@ -47,8 +47,6 @@ class CarManager {
     func die() {
     }
 }
-    
-
 
 enum LaneCarStatus {
     case topLane
