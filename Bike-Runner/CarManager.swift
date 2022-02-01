@@ -40,8 +40,8 @@ class CarManager {
             currentTime -= interval
         }
         
-        node.position.x -= GameManager.speed * deltaTime * cos(Constants.roadAngle * .pi / 180) * Constants.roadSpeed
-        node.position.y -= GameManager.speed * deltaTime * sin(Constants.roadAngle * .pi / 180) * Constants.roadSpeed
+        node.position.x -= GameManager.speed * deltaTime * cos(Constants.roadAngle * .pi / 180)
+        node.position.y -= GameManager.speed * deltaTime * sin(Constants.roadAngle * .pi / 180)
     }
     
     func die() {
@@ -55,5 +55,5 @@ enum LaneCarStatus {
     case bottomLane
 }
 
-// bottom -257
-// top -199
+// bottom -257 / -381
+// top -199 / -323

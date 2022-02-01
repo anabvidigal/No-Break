@@ -11,8 +11,7 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: Player!
-    var background: Background!
-    var road: Road!
+    var scenery: Scenery!
     var car: CarManager!
     
     var gameOverNode: SKSpriteNode!
@@ -28,25 +27,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player = Player(node: playerNode)
         player.startAnimation()
         
-        
         let backgroundNodes = [
             self.childNode(withName: "background1") as! SKSpriteNode,
             self.childNode(withName: "background2") as! SKSpriteNode,
             self.childNode(withName: "background3") as! SKSpriteNode,
             self.childNode(withName: "background4") as! SKSpriteNode,
             self.childNode(withName: "background5") as! SKSpriteNode,
-            self.childNode(withName: "background6") as! SKSpriteNode
-        ]
-        background = Background(nodes: backgroundNodes)
-        
-        let carNode = self.childNode(withName: "car") as! SKSpriteNode
-        car = CarManager(node: carNode)
-                
-        let roadNodes = [
             self.childNode(withName: "road") as! SKSpriteNode,
             self.childNode(withName: "foreground") as! SKSpriteNode
         ]
-        road = Road(nodes: roadNodes)
+        scenery = Scenery(nodes: backgroundNodes)
+        
+        let carNode = self.childNode(withName: "car") as! SKSpriteNode
+        car = CarManager(node: carNode)
         
         // game over
         gameOverNode = childNode(withName: "gameOver") as? SKSpriteNode
@@ -83,8 +76,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playingUpdate(deltaTime: TimeInterval) {
         car.update(deltaTime: deltaTime)
-        background.update(deltaTime: deltaTime)
-        road.update(deltaTime: deltaTime)
+        scenery.update(deltaTime: deltaTime)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
