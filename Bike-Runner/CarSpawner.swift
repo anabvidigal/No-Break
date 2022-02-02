@@ -32,7 +32,7 @@ class CarSpawner {
         if currentTime > interval {
             spawn()
             currentTime = 0
-            interval = TimeInterval(Float.random(in: 1...2))
+            interval = TimeInterval(Float.random(in: 0.7...1.3))
         }
         
         // movement

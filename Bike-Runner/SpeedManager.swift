@@ -18,7 +18,7 @@ class SpeedManager {
         currentTime += deltaTime
         
         if currentTime > interval {
-            currentTime -= interval
+            currentTime = 0
             incrementSpeed()
         }
         

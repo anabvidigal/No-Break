@@ -66,11 +66,10 @@ class Player {
         textures.append(SKTexture(imageNamed: "fixie_rider5"))
         textures.append(SKTexture(imageNamed: "fixie_rider6"))
         
-        let frames = SKAction.animate(with: textures, timePerFrame: CGFloat(40) / speedManager.speed, resize: false, restore: false)
+        let frames = SKAction.animate(with: textures, timePerFrame: CGFloat(60) / speedManager.speed, resize: false, restore: false)
         let repeatAnim = SKAction.repeatForever(frames)
         node.run(repeatAnim)
     }
-        
 }
     
 enum LaneBikeStatus {
