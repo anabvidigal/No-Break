@@ -8,6 +8,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import GameKit
 
 class GameViewController: UIViewController {
 
@@ -32,9 +33,28 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+            
+            authenticateUser()
+            
         }
     }
 
+    func authenticateUser() {
+        let player = GKLocalPlayer.local
+        
+        player.authenticateHandler = { vc, error in
+            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            
+            if let vc = vc {
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }

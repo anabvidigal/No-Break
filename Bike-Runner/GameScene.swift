@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameOverNode: SKSpriteNode!
     var introNode: SKSpriteNode!
+//    var leaderboardNode: SKSpriteNode!
     
     var lastUpdate = TimeInterval(0)
     var status: GameStatus = .intro
@@ -35,6 +36,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // speed manager
         speedManager = SpeedManager()
         
+//        // game center
+//        leaderboardNode = childNode(withName: "leaderboard") as? SKSpriteNode
+//        leaderboardNode.removeFromParent()
         
         // player
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
@@ -127,6 +131,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func gameOver() {
         addChild(gameOverNode)
+        
+        // testing game center
+        
+        
+//        addChild(leaderboardNode)
         player.die()
     }
     
