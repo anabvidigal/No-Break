@@ -10,7 +10,7 @@ import SpriteKit
 
 class Car {
     
-    var carSpeed: CGFloat = .random(in: 1.5...2.5)
+    var carSpeed: CGFloat = .random(in: 1.8...2.2)
     var node: SKNode
     private var carTextures = [
         "police",
