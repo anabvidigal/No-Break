@@ -11,7 +11,21 @@ import SpriteKit
 import GameplayKit
 
 class AnimationViewController: UIViewController {
-
+    
+//    lazy var playButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("jogar", for: .normal)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
+//        return button
+//    }()
+//
+//    @objc func playButtonClicked() {
+//        let navigation = UINavigationController()
+//        navigation.present(GameViewController(), animated: false)
+//        print(navigation)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +48,14 @@ class AnimationViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        
+//        view.addSubview(playButton)
+//        NSLayoutConstraint.activate([
+//            playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            playButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//
+//        ])
+        
     }
 
     override var shouldAutorotate: Bool {
