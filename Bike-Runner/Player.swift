@@ -51,6 +51,10 @@ class Player {
         node.removeAllActions()
     }
     
+    func reset() {
+        startAnimation()
+    }
+    
     func startAnimation() {
         var textures = [SKTexture]()
         textures.append(SKTexture(imageNamed: "fixie_rider1"))

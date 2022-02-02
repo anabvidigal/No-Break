@@ -64,6 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .playing:
             player.changeLane()
         case .gameOver:
+            reset()
             break
         }
     }
@@ -96,8 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // if player contacts car, game over; if scorer contacts car, add score
         
         if contact.bodyA == scoreDetector.node.physicsBody {
-            scoreDetector.incrementScore()
-            scoreLabel.text = "\(scoreDetector.score)"
+            gameScore()
         } else {
             status = .gameOver
             gameOver()
@@ -110,10 +110,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func gameScore() {
-        
+        scoreDetector.incrementScore()
+        scoreLabel.text = "\(scoreDetector.score)"
     }
     
+    func reset(){
+        gameOverNode.removeFromParent()
+        status = .playing
+        spawner.reset()
+        player.reset()
+        scoreDetector.resetScore()
+        scoreLabel.text = "0"
+    }
 }
+
 
 enum GameStatus {
     case playing
