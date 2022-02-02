@@ -12,19 +12,19 @@ import GameplayKit
 
 class AnimationViewController: UIViewController {
     
-//    lazy var playButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("jogar", for: .normal)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    @objc func playButtonClicked() {
-//        let navigation = UINavigationController()
-//        navigation.present(GameViewController(), animated: false)
-//        print(navigation)
-//    }
+    lazy var playButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("jogar", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
+        return button
+    }()
+
+    @objc func playButtonClicked() {
+        let vc = GameViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +49,12 @@ class AnimationViewController: UIViewController {
             view.showsNodeCount = true
         }
         
-//        view.addSubview(playButton)
-//        NSLayoutConstraint.activate([
-//            playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            playButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//
-//        ])
+        view.addSubview(playButton)
+        NSLayoutConstraint.activate([
+            playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            playButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+
+        ])
         
     }
 
