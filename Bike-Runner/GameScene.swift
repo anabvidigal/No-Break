@@ -14,11 +14,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scenery: Scenery!
     var spawner: CarSpawner!
     var scoreDetector: ScoreDetector!
+    var speedManager: SpeedManager!
     
     var gameOverNode: SKSpriteNode!
+    var introNode: SKSpriteNode!
     
     var lastUpdate = TimeInterval(0)
-    var status: GameStatus = .playing
+    var status: GameStatus = .intro
     
     var scoreLabel: SKLabelNode!
     
@@ -27,10 +29,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
+        // intro
+        introNode = childNode(withName: "intro") as? SKSpriteNode
+        
+        // speed manager
+        speedManager = SpeedManager()
+        
+        
+        // player
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
-        player = Player(node: playerNode)
+        player = Player(node: playerNode, speedManager: speedManager)
         player.startAnimation()
         
+        // bg
         let backgroundNodes = [
             self.childNode(withName: "background1") as! SKSpriteNode,
             self.childNode(withName: "background2") as! SKSpriteNode,
@@ -40,10 +51,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.childNode(withName: "road") as! SKSpriteNode,
             self.childNode(withName: "foreground") as! SKSpriteNode
         ]
-        scenery = Scenery(nodes: backgroundNodes)
+        scenery = Scenery(nodes: backgroundNodes, speedManager: speedManager)
         
+        // car
         let carNode = childNode(withName: "car") as! SKSpriteNode
-        spawner = CarSpawner(carNode: carNode, parent: self)
+        spawner = CarSpawner(carNode: carNode, parent: self, speedManager: speedManager)
         
         // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
@@ -52,15 +64,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // label
         scoreLabel = childNode(withName: "scoreUpdateLabel") as? SKLabelNode
         
-        
         // game over
-        gameOverNode = childNode(withName: "gameOver") as? SKSpriteNode
+        gameOverNode = childNode(withName: "gameover") as? SKSpriteNode
         gameOverNode.removeFromParent()
     }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch status {
+        case .intro:
+            status = .playing
+            introNode.removeFromParent()
         case .playing:
             player.changeLane()
         case .gameOver:
@@ -80,6 +94,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lastUpdate = currentTime
         
         switch status {
+        case .intro:
+            introUpdate(deltaTime: deltaTime)
         case .playing:
             playingUpdate(deltaTime: deltaTime)
         case .gameOver:
@@ -87,9 +103,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func introUpdate(deltaTime: TimeInterval) {
+        scenery.update(deltaTime: deltaTime)
+    }
+    
     func playingUpdate(deltaTime: TimeInterval) {
         scenery.update(deltaTime: deltaTime)
         spawner.update(deltaTime: deltaTime)
+        speedManager.update(deltaTime: deltaTime)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -121,11 +142,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.reset()
         scoreDetector.resetScore()
         scoreLabel.text = "0"
+        speedManager.resetSpeed()
     }
 }
 
 
 enum GameStatus {
+    case intro
     case playing
     case gameOver
 }

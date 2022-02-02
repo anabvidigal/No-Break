@@ -13,16 +13,16 @@ class CarSpawner {
     private var carNode: SKSpriteNode
     private var parent: SKNode
     private var cars: [Car] = []
+    private var speedManager: SpeedManager!
+
     
     private var interval: TimeInterval = 1
     private var currentTime: TimeInterval = 0
     
-    private let lanesHeights: [CGFloat] = [-533, -571]
-    
-    
-    init(carNode: SKSpriteNode, parent: SKNode) {
+    init(carNode: SKSpriteNode, parent: SKNode, speedManager: SpeedManager) {
         self.carNode = carNode
         self.parent = parent
+        self.speedManager = speedManager
     }
     
     func update(deltaTime: TimeInterval) {
@@ -37,8 +37,8 @@ class CarSpawner {
         
         // movement
         for car in cars {
-            car.node.position.x -= GameManager.speed * deltaTime * cos(Constants.roadAngle * .pi / 180) * car.carSpeed
-            car.node.position.y -= GameManager.speed * deltaTime * sin(Constants.roadAngle * .pi / 180) * car.carSpeed
+            car.node.position.x -= speedManager.speed * deltaTime * cos(Constants.roadAngle * .pi / 180) * car.carSpeed
+            car.node.position.y -= speedManager.speed * deltaTime * sin(Constants.roadAngle * .pi / 180) * car.carSpeed
         }
         
         // removing

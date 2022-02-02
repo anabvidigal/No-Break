@@ -12,12 +12,14 @@ class Player {
     
     var node: SKSpriteNode
     private var startPosition: CGPoint
+    private var speedManager: SpeedManager!
     
     var status: LaneBikeStatus = .topLane
     
-    init(node: SKSpriteNode) {
+    init(node: SKSpriteNode, speedManager: SpeedManager) {
         self.node = node
         self.startPosition = node.position
+        self.speedManager = speedManager
         status = .topLane
         physicsSetup()
     }
@@ -64,7 +66,7 @@ class Player {
         textures.append(SKTexture(imageNamed: "fixie_rider5"))
         textures.append(SKTexture(imageNamed: "fixie_rider6"))
         
-        let frames = SKAction.animate(with: textures, timePerFrame: 0.1, resize: false, restore: false)
+        let frames = SKAction.animate(with: textures, timePerFrame: speedManager.speed / CGFloat(4000), resize: false, restore: false)
         let repeatAnim = SKAction.repeatForever(frames)
         node.run(repeatAnim)
     }
