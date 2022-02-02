@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B1BBC27A9F344008A9792 /* Car.swift */; };
+		2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */; };
+		2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */; };
 		2B58BD6627A8146800DCF69D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6527A8146800DCF69D /* Constants.swift */; };
 		2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6727A976D900DCF69D /* CarSpawner.swift */; };
 		2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C05427A3A350003606C9 /* AppDelegate.swift */; };
@@ -24,6 +26,9 @@
 
 /* Begin PBXFileReference section */
 		2B1B1BBC27A9F344008A9792 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetector.swift; sourceTree = "<group>"; };
+		2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kenney Mini.ttf"; sourceTree = "<group>"; };
+		2B56DA6527AABD5F00AD63E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2B58BD6527A8146800DCF69D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B58BD6727A976D900DCF69D /* CarSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpawner.swift; sourceTree = "<group>"; };
 		2B99C05127A3A350003606C9 /* Bike-Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike-Runner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B56DA6227AABC8300AD63E5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		2B99C04827A3A350003606C9 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +82,8 @@
 		2B99C05327A3A350003606C9 /* Bike-Runner */ = {
 			isa = PBXGroup;
 			children = (
+				2B56DA6527AABD5F00AD63E5 /* Info.plist */,
+				2B56DA6227AABC8300AD63E5 /* Fonts */,
 				2B99C05427A3A350003606C9 /* AppDelegate.swift */,
 				2B99C05627A3A350003606C9 /* GameScene.sks */,
 				2B99C05A27A3A350003606C9 /* GameScene.swift */,
@@ -82,6 +97,7 @@
 				2B58BD6527A8146800DCF69D /* Constants.swift */,
 				2B58BD6727A976D900DCF69D /* CarSpawner.swift */,
 				2B1B1BBC27A9F344008A9792 /* Car.swift */,
+				2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */,
 			);
 			path = "Bike-Runner";
 			sourceTree = "<group>";
@@ -144,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */,
 				2B99C06027A3A350003606C9 /* Main.storyboard in Resources */,
 				2B99C05727A3A350003606C9 /* GameScene.sks in Resources */,
 				2B99C06227A3A352003606C9 /* Assets.xcassets in Resources */,
@@ -160,6 +177,7 @@
 			files = (
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
 				2B99C05B27A3A350003606C9 /* GameScene.swift in Sources */,
+				2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */,
 				2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */,
 				2B99C05D27A3A350003606C9 /* GameViewController.swift in Sources */,
 				2B99C07227A3BC69003606C9 /* GameManager.swift in Sources */,
@@ -314,9 +332,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 58J47MFRH8;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Bike-Runner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -344,9 +363,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 58J47MFRH8;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Bike-Runner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -29,4 +29,8 @@ class Constants {
     static let gameSceneRightEdge = CGFloat(768)
     
     static let roadAngle = CGFloat(-15)
+    
+    // score
+    static let scoreDetectorContact: UInt32 = 0x00001100
+    static let scoreDetectorCollision: UInt32 = 0
 }

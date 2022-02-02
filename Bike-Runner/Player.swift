@@ -10,7 +10,7 @@ import SpriteKit
 
 class Player {
     
-    private var node: SKSpriteNode
+    var node: SKSpriteNode
     private var startPosition: CGPoint
     
     var status: LaneBikeStatus = .topLane

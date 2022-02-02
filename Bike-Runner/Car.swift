@@ -10,7 +10,7 @@ import SpriteKit
 
 class Car {
     
-    var carSpeed: CGFloat = .random(in: 1.5...3)
+    var carSpeed: CGFloat = .random(in: 2...3)
     var node: SKNode
     private var carTextures = [
         "police",
@@ -59,10 +59,6 @@ class Car {
         body.collisionBitMask = Constants.carCollision
         node.physicsBody = body
     }
-    
-    
-    // varying diff speeds for diff cars
-    
     
     
     enum Lane: CaseIterable {

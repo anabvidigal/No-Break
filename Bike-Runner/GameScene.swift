@@ -13,11 +13,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: Player!
     var scenery: Scenery!
     var spawner: CarSpawner!
+    var scoreDetector: ScoreDetector!
     
     var gameOverNode: SKSpriteNode!
     
     var lastUpdate = TimeInterval(0)
     var status: GameStatus = .playing
+    
+    var scoreLabel: SKLabelNode!
+    
     
     override func didMove(to view: SKView) {
         
@@ -40,6 +44,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let carNode = childNode(withName: "car") as! SKSpriteNode
         spawner = CarSpawner(carNode: carNode, parent: self)
+        
+        // score
+        let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
+        scoreDetector = ScoreDetector(node: scoreNode)
+        
+        // label
+        scoreLabel = childNode(withName: "scoreUpdateLabel") as? SKLabelNode
+        
         
         // game over
         gameOverNode = childNode(withName: "gameOver") as? SKSpriteNode
@@ -80,8 +92,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        status = .gameOver
-        gameOver()
+        
+        // if player contacts car, game over; if scorer contacts car, add score
+        
+        if contact.bodyA == scoreDetector.node.physicsBody {
+            scoreDetector.incrementScore()
+            scoreLabel.text = "\(scoreDetector.score)"
+        } else {
+            status = .gameOver
+            gameOver()
+        }
     }
     
     func gameOver() {
