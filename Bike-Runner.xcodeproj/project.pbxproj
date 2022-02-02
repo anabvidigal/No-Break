@@ -10,6 +10,9 @@
 		2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B1BBC27A9F344008A9792 /* Car.swift */; };
 		2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */; };
 		2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */; };
+		2B56DA6C27AB23B000AD63E5 /* AnimationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA6B27AB23B000AD63E5 /* AnimationScene.swift */; };
+		2B56DA6E27AB244500AD63E5 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA6D27AB244500AD63E5 /* AnimationViewController.swift */; };
+		2B56DA7027AB272400AD63E5 /* AnimationScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2B56DA6F27AB272400AD63E5 /* AnimationScene.sks */; };
 		2B58BD6627A8146800DCF69D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6527A8146800DCF69D /* Constants.swift */; };
 		2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6727A976D900DCF69D /* CarSpawner.swift */; };
 		2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C05427A3A350003606C9 /* AppDelegate.swift */; };
@@ -29,6 +32,9 @@
 		2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetector.swift; sourceTree = "<group>"; };
 		2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kenney Mini.ttf"; sourceTree = "<group>"; };
 		2B56DA6527AABD5F00AD63E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2B56DA6B27AB23B000AD63E5 /* AnimationScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationScene.swift; sourceTree = "<group>"; };
+		2B56DA6D27AB244500AD63E5 /* AnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
+		2B56DA6F27AB272400AD63E5 /* AnimationScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AnimationScene.sks; sourceTree = "<group>"; };
 		2B58BD6527A8146800DCF69D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B58BD6727A976D900DCF69D /* CarSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpawner.swift; sourceTree = "<group>"; };
 		2B99C05127A3A350003606C9 /* Bike-Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike-Runner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,9 +91,12 @@
 				2B56DA6527AABD5F00AD63E5 /* Info.plist */,
 				2B56DA6227AABC8300AD63E5 /* Fonts */,
 				2B99C05427A3A350003606C9 /* AppDelegate.swift */,
-				2B99C05627A3A350003606C9 /* GameScene.sks */,
-				2B99C05A27A3A350003606C9 /* GameScene.swift */,
+				2B56DA6D27AB244500AD63E5 /* AnimationViewController.swift */,
+				2B56DA6F27AB272400AD63E5 /* AnimationScene.sks */,
+				2B56DA6B27AB23B000AD63E5 /* AnimationScene.swift */,
 				2B99C05C27A3A350003606C9 /* GameViewController.swift */,
+				2B99C05A27A3A350003606C9 /* GameScene.swift */,
+				2B99C05627A3A350003606C9 /* GameScene.sks */,
 				2B99C05E27A3A350003606C9 /* Main.storyboard */,
 				2B99C06127A3A352003606C9 /* Assets.xcassets */,
 				2B99C06327A3A352003606C9 /* LaunchScreen.storyboard */,
@@ -165,6 +174,7 @@
 				2B99C05727A3A350003606C9 /* GameScene.sks in Resources */,
 				2B99C06227A3A352003606C9 /* Assets.xcassets in Resources */,
 				2B99C06527A3A352003606C9 /* LaunchScreen.storyboard in Resources */,
+				2B56DA7027AB272400AD63E5 /* AnimationScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +186,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
+				2B56DA6C27AB23B000AD63E5 /* AnimationScene.swift in Sources */,
 				2B99C05B27A3A350003606C9 /* GameScene.swift in Sources */,
+				2B56DA6E27AB244500AD63E5 /* AnimationViewController.swift in Sources */,
 				2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */,
 				2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */,
 				2B99C05D27A3A350003606C9 /* GameViewController.swift in Sources */,
