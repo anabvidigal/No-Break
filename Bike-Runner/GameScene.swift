@@ -38,7 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ]
         scenery = Scenery(nodes: backgroundNodes)
         
-        let carNode = childNode(withName: "car")!
+        let carNode = childNode(withName: "car") as! SKSpriteNode
         spawner = CarSpawner(carNode: carNode, parent: self)
         
         // game over

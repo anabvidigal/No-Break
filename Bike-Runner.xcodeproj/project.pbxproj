@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B1BBC27A9F344008A9792 /* Car.swift */; };
 		2B58BD6627A8146800DCF69D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6527A8146800DCF69D /* Constants.swift */; };
 		2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6727A976D900DCF69D /* CarSpawner.swift */; };
 		2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C05427A3A350003606C9 /* AppDelegate.swift */; };
@@ -18,11 +19,11 @@
 		2B99C06527A3A352003606C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B99C06327A3A352003606C9 /* LaunchScreen.storyboard */; };
 		2B99C06C27A3AD64003606C9 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C06B27A3AD64003606C9 /* Player.swift */; };
 		2B99C06E27A3B321003606C9 /* Scenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C06D27A3B321003606C9 /* Scenery.swift */; };
-		2B99C07027A3B77C003606C9 /* CarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C06F27A3B77C003606C9 /* CarManager.swift */; };
 		2B99C07227A3BC69003606C9 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C07127A3BC69003606C9 /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B1B1BBC27A9F344008A9792 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2B58BD6527A8146800DCF69D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B58BD6727A976D900DCF69D /* CarSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpawner.swift; sourceTree = "<group>"; };
 		2B99C05127A3A350003606C9 /* Bike-Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike-Runner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,7 +36,6 @@
 		2B99C06427A3A352003606C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B99C06B27A3AD64003606C9 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2B99C06D27A3B321003606C9 /* Scenery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenery.swift; sourceTree = "<group>"; };
-		2B99C06F27A3B77C003606C9 /* CarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarManager.swift; sourceTree = "<group>"; };
 		2B99C07127A3BC69003606C9 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,10 +78,10 @@
 				2B99C06327A3A352003606C9 /* LaunchScreen.storyboard */,
 				2B99C06B27A3AD64003606C9 /* Player.swift */,
 				2B99C06D27A3B321003606C9 /* Scenery.swift */,
-				2B99C06F27A3B77C003606C9 /* CarManager.swift */,
 				2B99C07127A3BC69003606C9 /* GameManager.swift */,
 				2B58BD6527A8146800DCF69D /* Constants.swift */,
 				2B58BD6727A976D900DCF69D /* CarSpawner.swift */,
+				2B1B1BBC27A9F344008A9792 /* Car.swift */,
 			);
 			path = "Bike-Runner";
 			sourceTree = "<group>";
@@ -160,12 +160,12 @@
 			files = (
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
 				2B99C05B27A3A350003606C9 /* GameScene.swift in Sources */,
+				2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */,
 				2B99C05D27A3A350003606C9 /* GameViewController.swift in Sources */,
 				2B99C07227A3BC69003606C9 /* GameManager.swift in Sources */,
 				2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */,
 				2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */,
 				2B58BD6627A8146800DCF69D /* Constants.swift in Sources */,
-				2B99C07027A3B77C003606C9 /* CarManager.swift in Sources */,
 				2B99C06E27A3B321003606C9 /* Scenery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

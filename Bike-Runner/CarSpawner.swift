@@ -10,9 +10,9 @@ import SpriteKit
 
 class CarSpawner {
     
-    private var carNode: SKNode
+    private var carNode: SKSpriteNode
     private var parent: SKNode
-    private var cars: [SKNode] = []
+    private var cars: [Car] = []
     
     private var interval: TimeInterval = 1
     private var currentTime: TimeInterval = 0
@@ -20,7 +20,7 @@ class CarSpawner {
     private let lanesHeights: [CGFloat] = [-533, -571]
     
     
-    init(carNode: SKNode, parent: SKNode) {
+    init(carNode: SKSpriteNode, parent: SKNode) {
         self.carNode = carNode
         self.parent = parent
     }
@@ -37,46 +37,30 @@ class CarSpawner {
         
         // movement
         for car in cars {
-            car.position.x -= GameManager.speed * deltaTime * cos(Constants.roadAngle * .pi / 180)
-            car.position.y -= GameManager.speed * deltaTime * sin(Constants.roadAngle * .pi / 180)
+            car.node.position.x -= GameManager.speed * deltaTime * cos(Constants.roadAngle * .pi / 180) * car.carSpeed
+            car.node.position.y -= GameManager.speed * deltaTime * sin(Constants.roadAngle * .pi / 180) * car.carSpeed
         }
         
         // removing
         if let firstCar = cars.first {
-            if firstCar.position.x < -800 {
-                firstCar.removeFromParent()
+            if firstCar.node.position.x < -900 {
+                firstCar.node.removeFromParent()
                 cars.removeFirst()
             }
         }
-        
     }
     
     func spawn() {
-        let new = carNode.copy() as! SKNode
-        let index = Int.random(in: 0...1)
-        
-        new.position.y = lanesHeights[index]
-        new.zPosition = index == 0 ? 1 : 6
-        physicsSetup(node: new, index)
-        parent.addChild(new)
+        let new = Car(node: carNode)
+        let randomLane = Car.Lane.allCases.randomElement()!
+        new.setLane(randomLane)
+        parent.addChild(new.node)
         cars.append(new)
     }
     
-    
-    func physicsSetup(node: SKNode, _ index: Int) {
-        let body = SKPhysicsBody(rectangleOf: CGSize(width: 240.3, height: 102.6))
-        body.isDynamic = true
-        body.affectedByGravity = false
-        body.contactTestBitMask = index == 0 ? Constants.carTopLaneContact : Constants.carBottomLaneContact
-        body.categoryBitMask = index == 0 ? Constants.carTopLaneCategory : Constants.carBottomLaneCategory
-        body.collisionBitMask = Constants.carCollision
-        node.physicsBody = body
-    }
-    
-    
     func reset() {
         for car in cars {
-            car.removeFromParent()
+            car.node.removeFromParent()
         }
         cars.removeAll()
         currentTime = interval
