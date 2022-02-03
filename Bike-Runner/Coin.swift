@@ -43,7 +43,7 @@ class Coin {
         textures.append(SKTexture(imageNamed: "coin_3"))
         textures.append(SKTexture(imageNamed: "coin_4"))
         
-        let frames = SKAction.animate(with: textures, timePerFrame: 0.1, resize: false, restore: false)
+        let frames = SKAction.animate(with: textures, timePerFrame: 0.15, resize: false, restore: false)
         let repeatAnim = SKAction.repeatForever(frames)
         node.run(repeatAnim)
     }
