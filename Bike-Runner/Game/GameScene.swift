@@ -15,6 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var spawner: CarSpawner!
     var scoreDetector: ScoreDetector!
     var speedManager: SpeedManager!
+    var coinSpawner: CoinSpawner!
     
     var gameOverNode: SKSpriteNode!
     var introNode: SKSpriteNode!
@@ -56,6 +57,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // car
         let carNode = childNode(withName: "car") as! SKSpriteNode
         spawner = CarSpawner(carNode: carNode, parent: self, speedManager: speedManager)
+        
+        // coin
+        let coinNode = carNode.childNode(withName: "coin") as! SKSpriteNode
+        coinSpawner = CoinSpawner(coinNode: coinNode, parent: carNode)
         
         // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
@@ -109,7 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playingUpdate(deltaTime: TimeInterval) {
         scenery.update(deltaTime: deltaTime)
-        spawner.update(deltaTime: deltaTime)
+        spawner.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
         speedManager.update(deltaTime: deltaTime)
     }
     

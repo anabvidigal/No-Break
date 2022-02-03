@@ -10,6 +10,10 @@
 		2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B1BBC27A9F344008A9792 /* Car.swift */; };
 		2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */; };
 		2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */; };
+		2B56DA7827ABFB7D00AD63E5 /* CoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7727ABFB7D00AD63E5 /* CoinManager.swift */; };
+		2B56DA7A27ABFBD700AD63E5 /* CoinsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7927ABFBD700AD63E5 /* CoinsRepository.swift */; };
+		2B56DA7C27ABFBF200AD63E5 /* PlayersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7B27ABFBF200AD63E5 /* PlayersRepository.swift */; };
+		2B56DA8027ABFE1000AD63E5 /* CoinSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7F27ABFE1000AD63E5 /* CoinSpawner.swift */; };
 		2B58BD6627A8146800DCF69D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6527A8146800DCF69D /* Constants.swift */; };
 		2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6727A976D900DCF69D /* CarSpawner.swift */; };
 		2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C05427A3A350003606C9 /* AppDelegate.swift */; };
@@ -29,6 +33,10 @@
 		2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetector.swift; sourceTree = "<group>"; };
 		2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kenney Mini.ttf"; sourceTree = "<group>"; };
 		2B56DA6527AABD5F00AD63E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2B56DA7727ABFB7D00AD63E5 /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
+		2B56DA7927ABFBD700AD63E5 /* CoinsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsRepository.swift; sourceTree = "<group>"; };
+		2B56DA7B27ABFBF200AD63E5 /* PlayersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersRepository.swift; sourceTree = "<group>"; };
+		2B56DA7F27ABFE1000AD63E5 /* CoinSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSpawner.swift; sourceTree = "<group>"; };
 		2B58BD6527A8146800DCF69D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B58BD6727A976D900DCF69D /* CarSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpawner.swift; sourceTree = "<group>"; };
 		2B99C05127A3A350003606C9 /* Bike-Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike-Runner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +71,25 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		2B56DA7D27ABFC0800AD63E5 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				2B99C05627A3A350003606C9 /* GameScene.sks */,
+				2B99C05A27A3A350003606C9 /* GameScene.swift */,
+				2B99C05C27A3A350003606C9 /* GameViewController.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		2B56DA7E27ABFC3300AD63E5 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				2B56DA7927ABFBD700AD63E5 /* CoinsRepository.swift */,
+				2B56DA7B27ABFBF200AD63E5 /* PlayersRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		2B99C04827A3A350003606C9 = {
 			isa = PBXGroup;
 			children = (
@@ -85,9 +112,7 @@
 				2B56DA6527AABD5F00AD63E5 /* Info.plist */,
 				2B56DA6227AABC8300AD63E5 /* Fonts */,
 				2B99C05427A3A350003606C9 /* AppDelegate.swift */,
-				2B99C05627A3A350003606C9 /* GameScene.sks */,
-				2B99C05A27A3A350003606C9 /* GameScene.swift */,
-				2B99C05C27A3A350003606C9 /* GameViewController.swift */,
+				2B56DA7D27ABFC0800AD63E5 /* Game */,
 				2B99C05E27A3A350003606C9 /* Main.storyboard */,
 				2B99C06127A3A352003606C9 /* Assets.xcassets */,
 				2B99C06327A3A352003606C9 /* LaunchScreen.storyboard */,
@@ -98,6 +123,9 @@
 				2B1B1BBC27A9F344008A9792 /* Car.swift */,
 				2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */,
 				2B99C07127A3BC69003606C9 /* SpeedManager.swift */,
+				2B56DA7727ABFB7D00AD63E5 /* CoinManager.swift */,
+				2B56DA7F27ABFE1000AD63E5 /* CoinSpawner.swift */,
+				2B56DA7E27ABFC3300AD63E5 /* Repositories */,
 			);
 			path = "Bike-Runner";
 			sourceTree = "<group>";
@@ -175,14 +203,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B56DA7827ABFB7D00AD63E5 /* CoinManager.swift in Sources */,
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
 				2B99C05B27A3A350003606C9 /* GameScene.swift in Sources */,
 				2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */,
+				2B56DA7A27ABFBD700AD63E5 /* CoinsRepository.swift in Sources */,
 				2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */,
 				2B99C05D27A3A350003606C9 /* GameViewController.swift in Sources */,
+				2B56DA8027ABFE1000AD63E5 /* CoinSpawner.swift in Sources */,
 				2B99C07227A3BC69003606C9 /* SpeedManager.swift in Sources */,
 				2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */,
 				2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */,
+				2B56DA7C27ABFBF200AD63E5 /* PlayersRepository.swift in Sources */,
 				2B58BD6627A8146800DCF69D /* Constants.swift in Sources */,
 				2B99C06E27A3B321003606C9 /* Scenery.swift in Sources */,
 			);
