@@ -53,7 +53,6 @@ class AnimationScene: SKScene, SKPhysicsContactDelegate {
         lastUpdate = currentTime
         
         scenery.update(deltaTime: deltaTime)
-        speedManager.update(deltaTime: deltaTime)
 
         }
     }

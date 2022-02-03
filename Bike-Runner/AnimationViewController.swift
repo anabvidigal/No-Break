@@ -23,7 +23,7 @@ class AnimationViewController: UIViewController {
     @objc func playButtonClicked() {
         let vc = GameViewController()
         vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        present(vc, animated: false)
     }
     
     override func viewDidLoad() {

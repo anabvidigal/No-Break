@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
 
     lazy var skView: SKView = {
         let view = SKView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
