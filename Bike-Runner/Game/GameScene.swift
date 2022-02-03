@@ -14,8 +14,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scenery: Scenery!
     var spawner: CarSpawner!
     var scoreDetector: ScoreDetector!
-    var speedManager: SpeedManager!
+    var speedManager: SpeedManager = SpeedManager()
     var coinSpawner: CoinSpawner!
+    var coinManager: CoinManager = CoinManager()
     
     var gameOverNode: SKSpriteNode!
     var introNode: SKSpriteNode!
@@ -32,10 +33,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // intro
         introNode = childNode(withName: "intro") as? SKSpriteNode
-        
-        // speed manager
-        speedManager = SpeedManager()
-        
         
         // player
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
@@ -60,7 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // coin
         let coinNode = carNode.childNode(withName: "coin") as! SKSpriteNode
-        coinSpawner = CoinSpawner(coinNode: coinNode, parent: carNode)
+        coinSpawner = CoinSpawner(coinNode: coinNode)
         
         // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
@@ -124,6 +121,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if contact.bodyA == scoreDetector.node.physicsBody {
             gameScore()
+        } else if contact.bodyB == coinSpawner.coins.first?.node.physicsBody {
+            coinSpawner.removeCoin()
+            coinManager.incrementCoins()
+            print(coinManager.coins)
         } else {
             status = .gameOver
             gameOver()
@@ -148,6 +149,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreDetector.resetScore()
         scoreLabel.text = "0"
         speedManager.resetSpeed()
+        coinSpawner.reset()
+        coinManager.resetCoins()
     }
 }
 

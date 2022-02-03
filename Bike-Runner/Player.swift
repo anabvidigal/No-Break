@@ -29,24 +29,31 @@ class Player {
         body.isDynamic = true
         body.affectedByGravity = false
         body.categoryBitMask = Constants.bikeTopLaneCategory
-        body.contactTestBitMask = 0
         body.collisionBitMask = Constants.bikeCollision
         node.physicsBody = body
     }
     
     func changeLane() {
-        
         switch status {
         case .topLane:
-            node.position.y = -124
-            status = .bottomLane
-            node.physicsBody?.categoryBitMask = Constants.bikeBottomLaneCategory
-
+            setBottomLane()
         case .bottomLane:
-            node.position.y = -74
-            status = .topLane
-            node.physicsBody?.categoryBitMask = Constants.bikeTopLaneCategory
+            setTopLane()
         }
+    }
+    
+    private func setBottomLane() {
+        node.position.y = -124
+        status = .bottomLane
+        node.physicsBody?.categoryBitMask = Constants.bikeBottomLaneCategory
+        node.physicsBody?.contactTestBitMask = Constants.bikeBottomLaneContact
+    }
+    
+    private func setTopLane() {
+        node.position.y = -74
+        status = .topLane
+        node.physicsBody?.categoryBitMask = Constants.bikeTopLaneCategory
+        node.physicsBody?.contactTestBitMask = Constants.bikeTopLaneContact
     }
     
     func die() {

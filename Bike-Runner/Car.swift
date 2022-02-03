@@ -24,7 +24,6 @@ class Car {
         self.node = node.copy() as! SKSpriteNode
         node.texture = SKTexture.init(imageNamed: carTextures.shuffled().first!)
         physicsSetup()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,11 +59,4 @@ class Car {
         node.physicsBody = body
     }
     
-    
-    enum Lane: CaseIterable {
-        case topLane
-        case bottomLane
-    }
 }
-
-
