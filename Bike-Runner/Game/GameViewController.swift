@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
         return view
     }()
     
-    // keep both from merge 
+    // keep both from merge
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
