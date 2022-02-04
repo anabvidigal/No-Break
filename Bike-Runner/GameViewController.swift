@@ -16,6 +16,9 @@ class GameViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    // keep both from merge 
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
