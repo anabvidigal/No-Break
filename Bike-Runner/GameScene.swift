@@ -7,6 +7,8 @@
 
 import SpriteKit
 import GameplayKit
+import GameKit
+import SnapKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -16,14 +18,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreDetector: ScoreDetector!
     var speedManager: SpeedManager!
     
+    var gameCenter = GameCenter()
+    
     var gameOverNode: SKSpriteNode!
     var introNode: SKSpriteNode!
-//    var leaderboardNode: SKSpriteNode!
+    var finalScoreNode: SKLabelNode!
     
     var lastUpdate = TimeInterval(0)
     var status: GameStatus = .intro
     
     var scoreLabel: SKLabelNode!
+    
+    var viewLeaderboardNode: SKSpriteNode!
+    
     
     
     override func didMove(to view: SKView) {
@@ -36,9 +43,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // speed manager
         speedManager = SpeedManager()
         
-//        // game center
-//        leaderboardNode = childNode(withName: "leaderboard") as? SKSpriteNode
-//        leaderboardNode.removeFromParent()
+        // game center
+        finalScoreNode = childNode(withName: "finalScore") as? SKLabelNode
+        finalScoreNode.removeFromParent()
+        
+        viewLeaderboardNode = childNode(withName: "viewLeaderboard") as? SKSpriteNode
+        viewLeaderboardNode.removeFromParent()
+                
         
         // player
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
@@ -75,10 +86,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         switch status {
         case .intro:
             status = .playing
             introNode.removeFromParent()
+            speedManager.resetSpeed()
         case .playing:
             player.changeLane()
         case .gameOver:
@@ -91,6 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         if lastUpdate == 0 {
             lastUpdate = currentTime
+            speedManager.resetSpeed()
             return
         }
         
@@ -100,6 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         switch status {
         case .intro:
             introUpdate(deltaTime: deltaTime)
+            speedManager.resetSpeed()
         case .playing:
             playingUpdate(deltaTime: deltaTime)
         case .gameOver:
@@ -131,11 +146,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func gameOver() {
         addChild(gameOverNode)
-        
-        // testing game center
-        
-        
-//        addChild(leaderboardNode)
+//      addChild(leaderboardNode)
+//      addChild(playAgainNode)
+        displayFinalScore()
+        submitGameCenterScore()
         player.die()
     }
     
@@ -144,8 +158,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "\(scoreDetector.score)"
     }
     
+    func displayFinalScore() {
+        finalScoreNode.text = "FINAL SCORE: " + "\(scoreDetector.score)"
+        addChild(finalScoreNode)
+    }
+    
+    func submitGameCenterScore() {
+        gameCenter.submitScore(score: scoreDetector.score)
+    }
+    
     func reset(){
         gameOverNode.removeFromParent()
+        finalScoreNode.removeFromParent()
         status = .playing
         spawner.reset()
         player.reset()

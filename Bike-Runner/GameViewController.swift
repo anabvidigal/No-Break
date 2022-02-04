@@ -53,29 +53,13 @@ class GameViewController: UIViewController {
             
             skView.ignoresSiblingOrder = true
             
-            view.showsFPS = true
-            view.showsNodeCount = true
-            
-            authenticateUser()
-            
-        }
-    }
+            skView.showsFPS = true
+            skView.showsNodeCount = true
 
-    func authenticateUser() {
-        let player = GKLocalPlayer.local
-        
-        player.authenticateHandler = { vc, error in
-            
-            guard error == nil else {
-                print(error?.localizedDescription ?? "")
-                return
-            }
-            
-            if let vc = vc {
-                self.present(vc, animated: true, completion: nil)
-            }
         }
-    }
+    
+
+    
     
     override var shouldAutorotate: Bool {
         return true
