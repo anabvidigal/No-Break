@@ -21,7 +21,6 @@ class SpeedManager {
             currentTime = 0
             incrementSpeed()
         }
-        
     }
     
     func incrementSpeed() {
@@ -31,5 +30,4 @@ class SpeedManager {
     func resetSpeed() {
         speed = 400
     }
-    
 }

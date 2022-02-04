@@ -12,6 +12,14 @@ import GameKit
 
 class GameViewController: UIViewController {
 
+    lazy var skView: SKView = {
+        let view = SKView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    // keep both from merge 
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
@@ -26,17 +34,24 @@ class GameViewController: UIViewController {
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         
-        if let view = self.view as! SKView? {
+        view.addSubview(skView)
+        NSLayoutConstraint.activate([
+            skView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            skView.topAnchor.constraint(equalTo: view.topAnchor),
+            skView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            skView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+        
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFit
                 
                 // Present the scene
-                view.presentScene(scene)
+                skView.presentScene(scene)
             }
             
-            view.ignoresSiblingOrder = true
+            skView.ignoresSiblingOrder = true
             
             view.showsFPS = true
             view.showsNodeCount = true
