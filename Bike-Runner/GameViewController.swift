@@ -16,6 +16,12 @@ class GameViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
+            scene.lastUpdate = 0
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

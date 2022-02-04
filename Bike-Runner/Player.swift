@@ -59,14 +59,14 @@ class Player {
     
     func startAnimation() {
         var textures = [SKTexture]()
-        textures.append(SKTexture(imageNamed: "fixie_rider1"))
-        textures.append(SKTexture(imageNamed: "fixie_rider2"))
-        textures.append(SKTexture(imageNamed: "fixie_rider3"))
-        textures.append(SKTexture(imageNamed: "fixie_rider4"))
-        textures.append(SKTexture(imageNamed: "fixie_rider5"))
-        textures.append(SKTexture(imageNamed: "fixie_rider6"))
+        textures.append(SKTexture(imageNamed: "fixed_frame_1"))
+        textures.append(SKTexture(imageNamed: "fixed_frame_2"))
+        textures.append(SKTexture(imageNamed: "fixed_frame_3"))
+        textures.append(SKTexture(imageNamed: "fixed_frame_4"))
+        textures.append(SKTexture(imageNamed: "fixed_frame_5"))
+        textures.append(SKTexture(imageNamed: "fixed_frame_6"))
         
-        let frames = SKAction.animate(with: textures, timePerFrame: CGFloat(60) / speedManager.speed, resize: false, restore: false)
+        let frames = SKAction.animate(with: textures, timePerFrame: 0.09, resize: false, restore: false)
         let repeatAnim = SKAction.repeatForever(frames)
         node.run(repeatAnim)
     }
