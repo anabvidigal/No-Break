@@ -12,6 +12,13 @@ import GameKit
 
 class GameViewController: UIViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
+            scene.lastUpdate = 0
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
