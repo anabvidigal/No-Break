@@ -22,8 +22,9 @@ class Car {
     
     init(node: SKSpriteNode) {
         self.node = node.copy() as! SKSpriteNode
-        node.texture = SKTexture.init(imageNamed: carTextures.shuffled().first!)
+//        node.texture = SKTexture.init(imageNamed: carTextures.shuffled().first!)
         physicsSetup()
+        startAnimation()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,21 +38,21 @@ class Car {
         }
     }
     
-    func setTopLane() {
+    private func setTopLane() {
         node.position.y = -533
         node.physicsBody?.contactTestBitMask = Constants.carTopLaneContact
         node.physicsBody?.categoryBitMask = Constants.carTopLaneCategory
         node.zPosition = 1
     }
     
-    func setBottomLane() {
+    private func setBottomLane() {
         node.position.y = -571
         node.physicsBody?.contactTestBitMask = Constants.carBottomLaneContact
         node.physicsBody?.categoryBitMask = Constants.carBottomLaneCategory
         node.zPosition = 6
     }
     
-    func physicsSetup() {
+    private func physicsSetup() {
         let body = SKPhysicsBody(rectangleOf: CGSize(width: 240.3, height: 102.6))
         body.isDynamic = true
         body.affectedByGravity = false
@@ -59,4 +60,19 @@ class Car {
         node.physicsBody = body
     }
     
+    private func startAnimation() {
+        var textures = [SKTexture]()
+        textures.append(SKTexture(imageNamed: "car_frame_1"))
+        textures.append(SKTexture(imageNamed: "car_frame_2"))
+        textures.append(SKTexture(imageNamed: "car_frame_3"))
+        textures.append(SKTexture(imageNamed: "car_frame_4"))
+        textures.append(SKTexture(imageNamed: "car_frame_5"))
+        textures.append(SKTexture(imageNamed: "car_frame_6"))
+        textures.append(SKTexture(imageNamed: "car_frame_7"))
+        textures.append(SKTexture(imageNamed: "car_frame_8"))
+        
+        let frames = SKAction.animate(with: textures, timePerFrame: 0.2, resize: false, restore: false)
+        let repeatAnim = SKAction.repeatForever(frames)
+        node.run(repeatAnim)
+    }
 }
