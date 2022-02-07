@@ -15,7 +15,8 @@ class Car {
     private var carTextures = [
         "car",
         "rounded_car",
-        "jeep"
+        "jeep",
+        "super_car"
     ]
     
     init(node: SKSpriteNode) {
