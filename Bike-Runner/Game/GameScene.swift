@@ -12,7 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: Player!
     var scenery: Scenery!
-    var spawner: CarSpawner!
+    var carSpawner: CarSpawner!
     var scoreDetector: ScoreDetector!
     var speedManager: SpeedManager = SpeedManager()
     var coinSpawner: CoinSpawner!
@@ -53,7 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // car
         let carNode = childNode(withName: "car") as! SKSpriteNode
-        spawner = CarSpawner(carNode: carNode, parent: self, speedManager: speedManager)
+        carSpawner = CarSpawner(carNode: carNode, parent: self, speedManager: speedManager)
         
         // coin
         let coinNode = carNode.childNode(withName: "coin") as! SKSpriteNode
@@ -111,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playingUpdate(deltaTime: TimeInterval) {
         scenery.update(deltaTime: deltaTime)
-        spawner.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
+        carSpawner.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
         speedManager.update(deltaTime: deltaTime)
     }
     
@@ -134,6 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func gameOver() {
         addChild(gameOverNode)
         player.die()
+        carSpawner.stopCars()
     }
     
     func gameScore() {
@@ -144,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func reset(){
         gameOverNode.removeFromParent()
         status = .playing
-        spawner.reset()
+        carSpawner.reset()
         player.reset()
         scoreDetector.resetScore()
         scoreLabel.text = "0"

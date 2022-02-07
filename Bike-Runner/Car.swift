@@ -13,16 +13,13 @@ class Car {
     var carSpeed: CGFloat = .random(in: 1.8...2.2)
     var node: SKNode
     private var carTextures = [
-        "police",
-        "rounded_green",
-        "convertible",
-        "rounded_red",
-        "taxi"
+        "car",
+        "rounded_car",
+        "jeep"
     ]
     
     init(node: SKSpriteNode) {
         self.node = node.copy() as! SKSpriteNode
-//        node.texture = SKTexture.init(imageNamed: carTextures.shuffled().first!)
         physicsSetup()
         startAnimation()
     }
@@ -46,7 +43,7 @@ class Car {
     }
     
     private func setBottomLane() {
-        node.position.y = -571
+        node.position.y = -579
         node.physicsBody?.contactTestBitMask = Constants.carBottomLaneContact
         node.physicsBody?.categoryBitMask = Constants.carBottomLaneCategory
         node.zPosition = 6
@@ -61,17 +58,18 @@ class Car {
     }
     
     private func startAnimation() {
+        guard let carTexture = carTextures.shuffled().first else { return }
         var textures = [SKTexture]()
-        textures.append(SKTexture(imageNamed: "car_frame_1"))
-        textures.append(SKTexture(imageNamed: "car_frame_2"))
-        textures.append(SKTexture(imageNamed: "car_frame_3"))
-        textures.append(SKTexture(imageNamed: "car_frame_4"))
-        textures.append(SKTexture(imageNamed: "car_frame_5"))
-        textures.append(SKTexture(imageNamed: "car_frame_6"))
-        textures.append(SKTexture(imageNamed: "car_frame_7"))
-        textures.append(SKTexture(imageNamed: "car_frame_8"))
+        textures.append(SKTexture(imageNamed: carTexture + "_frame_1"))
+        textures.append(SKTexture(imageNamed: carTexture + "_frame_2"))
+        textures.append(SKTexture(imageNamed: carTexture + "_frame_3"))
+        textures.append(SKTexture(imageNamed: carTexture + "_frame_4"))
+        textures.append(SKTexture(imageNamed: carTexture + "_frame_5"))
+        textures.append(SKTexture(imageNamed: carTexture + "_frame_6"))
+        textures.append(SKTexture(imageNamed: carTexture + "_frame_7"))
+        textures.append(SKTexture(imageNamed: carTexture + "_frame_8"))
         
-        let frames = SKAction.animate(with: textures, timePerFrame: 0.2, resize: false, restore: false)
+        let frames = SKAction.animate(with: textures, timePerFrame: 0.1, resize: false, restore: false)
         let repeatAnim = SKAction.repeatForever(frames)
         node.run(repeatAnim)
     }
