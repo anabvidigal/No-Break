@@ -10,22 +10,20 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var player: Player!
-    var scenery: Scenery!
-    var spawner: CarSpawner!
-    var scoreDetector: ScoreDetector!
-    var speedManager: SpeedManager = SpeedManager()
-    var coinSpawner: CoinSpawner!
+    private var player: Player!
+    private var scenery: Scenery!
+    private var spawner: CarSpawner!
+    private var speedManager: SpeedManager = SpeedManager()
+    private var coinSpawner: CoinSpawner!
+    private var introNode: SKSpriteNode!
+    private var scoreLabel: SKLabelNode!
+    
     var coinManager: CoinManager = CoinManager()
-    
-    var gameOverNode: SKSpriteNode!
-    var introNode: SKSpriteNode!
-    
-    var lastUpdate = TimeInterval(0)
+    var scoreDetector: ScoreDetector!
     var status: GameStatus = .intro
+    var lastUpdate = TimeInterval(0)
     
-    var scoreLabel: SKLabelNode!
-    
+    weak var gameDelegate: GameSceneDelegate?
     
     override func didMove(to view: SKView) {
         
@@ -65,12 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // label
         scoreLabel = childNode(withName: "scoreUpdateLabel") as? SKLabelNode
-        
-        // game over
-        gameOverNode = childNode(withName: "gameover") as? SKSpriteNode
-        gameOverNode.removeFromParent()
     }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch status {
@@ -80,7 +73,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .playing:
             player.changeLane()
         case .gameOver:
-            reset()
             break
         }
     }
@@ -132,8 +124,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func gameOver() {
-        addChild(gameOverNode)
         player.die()
+        gameDelegate?.gameIsOver(self)
     }
     
     func gameScore() {
@@ -142,8 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func reset(){
-        gameOverNode.removeFromParent()
-        status = .playing
+        status = .intro
         spawner.reset()
         player.reset()
         scoreDetector.resetScore()
@@ -151,6 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         speedManager.resetSpeed()
         coinSpawner.reset()
         coinManager.resetCoins()
+        addChild(introNode)
     }
 }
 

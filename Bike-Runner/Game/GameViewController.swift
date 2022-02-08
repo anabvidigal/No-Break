@@ -8,12 +8,26 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import SnapKit
 
-class GameViewController: UIViewController {
+protocol GameSceneDelegate: AnyObject {
+    func gameIsOver(_ sender: GameScene)
+}
 
+class GameViewController: UIViewController, GameSceneDelegate {
+
+    var gameScene: GameScene?
+    
     lazy var skView: SKView = {
         let view = SKView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var testView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .red
         return view
     }()
     
@@ -41,22 +55,37 @@ class GameViewController: UIViewController {
             skView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
         
+        view.addSubview(testView)
+        testView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+        }
+        
+        testView.alpha = 0
+        
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
+                gameScene = scene
                 scene.scaleMode = .aspectFit
+                scene.gameDelegate = self
                 
                 // Present the scene
                 skView.presentScene(scene)
             }
             
             skView.ignoresSiblingOrder = true
-            
             skView.showsFPS = true
             skView.showsNodeCount = true
     
     }
 
+    func gameIsOver(_ sender: GameScene) {
+        testView.alpha = 1
+        gameScene?.reset()
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
