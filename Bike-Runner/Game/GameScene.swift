@@ -145,9 +145,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func gameOver() {
         addChild(gameOverNode)
-//      addChild(leaderboardNode)
-//      addChild(playAgainNode)
-        displayFinalScore()
         submitGameCenterScore()
         player.die()
         carSpawner.stopCars()
@@ -158,18 +155,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "\(scoreDetector.score)"
     }
     
-    func displayFinalScore() {
-        finalScoreNode.text = "FINAL SCORE: " + "\(scoreDetector.score)"
-        addChild(finalScoreNode)
-    }
-    
     func submitGameCenterScore() {
         gameCenter.submitScore(score: scoreDetector.score)
     }
     
     func reset(){
         gameOverNode.removeFromParent()
-        finalScoreNode.removeFromParent()
         status = .playing
         carSpawner.reset()
         player.reset()
