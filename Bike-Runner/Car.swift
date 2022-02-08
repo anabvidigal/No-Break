@@ -16,7 +16,8 @@ class Car {
         "car",
         "rounded_car",
         "jeep",
-        "super_car"
+        "super_car",
+        "kombi"
     ]
     
     init(node: SKSpriteNode) {
