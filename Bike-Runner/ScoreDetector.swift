@@ -18,7 +18,7 @@ class ScoreDetector {
         setupPhysics()
     }
     
-    func setupPhysics() {
+    private func setupPhysics() {
         let body = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: 700))
         body.isDynamic = true
         body.affectedByGravity = false

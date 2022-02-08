@@ -25,37 +25,48 @@ class CarSpawner {
         self.speedManager = speedManager
     }
     
-    func update(deltaTime: TimeInterval) {
+    func update(deltaTime: TimeInterval, coinSpawner: CoinSpawner) {
         
         currentTime += deltaTime
         
         if currentTime > interval {
-            spawn()
+            spawn(coinSpawner: coinSpawner)
             currentTime = 0
             interval = TimeInterval(Float.random(in: 0.7...1.3))
         }
         
-        // movement
+        move(cars: cars, deltaTime: deltaTime)
+        removeCarOutOfScreen(cars: cars, coinSpawner: coinSpawner)
+    }
+    
+    private func move(cars: [Car], deltaTime: TimeInterval) {
         for car in cars {
             car.node.position.x -= speedManager.speed * deltaTime * cos(Constants.roadAngle * .pi / 180) * car.carSpeed
             car.node.position.y -= speedManager.speed * deltaTime * sin(Constants.roadAngle * .pi / 180) * car.carSpeed
         }
-        
-        // removing
+    }
+    
+    private func removeCarOutOfScreen(cars: [Car], coinSpawner: CoinSpawner) {
         if let firstCar = cars.first {
             if firstCar.node.position.x < -900 {
                 firstCar.node.removeFromParent()
-                cars.removeFirst()
+                self.cars.removeFirst()
+                if firstCar.node.childNode(withName: "coin") != nil {
+                    coinSpawner.removeCoin()
+                }
             }
         }
     }
     
-    func spawn() {
+    func spawn(coinSpawner: CoinSpawner) {
         let new = Car(node: carNode)
-        let randomLane = Car.Lane.allCases.randomElement()!
+        let randomLane = Lane.allCases.randomElement()!
         new.setLane(randomLane)
         parent.addChild(new.node)
+        
         cars.append(new)
+        
+        coinSpawner.randomizeCoinSpawn(parent: new.node, lane: randomLane)
     }
     
     func reset() {
@@ -64,5 +75,11 @@ class CarSpawner {
         }
         cars.removeAll()
         currentTime = interval
+    }
+    
+    func stopCars() {
+        for car in cars {
+            car.node.removeAllActions()
+        }
     }
 }
