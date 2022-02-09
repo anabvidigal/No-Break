@@ -58,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let carNode = childNode(withName: "car") as! SKSpriteNode
         carSpawner = CarSpawner(carNode: carNode, parent: self, speedManager: speedManager)
         
-        // coin
+//         coin
         let coinNode = carNode.childNode(withName: "coin") as! SKSpriteNode
         coinSpawner = CoinSpawner(coinNode: coinNode)
         

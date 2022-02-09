@@ -66,7 +66,7 @@ class CarSpawner {
         
         cars.append(new)
         
-        coinSpawner.randomizeCoinSpawn(parent: new.node, lane: randomLane)
+//        coinSpawner.randomizeCoinSpawn(parent: new.node, lane: randomLane)
     }
     
     func reset() {
