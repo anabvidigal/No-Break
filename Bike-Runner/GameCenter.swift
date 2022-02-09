@@ -37,6 +37,19 @@ class GameCenter {
         }
     }
     
+    func unlock10PointsAchievement() {
+        let achievement = GKAchievement(identifier: "10_points")
+        achievement.percentComplete = 100
+        achievement.showsCompletionBanner = true
+        GKAchievement.report([achievement]) { error in
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            print ("done")
+        }
+    }
+    
     func resetAchievement() {
         GKAchievement.resetAchievements()
     }

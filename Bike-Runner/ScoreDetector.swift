@@ -31,17 +31,16 @@ class ScoreDetector {
     
     func incrementScore() {
         score += 1
+        if score == 30 {
+            gameCenter.unlock30PointsAchievement()
+        }
         if score == 10 {
-            unlock30PointsAchievement()
+            gameCenter.unlock10PointsAchievement()
         }
     }
     
     func resetScore() {
         score = 0
-    }
-    
-    func unlock30PointsAchievement() {
-        gameCenter.unlock30PointsAchievement()
     }
     
 }
