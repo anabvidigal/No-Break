@@ -126,7 +126,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // if player contacts car, game over; if scorer contacts car, add score
         
         if contact.bodyA == scoreDetector.node.physicsBody {
-            gameScore()
+            score()
         } else if contact.bodyB == coinSpawner.coins.first?.node.physicsBody {
             coinSpawner.removeCoin()
             coinManager.incrementCoins()
@@ -137,18 +137,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func gameOver() {
+    private func gameOver() {
         player.die()
         carSpawner.stopCarsAnimation()
         gameDelegate?.gameIsOver(self)
+        submitGameCenterScore()
     }
     
-    func gameScore() {
+    private func score() {
         scoreDetector.incrementScore()
         scoreLabel.text = "\(scoreDetector.score)"
     }
     
-    func submitGameCenterScore() {
+    private func submitGameCenterScore() {
         gameCenter.submitScore(score: scoreDetector.score)
     }
     
