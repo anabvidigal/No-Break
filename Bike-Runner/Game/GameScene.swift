@@ -64,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
-        scoreDetector = ScoreDetector(node: scoreNode)
+        scoreDetector = ScoreDetector(node: scoreNode, gameCenter: gameCenter)
         
         // label
         scoreLabel = childNode(withName: "scoreUpdateLabel") as? SKLabelNode

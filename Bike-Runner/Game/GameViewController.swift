@@ -52,9 +52,11 @@ class GameViewController: UIViewController, GameSceneDelegate {
         return button
     }()
     @objc func leaderboardButtonClicked() {
-        let vc = GKGameCenterViewController.init(state: .leaderboards)
-        vc.gameCenterDelegate = self
-        present(vc, animated: true, completion: nil)
+//        let vc = GKGameCenterViewController.init(state: .leaderboards)
+//        vc.gameCenterDelegate = self
+//        present(vc, animated: true, completion: nil)
+        gameCenter.resetAchievement()
+
     }
     
     lazy var achievementsButton: UIButton = {
@@ -65,6 +67,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
     @objc func achievementsButtonClicked() {
         let vc = GKGameCenterViewController(state: .achievements)
         vc.gameCenterDelegate = self
+        GKAchievement.loadAchievements()
         present(vc, animated: true, completion: nil)
     }
     

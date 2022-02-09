@@ -12,9 +12,11 @@ class ScoreDetector {
     
     var score: Int = 0
     var node: SKNode
+    private var gameCenter: GameCenter
     
-    init(node: SKNode){
+    init(node: SKNode, gameCenter: GameCenter){
         self.node = node
+        self.gameCenter = gameCenter
         setupPhysics()
     }
     
@@ -29,10 +31,17 @@ class ScoreDetector {
     
     func incrementScore() {
         score += 1
+        if score == 10 {
+            unlock30PointsAchievement()
+        }
     }
     
     func resetScore() {
         score = 0
+    }
+    
+    func unlock30PointsAchievement() {
+        gameCenter.unlock30PointsAchievement()
     }
     
 }
