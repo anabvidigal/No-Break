@@ -20,6 +20,7 @@ class AnimationScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
+        
         // speed manager
         speedManager = SpeedManager()
         
@@ -53,6 +54,8 @@ class AnimationScene: SKScene, SKPhysicsContactDelegate {
         lastUpdate = currentTime
         
         scenery.update(deltaTime: deltaTime)
+        
+        speedManager.resetSpeed()
 
         }
     }

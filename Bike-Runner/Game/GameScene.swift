@@ -7,16 +7,20 @@
 
 import SpriteKit
 import GameplayKit
+import GameKit
+import SnapKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var player: Player!
     private var scenery: Scenery!
-    private var spawner: CarSpawner!
+    private var carSpawner: CarSpawner!
     private var speedManager: SpeedManager = SpeedManager()
     private var coinSpawner: CoinSpawner!
     private var introNode: SKSpriteNode!
     private var scoreLabel: SKLabelNode!
+    
+    private var gameCenter = GameCenter()
     
     var coinManager: CoinManager = CoinManager()
     var scoreDetector: ScoreDetector!
@@ -51,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // car
         let carNode = childNode(withName: "car") as! SKSpriteNode
-        spawner = CarSpawner(carNode: carNode, parent: self, speedManager: speedManager)
+        carSpawner = CarSpawner(carNode: carNode, parent: self, speedManager: speedManager)
         
         // coin
         let coinNode = carNode.childNode(withName: "coin") as! SKSpriteNode
@@ -66,10 +70,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         switch status {
         case .intro:
             status = .playing
             introNode.removeFromParent()
+            speedManager.resetSpeed()
         case .playing:
             player.changeLane()
         case .gameOver:
@@ -81,6 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         if lastUpdate == 0 {
             lastUpdate = currentTime
+            speedManager.resetSpeed()
             return
         }
         
@@ -90,6 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         switch status {
         case .intro:
             introUpdate(deltaTime: deltaTime)
+            speedManager.resetSpeed()
         case .playing:
             playingUpdate(deltaTime: deltaTime)
         case .gameOver:
@@ -103,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playingUpdate(deltaTime: TimeInterval) {
         scenery.update(deltaTime: deltaTime)
-        spawner.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
+        carSpawner.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
         speedManager.update(deltaTime: deltaTime)
     }
     
@@ -133,9 +141,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "\(scoreDetector.score)"
     }
     
+    func submitGameCenterScore() {
+        gameCenter.submitScore(score: scoreDetector.score)
+    }
+    
     func reset(){
         status = .intro
-        spawner.reset()
+        carSpawner.reset()
         player.reset()
         scoreDetector.resetScore()
         scoreLabel.text = "0"

@@ -9,6 +9,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import SnapKit
+import GameKit
 
 protocol GameSceneDelegate: AnyObject {
     func gameIsOver(_ sender: GameScene)
@@ -78,8 +79,9 @@ class GameViewController: UIViewController, GameSceneDelegate {
             skView.ignoresSiblingOrder = true
             skView.showsFPS = true
             skView.showsNodeCount = true
+
+        }
     
-    }
 
     func gameIsOver(_ sender: GameScene) {
         testView.alpha = 1

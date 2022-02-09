@@ -1,0 +1,6 @@
+framework module Pods_Bike_Runner {
+  umbrella header "Pods-Bike-Runner-umbrella.h"
+
+  export *
+  module * { export * }
+}
