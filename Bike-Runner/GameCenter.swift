@@ -12,7 +12,6 @@ import GameKit
 class GameCenter {
     
     // Leaderboards
-    
     func submitScore(score: Int) {
         Task {
             do {
@@ -25,7 +24,6 @@ class GameCenter {
     
     
     // Achievements
-    
     func unlockAchievement() {
         let achievement = GKAchievement(identifier: "30_points")
         achievement.percentComplete = 100
@@ -42,5 +40,21 @@ class GameCenter {
     
     func resetAchievement() {
         GKAchievement.resetAchievements()
+    }
+    
+    func authenticateUser(_ sender: UIViewController) {
+        let player = GKLocalPlayer.local
+        
+        player.authenticateHandler = { vc, error in
+            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            
+            if let vc = vc {
+                sender.present(vc, animated: true, completion: nil)
+            }
+        }
     }
 }

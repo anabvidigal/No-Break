@@ -17,14 +17,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var carSpawner: CarSpawner!
     private var speedManager: SpeedManager = SpeedManager()
     private var coinSpawner: CoinSpawner!
-    private var introNode: SKSpriteNode!
+    var introNode: SKSpriteNode!
     private var scoreLabel: SKLabelNode!
     
     private var gameCenter = GameCenter()
     
     var coinManager: CoinManager = CoinManager()
     var scoreDetector: ScoreDetector!
-    var status: GameStatus = .intro
+    var status: GameStatus = .animating
     var lastUpdate = TimeInterval(0)
     
     weak var gameDelegate: GameSceneDelegate?
@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // intro
         introNode = childNode(withName: "intro") as? SKSpriteNode
+        introNode.removeFromParent()
         
         // player
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
@@ -72,6 +73,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         switch status {
+        case .animating:
+            break
         case .intro:
             status = .playing
             introNode.removeFromParent()
@@ -95,6 +98,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lastUpdate = currentTime
         
         switch status {
+        case .animating:
+            introUpdate(deltaTime: deltaTime)
+            speedManager.resetSpeed()
         case .intro:
             introUpdate(deltaTime: deltaTime)
             speedManager.resetSpeed()
@@ -161,6 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 
 enum GameStatus {
+    case animating
     case intro
     case playing
     case gameOver
