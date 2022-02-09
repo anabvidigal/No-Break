@@ -29,10 +29,44 @@ class GameViewController: UIViewController, GameSceneDelegate {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .red
+        view.alpha = 0
         return view
     }()
     
-    // keep both from merge
+    lazy var restartButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Recomeçar", for: .normal)
+        button.backgroundColor = .blue
+        button.addTarget(self, action: #selector(restartClicked), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func restartClicked() {
+        gameScene?.reset()
+        testView.alpha = 0
+    }
+    
+    lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Voltar", for: .normal)
+        button.backgroundColor = .blue
+        button.addTarget(self, action: #selector(backClicked), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func backClicked() {
+        dismiss(animated: false)
+    }
+    
+    lazy var scoreLabel: UILabel = {
+        let label = UILabel()
+        label.font = .kenneyFont
+        label.font = label.font.withSize(52)
+        label.textColor = .green
+        label.textAlignment = .center
+        return label
+    }()
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -59,12 +93,29 @@ class GameViewController: UIViewController, GameSceneDelegate {
         view.addSubview(testView)
         testView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.width.equalTo(100)
-            make.height.equalTo(100)
+            make.width.equalTo(400)
+            make.height.equalTo(300)
         }
         
-        testView.alpha = 0
+        testView.addSubview(restartButton)
+        restartButton.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
         
+        testView.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(restartButton.snp.bottom)
+            make.centerX.equalToSuperview()
+        }
+        
+        testView.addSubview(scoreLabel)
+        scoreLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(32)
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(32)
+            make.trailing.equalToSuperview().offset(-32)
+        }
+                
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
@@ -85,7 +136,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
 
     func gameIsOver(_ sender: GameScene) {
         testView.alpha = 1
-        gameScene?.reset()
+        scoreLabel.text = "Score: \(sender.scoreDetector.score)"
     }
     
     override var shouldAutorotate: Bool {

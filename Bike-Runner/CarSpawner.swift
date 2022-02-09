@@ -77,7 +77,7 @@ class CarSpawner {
         currentTime = interval
     }
     
-    func stopCars() {
+    func stopCarsAnimation() {
         for car in cars {
             car.node.removeAllActions()
         }

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DCDC44928D0CD78AAB9275E /* Pods_Bike_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6CB983171315AB1712FA39 /* Pods_Bike_Runner.framework */; };
 		2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B1BBC27A9F344008A9792 /* Car.swift */; };
+		2B23A52427B34AF4000B6C9D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23A52327B34AF4000B6C9D /* UIFont+.swift */; };
 		2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */; };
 		2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */; };
 		2B56DA6827AAD23900AD63E5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B56DA6727AAD23900AD63E5 /* GameKit.framework */; };
@@ -38,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		2B1B1BBC27A9F344008A9792 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		2B23A52327B34AF4000B6C9D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetector.swift; sourceTree = "<group>"; };
 		2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kenney Mini.ttf"; sourceTree = "<group>"; };
 		2B56DA6527AABD5F00AD63E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -63,13 +64,11 @@
 		2B99C06B27A3AD64003606C9 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2B99C06D27A3B321003606C9 /* Scenery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenery.swift; sourceTree = "<group>"; };
 		2B99C07127A3BC69003606C9 /* SpeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManager.swift; sourceTree = "<group>"; };
+		6114A62A27AD7CA4002290EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		6114A62C27AD7CBE002290EB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B1DB2D6C82E803505A2478 /* Pods-Bike-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.release.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		D577AD4367CA3EC4EC4FE58C /* Pods-Bike-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.debug.xcconfig"; sourceTree = "<group>"; };
-		6114A62A27AD7CA4002290EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		6114A62C27AD7CBE002290EB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		BA4EA2E34EF0846C103B6C3E /* Pods-Bike-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.release.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.release.xcconfig"; sourceTree = "<group>"; };
-		CA91727900500BE264CAA624 /* Pods-Bike-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,13 +77,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B56DA6827AAD23900AD63E5 /* GameKit.framework in Frameworks */,
-				11B69906798AD8FB35EF769B /* Pods_Bike_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B23A52227B34AD4000B6C9D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2B23A52327B34AF4000B6C9D /* UIFont+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2B56DA6227AABC8300AD63E5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				2B99C05327A3A350003606C9 /* Bike-Runner */,
+				2B23A52227B34AD4000B6C9D /* Extensions */,
 				2B99C05227A3A350003606C9 /* Products */,
 				2B56DA6627AAD23900AD63E5 /* Frameworks */,
 				B3CE340DA79A2DE795C80AFA /* Pods */,
@@ -300,7 +307,6 @@
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
 				2B56DA6C27AB23B000AD63E5 /* AnimationScene.swift in Sources */,
 				2B6D73B327AD7416002B56C7 /* GameCenter.swift in Sources */,
-				2B99C05B27A3A350003606C9 /* GameScene.swift in Sources */,
 				2B56DA8227AC0EF000AD63E5 /* Coin.swift in Sources */,
 				6114A62D27AD7CBE002290EB /* GameViewController.swift in Sources */,
 				2B56DA6E27AB244500AD63E5 /* AnimationViewController.swift in Sources */,
@@ -309,6 +315,7 @@
 				2B56DA7A27ABFBD700AD63E5 /* CoinsRepository.swift in Sources */,
 				2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */,
 				2B56DA8027ABFE1000AD63E5 /* CoinSpawner.swift in Sources */,
+				2B23A52427B34AF4000B6C9D /* UIFont+.swift in Sources */,
 				2B99C07227A3BC69003606C9 /* SpeedManager.swift in Sources */,
 				6114A62B27AD7CA4002290EB /* GameScene.swift in Sources */,
 				2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */,

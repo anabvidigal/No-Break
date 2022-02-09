@@ -133,6 +133,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func gameOver() {
         player.die()
+        carSpawner.stopCarsAnimation()
         gameDelegate?.gameIsOver(self)
     }
     
