@@ -23,6 +23,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
     lazy var skView: SKView = {
         let view = SKView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .appBrown1
         return view
     }()
     
@@ -52,11 +53,9 @@ class GameViewController: UIViewController, GameSceneDelegate {
         return button
     }()
     @objc func leaderboardButtonClicked() {
-//        let vc = GKGameCenterViewController.init(state: .leaderboards)
-//        vc.gameCenterDelegate = self
-//        present(vc, animated: true, completion: nil)
-        gameCenter.resetAchievement()
-
+        let vc = GKGameCenterViewController.init(state: .leaderboards)
+        vc.gameCenterDelegate = self
+        present(vc, animated: true, completion: nil)
     }
     
     lazy var achievementsButton: UIButton = {
@@ -140,17 +139,18 @@ class GameViewController: UIViewController, GameSceneDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .appBrown1
+        
         // added landscape orientation
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         
         view.addSubview(skView)
-        NSLayoutConstraint.activate([
-            skView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            skView.topAnchor.constraint(equalTo: view.topAnchor),
-            skView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            skView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
+        skView.snp.makeConstraints { make in
+            make.height.equalTo(UIScreen.main.bounds.height)
+            make.width.equalTo(16 / 9 * UIScreen.main.bounds.height)
+            make.center.equalToSuperview()
+        }
         
         setupHomeStack()
         
@@ -171,8 +171,8 @@ class GameViewController: UIViewController, GameSceneDelegate {
         }
         
         skView.ignoresSiblingOrder = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
     }
     
     private func setupHomeStack() {
