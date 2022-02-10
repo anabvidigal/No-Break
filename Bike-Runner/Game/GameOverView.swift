@@ -48,7 +48,6 @@ class GameOverView: UIView {
         return label
     }()
     
-    
     init(frame: CGRect = .zero, parent: GameViewController) {
         self.parent = parent
         super.init(frame: frame)
@@ -60,7 +59,7 @@ class GameOverView: UIView {
         
         setupRestartButton()
         setupBackButton()
-        
+        setupScoreLabel()
     }
     
     private func setupRestartButton() {
@@ -78,8 +77,17 @@ class GameOverView: UIView {
         backButton.snp.makeConstraints { make in
             make.height.equalTo(40)
             make.width.equalTo(80)
-            make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(8)
+            make.top.equalToSuperview().offset(8)
+        }
+    }
+    
+    private func setupScoreLabel() {
+        addSubview(scoreLabel)
+        scoreLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(backButton.snp.bottom).offset(8)
+            
         }
     }
     
