@@ -77,6 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             break
         case .intro:
             status = .playing
+            player.changeLane()
             introNode.removeFromParent()
             speedManager.resetSpeed()
         case .playing:
