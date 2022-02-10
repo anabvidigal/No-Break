@@ -17,69 +17,19 @@ protocol GameSceneDelegate: AnyObject {
 
 class GameViewController: UIViewController, GameSceneDelegate {
 
-    private var gameScene: GameScene?
-    private var gameCenter = GameCenter()
+    var gameScene: GameScene?
+    var gameCenter = GameCenter()
     
     lazy var skView: SKView = {
         let view = SKView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .appBrown1
         return view
     }()
     
-    lazy var homeStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .fillProportionally
-        stack.spacing = 10
-        return stack
+    lazy var homeView: UIView = {
+        let view = HomeView(parent: self)
+        return view
     }()
-    
-    lazy var playButton: UIButton = {
-        let button = UIButton()
-        setHomeButton(title: "Play", action: #selector(playButtonClicked), button: button, fontSize: 40)
-        return button
-    }()
-    @objc func playButtonClicked() {
-        guard let introNode = gameScene?.introNode else { return }
-        gameScene?.addChild(introNode)
-        gameScene?.status = .intro
-        homeStack.alpha = 0
-    }
-    
-    lazy var leaderboardButton: UIButton = {
-        let button = UIButton()
-        setHomeButton(title: "Leaderboard", action: #selector(leaderboardButtonClicked), button: button, fontSize: 20)
-        return button
-    }()
-    @objc func leaderboardButtonClicked() {
-        let vc = GKGameCenterViewController.init(state: .leaderboards)
-        vc.gameCenterDelegate = self
-        present(vc, animated: true, completion: nil)
-    }
-    
-    lazy var achievementsButton: UIButton = {
-        let button = UIButton()
-        setHomeButton(title: "Achievements", action: #selector(achievementsButtonClicked), button: button, fontSize: 20)
-        return button
-    }()
-    @objc func achievementsButtonClicked() {
-        let vc = GKGameCenterViewController(state: .achievements)
-        vc.gameCenterDelegate = self
-        GKAchievement.loadAchievements()
-        present(vc, animated: true, completion: nil)
-    }
-    
-    private func setHomeButton(title: String, action: Selector, button: UIButton, fontSize: CGFloat) {
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = .kenneyFont.withSize(fontSize)
-        button.setTitleColor(.appBeige, for: .normal)
-        button.layer.borderColor = UIColor.appBrown1.cgColor
-        button.layer.borderWidth = 4
-        button.backgroundColor = .appBrown2
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: action, for: .touchUpInside)
-    }
     
     lazy var gameOverView: UIView = {
         let view = UIView()
@@ -116,7 +66,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
         gameScene?.reset()
         gameScene?.status = .animating
         gameScene?.introNode.removeFromParent()
-        homeStack.alpha = 1
+        homeView.alpha = 1
         gameOverView.alpha = 0
     }
     
@@ -147,12 +97,10 @@ class GameViewController: UIViewController, GameSceneDelegate {
         
         view.addSubview(skView)
         skView.snp.makeConstraints { make in
-            make.height.equalTo(UIScreen.main.bounds.height)
-            make.width.equalTo(16 / 9 * UIScreen.main.bounds.height)
-            make.center.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
-        setupHomeStack()
+        setupHomeView()
         
         setupGameOverView()
         setupRestartButton()
@@ -175,21 +123,13 @@ class GameViewController: UIViewController, GameSceneDelegate {
 //        skView.showsNodeCount = true
     }
     
-    private func setupHomeStack() {
-        view.addSubview(homeStack)
-        homeStack.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-(UIScreen.main.bounds.height * 0.2))
-            make.height.equalTo(80)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(480)
+    private func setupHomeView() {
+        view.addSubview(homeView)
+        homeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
-        
-        [
-            leaderboardButton,
-            playButton,
-            achievementsButton
-        ].forEach { homeStack.addArrangedSubview($0) }
     }
+    
     
     private func setupGameOverView() {
         view.addSubview(gameOverView)

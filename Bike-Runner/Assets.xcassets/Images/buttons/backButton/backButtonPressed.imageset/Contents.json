@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "gameover.png",
+      "filename" : "backButtonPressed.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
