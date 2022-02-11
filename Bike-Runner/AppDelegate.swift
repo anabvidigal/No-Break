@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,8 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.rootViewController = GameViewController()
         window?.makeKeyAndVisible()
+        
+        FirebaseApp.configure()
             
-                return true
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

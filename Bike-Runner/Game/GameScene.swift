@@ -86,6 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         if lastUpdate == 0 {

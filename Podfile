@@ -11,5 +11,7 @@ pod 'SnapKit', '~> 5.0'
 
 
   # Pods for Bike-Runner
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 
 end

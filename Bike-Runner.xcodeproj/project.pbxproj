@@ -22,6 +22,7 @@
 		2B58BD6627A8146800DCF69D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6527A8146800DCF69D /* Constants.swift */; };
 		2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6727A976D900DCF69D /* CarSpawner.swift */; };
 		2B6D73B327AD7416002B56C7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D73B227AD7416002B56C7 /* GameCenter.swift */; };
+		2B7EA18B27B5DE4B0065CE13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B7EA18A27B5DE4B0065CE13 /* GoogleService-Info.plist */; };
 		2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C05427A3A350003606C9 /* AppDelegate.swift */; };
 		2B99C05727A3A350003606C9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2B99C05627A3A350003606C9 /* GameScene.sks */; };
 		2B99C06227A3A352003606C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B99C06127A3A352003606C9 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		6114A62B27AD7CA4002290EB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114A62A27AD7CA4002290EB /* GameScene.swift */; };
 		6114A62D27AD7CBE002290EB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114A62C27AD7CBE002290EB /* GameViewController.swift */; };
 		617E496327B3E7CD0052F021 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496227B3E7CD0052F021 /* UIColor+.swift */; };
+		9F205C83BAE5DE147A5163A1 /* Pods_Bike_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,7 @@
 		2B58BD6527A8146800DCF69D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B58BD6727A976D900DCF69D /* CarSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpawner.swift; sourceTree = "<group>"; };
 		2B6D73B227AD7416002B56C7 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
+		2B7EA18A27B5DE4B0065CE13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B99C05127A3A350003606C9 /* Bike-Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike-Runner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B99C05427A3A350003606C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B99C05627A3A350003606C9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = "Bike-Runner/GameScene.sks"; sourceTree = SOURCE_ROOT; };
@@ -71,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B56DA6827AAD23900AD63E5 /* GameKit.framework in Frameworks */,
+				9F205C83BAE5DE147A5163A1 /* Pods_Bike_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2B56DA6527AABD5F00AD63E5 /* Info.plist */,
+				2B7EA18A27B5DE4B0065CE13 /* GoogleService-Info.plist */,
 				2B99C05427A3A350003606C9 /* AppDelegate.swift */,
 				2B56DA7D27ABFC0800AD63E5 /* Game */,
 				2B56DA7527AB383D00AD63E5 /* LaunchScreen.storyboard */,
@@ -188,6 +193,7 @@
 				2B99C04E27A3A350003606C9 /* Frameworks */,
 				2B99C04F27A3A350003606C9 /* Resources */,
 				17EE7362640F71A3FF1EE799 /* [CP] Embed Pods Frameworks */,
+				2B7EA18C27B5F2780065CE13 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -238,6 +244,7 @@
 			files = (
 				2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */,
 				2B99C05727A3A350003606C9 /* GameScene.sks in Resources */,
+				2B7EA18B27B5DE4B0065CE13 /* GoogleService-Info.plist in Resources */,
 				2B56DA7627AB383D00AD63E5 /* LaunchScreen.storyboard in Resources */,
 				2B99C06227A3A352003606C9 /* Assets.xcassets in Resources */,
 			);
@@ -262,6 +269,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		2B7EA18C27B5F2780065CE13 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		F25174F1199E9EA4A9F2DE61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -442,6 +468,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 58J47MFRH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bike-Runner/Info.plist";
@@ -458,7 +485,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ana.bittencourt.Bike-Runner";
+				PRODUCT_BUNDLE_IDENTIFIER = "ana.bittencourt.Bike-Runner.workshop.ana";
 				PRODUCT_NAME = "Bike-Runner";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -491,7 +518,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ana.bittencourt.Bike-Runner";
+				PRODUCT_BUNDLE_IDENTIFIER = "ana.bittencourt.Bike-Runner.workshop.ana";
 				PRODUCT_NAME = "Bike-Runner";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
