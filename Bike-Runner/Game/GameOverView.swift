@@ -48,10 +48,9 @@ class GameOverView: UIView {
     
     lazy var coinsStack: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .horizontal
+        stack.axis = .vertical
         stack.alignment = .center
         stack.distribution = .equalCentering
-        stack.spacing = 5
         return stack
     }()
     
@@ -94,8 +93,8 @@ class GameOverView: UIView {
     
     lazy var leaderboardButton: UIButton = {
         let button = UIButton()
-        button.setImage(.leaderboardButton, for: .normal)
-        button.setImage(.leaderboardButtonPressed, for: .highlighted)
+        button.setImage(.smallLeaderboardButton, for: .normal)
+        button.setImage(.smallLeaderboardButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(leaderboardButtonClicked), for: .touchUpInside)
         return button
     }()
@@ -124,20 +123,21 @@ class GameOverView: UIView {
             duplicateCoinsButton
         ].forEach { coinsStack.addArrangedSubview($0) }
         setupDuplicateCoinsButton()
-    }
-    
-    private func setupRestartButton() {
-        restartButton.snp.makeConstraints { make in
-            make.height.equalTo(80)
-            make.width.equalTo(80)
-        }
+        
+        setupButtonsStack()
+        [
+            leaderboardButton,
+            restartButton
+        ].forEach { buttonsStack.addArrangedSubview($0) }
+        setupLeaderboardButton()
+        setupRestartButton()
     }
     
     private func setupBackButton() {
         addSubview(backButton)
         backButton.snp.makeConstraints { make in
             make.height.equalTo(40)
-            make.width.equalTo(80)
+            make.width.equalTo(40)
             make.leading.equalToSuperview().offset(8)
             make.top.equalToSuperview().offset(8)
         }
@@ -147,7 +147,7 @@ class GameOverView: UIView {
         addSubview(scoreLabel)
         scoreLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(backButton.snp.bottom)
+            make.top.equalToSuperview().offset(8)
         }
     }
     
@@ -169,8 +169,37 @@ class GameOverView: UIView {
     
     private func setupDuplicateCoinsButton() {
         duplicateCoinsButton.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.width.equalTo(40)
+            make.width.equalTo(180)
+            make.height.equalTo(60)
+        }
+    }
+    
+    private func setupButtonsStack() {
+        addSubview(buttonsStack)
+        buttonsStack.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-8)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    private func setupLeaderboardButton() {
+        leaderboardButton.snp.makeConstraints { make in
+            make.height.equalTo(60)
+            make.width.equalTo(60)
+        }
+    }
+    
+    private func setupRestartButton() {
+        restartButton.snp.makeConstraints { make in
+            make.height.equalTo(60)
+            make.width.equalTo(60)
+        }
+    }
+    
+    func updateCoinsStackConstrainsIf(isHighScore: Bool) {
+        coinsStack.snp.remakeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(isHighScore ? highscoreLabel.snp.bottom : scoreLabel.snp.bottom).offset(8)
         }
     }
     

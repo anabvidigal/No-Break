@@ -99,7 +99,8 @@ class GameViewController: UIViewController, GameSceneDelegate {
     func gameIsOver(_ sender: GameScene) {
         gameOverView.alpha = 1
         gameOverView.scoreLabel.text = "Score: \(sender.scoreDetector.score)"
-        gameOverView.highscoreLabel.alpha = sender.isHighscore ? 1 : 1
+        gameOverView.highscoreLabel.alpha = sender.isHighscore ? 1 : 0
+        gameOverView.updateCoinsStackConstrainsIf(isHighScore: sender.isHighscore)
     }
     
     override var shouldAutorotate: Bool {

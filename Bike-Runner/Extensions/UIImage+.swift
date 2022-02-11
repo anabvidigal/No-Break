@@ -57,4 +57,11 @@ extension UIImage {
     open class var restartButtonPressed: UIImage { get {
         UIImage(named: "restartButtonPressed")!
     }}
+    
+    open class var smallLeaderboardButton: UIImage { get {
+        UIImage(named: "smallLeaderboardButton")!
+    }}
+    open class var smallLeaderboardButtonPressed: UIImage { get {
+        UIImage(named: "smallLeaderboardButtonPressed")!
+    }}
 }
