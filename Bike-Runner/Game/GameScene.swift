@@ -9,6 +9,7 @@ import SpriteKit
 import GameplayKit
 import GameKit
 import SnapKit
+import FirebaseAnalytics
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -25,7 +26,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var coinManager: CoinManager = CoinManager()
     var scoreDetector: ScoreDetector!
     var status: GameStatus = .animating
+    
     var lastUpdate = TimeInterval(0)
+    var totalTime = TimeInterval(0)
     
     weak var gameDelegate: GameSceneDelegate?
     
@@ -79,13 +82,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             status = .playing
             introNode.removeFromParent()
             speedManager.resetSpeed()
+            logStartGame()
         case .playing:
             player.changeLane()
+            logPlayerChangeLane()
         case .gameOver:
             break
         }
     }
     
+    
+    private func logStartGame() {
+        Analytics.logEvent("level_start", parameters: nil)
+    }
+    
+    private func logPlayerChangeLane() {
+        Analytics.logEvent("player_change_lane", parameters: [
+            "score": scoreDetector.score as NSNumber
+        ])
+    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -97,6 +112,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let deltaTime = currentTime - lastUpdate
         lastUpdate = currentTime
+        
+        totalTime += deltaTime
         
         switch status {
         case .animating:
@@ -143,6 +160,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         carSpawner.stopCarsAnimation()
         gameDelegate?.gameIsOver(self)
         submitGameCenterScore()
+        Analytics.logEvent("level_end", parameters: nil)
+        Analytics.setUserProperty(round(totalTime).description, forName: "player_run_time")
     }
     
     private func score() {
@@ -164,6 +183,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coinSpawner.reset()
         coinManager.resetCoins()
         addChild(introNode)
+        totalTime = 0
+        
+        Analytics.logEvent("level_reset", parameters: nil)
     }
 }
 
