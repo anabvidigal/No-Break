@@ -48,6 +48,16 @@ class GameOverView: UIView {
         return label
     }()
     
+    lazy var highscoreLabel: UILabel = {
+        let label = UILabel()
+        label.font = .kenneyFont
+        label.font = label.font.withSize(26)
+        label.textColor = .appGreen1
+        label.textAlignment = .center
+        label.text = "New highscore!"
+        return label
+    }()
+    
     init(frame: CGRect = .zero, parent: GameViewController) {
         self.parent = parent
         super.init(frame: frame)
@@ -60,6 +70,7 @@ class GameOverView: UIView {
         setupRestartButton()
         setupBackButton()
         setupScoreLabel()
+        setupHighscoreLabel()
     }
     
     private func setupRestartButton() {
@@ -87,7 +98,14 @@ class GameOverView: UIView {
         scoreLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(backButton.snp.bottom).offset(8)
-            
+        }
+    }
+    
+    private func setupHighscoreLabel() {
+        addSubview(highscoreLabel)
+        highscoreLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(scoreLabel.snp.bottom).offset(-8)
         }
     }
     

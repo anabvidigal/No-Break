@@ -21,11 +21,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var scoreLabel: SKLabelNode!
     
     private var gameCenter = GameCenter()
+    private var highscoreManager = HighscoreManager(repository: UserDefaultsHighScoreRepository())
     
     var coinManager: CoinManager = CoinManager()
     var scoreDetector: ScoreDetector!
     var status: GameStatus = .animating
     var lastUpdate = TimeInterval(0)
+    var isHighscore = false
     
     weak var gameDelegate: GameSceneDelegate?
     
@@ -141,17 +143,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func gameOver() {
         player.die()
         carSpawner.stopCarsAnimation()
+        gameCenter.submitScore(score: scoreDetector.score)
+        isHighscore = highscoreManager.setIfHighscore(for: scoreDetector.score)
         gameDelegate?.gameIsOver(self)
-        submitGameCenterScore()
     }
     
     private func score() {
         scoreDetector.incrementScore()
         scoreLabel.text = "\(scoreDetector.score)"
-    }
-    
-    private func submitGameCenterScore() {
-        gameCenter.submitScore(score: scoreDetector.score)
     }
     
     func reset(){
@@ -163,6 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         speedManager.resetSpeed()
         coinSpawner.reset()
         coinManager.resetCoins()
+        
         addChild(introNode)
     }
 }
