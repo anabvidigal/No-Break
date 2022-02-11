@@ -18,7 +18,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var speedManager: SpeedManager = SpeedManager()
     private var coinSpawner: CoinSpawner!
     var introNode: SKSpriteNode!
-    private var scoreLabel: SKLabelNode!
     
     private var gameCenter = GameCenter()
     private var highscoreManager = HighscoreManager(repository: UserDefaultsHighScoreRepository())
@@ -67,9 +66,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
         scoreDetector = ScoreDetector(node: scoreNode, gameCenter: gameCenter)
-        
-        // label
-        scoreLabel = childNode(withName: "scoreUpdateLabel") as? SKLabelNode
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -150,7 +146,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func score() {
         scoreDetector.incrementScore()
-        scoreLabel.text = "\(scoreDetector.score)"
     }
     
     func reset(){
@@ -158,7 +153,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         carSpawner.reset()
         player.reset()
         scoreDetector.resetScore()
-        scoreLabel.text = "0"
         speedManager.resetSpeed()
         coinSpawner.reset()
         coinManager.resetCoins()

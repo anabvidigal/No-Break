@@ -31,6 +31,12 @@ class GameViewController: UIViewController, GameSceneDelegate {
         return view
     }()
     
+    lazy var gameStatsView: GameStatsView = {
+        let view = GameStatsView(parent: self)
+        view.alpha = 0
+        return view
+    }()
+    
     lazy var gameOverView: GameOverView = {
         let view = GameOverView(parent: self)
         view.alpha = 0
@@ -49,12 +55,13 @@ class GameViewController: UIViewController, GameSceneDelegate {
         
         view.backgroundColor = .appBrown1
         
-        let value = UIInterfaceOrientation.landscapeLeft.rawValue
+        let value = UIInterfaceOrientation.landscapeRight.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         
         
         setupSkView()
         setupHomeView()
+        setupGameStatsView()
         setupGameOverView()
     
         gameCenter.authenticateUser(self)
@@ -87,6 +94,14 @@ class GameViewController: UIViewController, GameSceneDelegate {
         }
     }
     
+    private func setupGameStatsView() {
+        view.addSubview(gameStatsView)
+        gameStatsView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+    }
+    
     private func setupGameOverView() {
         view.addSubview(gameOverView)
         gameOverView.snp.makeConstraints { make in
@@ -108,7 +123,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscapeLeft
+        return .landscapeRight
     }
 
     override var prefersStatusBarHidden: Bool {

@@ -24,6 +24,7 @@ class GameOverView: UIView {
         parent.gameScene?.status = .animating
         parent.gameScene?.introNode.removeFromParent()
         parent.homeView.alpha = 1
+        parent.gameStatsView.alpha = 0
         alpha = 0
     }
     
