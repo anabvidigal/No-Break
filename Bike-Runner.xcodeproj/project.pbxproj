@@ -34,6 +34,7 @@
 		617E496927B54EBD0052F021 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496827B54EBD0052F021 /* UIImage+.swift */; };
 		617E496B27B5533C0052F021 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496A27B5533C0052F021 /* HomeView.swift */; };
 		617E496D27B565DE0052F021 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496C27B565DE0052F021 /* GameOverView.swift */; };
+		617E496F27B5B6D30052F021 /* HighScoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496E27B5B6D30052F021 /* HighScoreRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		617E496827B54EBD0052F021 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		617E496A27B5533C0052F021 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		617E496C27B565DE0052F021 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		617E496E27B5B6D30052F021 /* HighScoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreRepository.swift; sourceTree = "<group>"; };
 		7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B1DB2D6C82E803505A2478 /* Pods-Bike-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.release.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		D577AD4367CA3EC4EC4FE58C /* Pods-Bike-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				2B56DA7927ABFBD700AD63E5 /* CoinsRepository.swift */,
 				2B56DA7B27ABFBF200AD63E5 /* PlayersRepository.swift */,
+				617E496E27B5B6D30052F021 /* HighScoreRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				617E496F27B5B6D30052F021 /* HighScoreRepository.swift in Sources */,
 				2B56DA7827ABFB7D00AD63E5 /* CoinManager.swift in Sources */,
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
 				2B6D73B327AD7416002B56C7 /* GameCenter.swift in Sources */,
