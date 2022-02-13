@@ -7,8 +7,26 @@
 
 import Foundation
 
-class CoinsRepository {
+protocol CoinsRepository {
+    func add(coins: Int)
+    func getCoins() -> Int
+    func spend(coins: Int)
+}
+
+class UserDefaultsCoinsRepository: CoinsRepository {
+    private let key = "coins"
     
+    func add(coins: Int) {
+        UserDefaults.standard.setValue(getCoins() + coins, forKey: key)
+    }
+    
+    func getCoins() -> Int {
+        UserDefaults.standard.integer(forKey: key)
+    }
+    
+    func spend(coins: Int) {
+        UserDefaults.standard.setValue(getCoins() - coins, forKey: key)
+    }
     
     
 }

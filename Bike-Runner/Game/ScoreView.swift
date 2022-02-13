@@ -9,39 +9,41 @@ import Foundation
 import UIKit
 import SnapKit
 
-class GameStatsView: UIView {
+class ScoreView: UIView {
     private var parent: GameViewController
     
     private lazy var scoreTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Score:"
-        label.font = .kenneyFont.withSize(16)
-        label.textColor = .white
+        label.text = "Score"
+        label.textAlignment = .right
+        label.font = .kenneyFont.withSize(20)
+        label.textColor = .appBrown2
         return label
     }()
     
     lazy var scoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = .kenneyFont.withSize(16)
-        label.textColor = .white
+        label.font = .kenneyFont.withSize(20)
+        label.textColor = .appBrown2
         label.text = "0"
         return label
     }()
     
-    private lazy var coinsTitleLabel: UILabel = {
+    private lazy var highscoreTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Coins:"
-        label.font = .kenneyFont.withSize(16)
-        label.textColor = .white
+        label.text = "Highscore"
+        label.textAlignment = .right
+        label.font = .kenneyFont.withSize(20)
+        label.textColor = .appBrown2
         return label
     }()
     
-    lazy var coinsLabel: UILabel = {
+    lazy var highscoreLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = .kenneyFont.withSize(16)
-        label.textColor = .white
+        label.font = .kenneyFont.withSize(20)
+        label.textColor = .appBrown2
         label.text = "0"
         return label
     }()
@@ -53,8 +55,8 @@ class GameStatsView: UIView {
         setupScoreTitleLabel()
         setupScoreLabel()
         
-        setupCoinsTitlelabel()
-        setupCoinsLabel()
+        setupHighscoreTitleLabel()
+        setupHighscoreLabel()
     }
     
     private func setupScoreTitleLabel() {
@@ -75,22 +77,21 @@ class GameStatsView: UIView {
         }
     }
     
-    private func setupCoinsTitlelabel() {
-        addSubview(coinsTitleLabel)
-        coinsTitleLabel.snp.makeConstraints { make in
+    private func setupHighscoreTitleLabel() {
+        addSubview(highscoreTitleLabel)
+        highscoreTitleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.top.equalTo(scoreLabel.snp.bottom).offset(4)
         }
     }
     
-    private func setupCoinsLabel() {
-        addSubview(coinsLabel)
-        coinsLabel.snp.makeConstraints { make in
+    private func setupHighscoreLabel() {
+        addSubview(highscoreLabel)
+        highscoreLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.top.equalTo(coinsTitleLabel.snp.bottom)
-            make.bottom.equalToSuperview()
+            make.top.equalTo(highscoreTitleLabel.snp.bottom)
         }
     }
     

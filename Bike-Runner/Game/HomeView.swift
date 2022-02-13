@@ -32,7 +32,9 @@ class HomeView: UIView {
         guard let introNode = parent.gameScene?.introNode else { return }
         parent.gameScene?.addChild(introNode)
         parent.gameScene?.status = .intro
-        parent.gameStatsView.alpha = 1
+        parent.scoreView.alpha = 1
+        parent.coinsView.alpha = 1
+        
         alpha = 0
     }
     

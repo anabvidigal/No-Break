@@ -24,7 +24,9 @@ class GameOverView: UIView {
         parent.gameScene?.status = .animating
         parent.gameScene?.introNode.removeFromParent()
         parent.homeView.alpha = 1
-        parent.gameStatsView.alpha = 0
+        parent.scoreView.alpha = 0
+        parent.coinsView.alpha = 0
+        
         alpha = 0
     }
     
@@ -55,13 +57,30 @@ class GameOverView: UIView {
         return stack
     }()
     
+    
+    lazy var coinsValueStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.spacing = 4
+        return stack
+    }()
+    
     lazy var coinsLabel: UILabel = {
         let label = UILabel()
         label.font = .kenneyFont
         label.font = label.font.withSize(40)
         label.textColor = .appBeige
         label.textAlignment = .center
-        label.text = "Coins: \(Int.random(in: 0...20))"
+        return label
+    }()
+    
+    lazy var collectedCoinsLabel: UILabel = {
+        let label = UILabel()
+        label.font = .kenneyFont
+        label.font = label.font.withSize(40)
+        label.textColor = .appGreen2
+        label.textAlignment = .center
         return label
     }()
     
@@ -88,8 +107,8 @@ class GameOverView: UIView {
         return button
     }()
     @objc func restartClicked() {
+        alpha = 0
         parent.gameScene?.reset()
-        parent.gameOverView.alpha = 0
     }
     
     lazy var leaderboardButton: UIButton = {
@@ -118,12 +137,18 @@ class GameOverView: UIView {
         setupScoreLabel()
         setupHighscoreLabel()
         
-        setupCoinsStack()
         [
             coinsLabel,
+            collectedCoinsLabel
+        ].forEach { coinsValueStack.addArrangedSubview($0) }
+        
+        setupCoinsStack()
+        [
+            coinsValueStack,
             duplicateCoinsButton
         ].forEach { coinsStack.addArrangedSubview($0) }
         setupDuplicateCoinsButton()
+        
         
         setupButtonsStack()
         [

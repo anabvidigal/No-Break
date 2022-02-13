@@ -20,9 +20,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var introNode: SKSpriteNode!
     
     private var gameCenter = GameCenter()
-    private var highscoreManager = HighscoreManager(repository: UserDefaultsHighScoreRepository())
+    var highscoreManager = HighscoreManager(repository: UserDefaultsHighScoreRepository())
     
-    var coinManager: CoinManager = CoinManager()
+    var coinManager: CoinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
     var scoreDetector: ScoreDetector!
     var status: GameStatus = .animating
     var lastUpdate = TimeInterval(0)
@@ -66,6 +66,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
         scoreDetector = ScoreDetector(node: scoreNode, gameCenter: gameCenter)
+        
+        gameDelegate?.setHighscore(self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -127,25 +129,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if contact.bodyA == scoreDetector.node.physicsBody {
             score()
         } else if contact.bodyB == coinSpawner.coins.first?.node.physicsBody {
-            coinSpawner.removeCoin()
-            coinManager.incrementCoins()
-            print(coinManager.coins)
+            catchCoin()
         } else {
-            status = .gameOver
             gameOver()
         }
     }
     
+    private func score() {
+        scoreDetector.incrementScore()
+        gameDelegate?.score(self)
+    }
+    
+    private func catchCoin() {
+        coinSpawner.removeCoin()
+        coinManager.incrementCoins()
+        gameDelegate?.catchCoin(self)
+    }
+    
     private func gameOver() {
+        status = .gameOver
         player.die()
         carSpawner.stopCarsAnimation()
         gameCenter.submitScore(score: scoreDetector.score)
         isHighscore = highscoreManager.setIfHighscore(for: scoreDetector.score)
         gameDelegate?.gameIsOver(self)
-    }
-    
-    private func score() {
-        scoreDetector.incrementScore()
     }
     
     func reset(){
@@ -155,8 +162,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreDetector.resetScore()
         speedManager.resetSpeed()
         coinSpawner.reset()
-        coinManager.resetCoins()
-        
+        coinManager.addCoins()
+        gameDelegate?.reset()
         addChild(introNode)
     }
 }

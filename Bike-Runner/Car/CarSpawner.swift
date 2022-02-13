@@ -49,7 +49,7 @@ class CarSpawner {
     private func removeCarOutOfScreen(cars: [Car], coinSpawner: CoinSpawner) {
         
         guard let firstCar = cars.first,
-              firstCar.node.position.x < -900 else { return }
+              firstCar.node.position.x < -1000 else { return }
         
         firstCar.node.removeFromParent()
         self.cars.removeFirst()
@@ -67,7 +67,7 @@ class CarSpawner {
         
         cars.append(new)
         
-//        coinSpawner.randomizeCoinSpawn(parent: new.node, lane: randomLane)
+        coinSpawner.randomizeCoinSpawn(parent: new.node, lane: randomLane)
     }
     
     func reset() {
