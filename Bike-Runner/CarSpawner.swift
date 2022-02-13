@@ -47,14 +47,15 @@ class CarSpawner {
     }
     
     private func removeCarOutOfScreen(cars: [Car], coinSpawner: CoinSpawner) {
-        if let firstCar = cars.first {
-            if firstCar.node.position.x < -900 {
-                firstCar.node.removeFromParent()
-                self.cars.removeFirst()
-                if firstCar.node.childNode(withName: "coin") != nil {
-                    coinSpawner.removeCoin()
-                }
-            }
+        
+        guard let firstCar = cars.first,
+              firstCar.node.position.x < -900 else { return }
+        
+        firstCar.node.removeFromParent()
+        self.cars.removeFirst()
+        
+        if firstCar.node.childNode(withName: "coin") != nil {
+            coinSpawner.removeCoin()
         }
     }
     
