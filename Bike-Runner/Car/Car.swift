@@ -20,6 +20,59 @@ class Car {
         "kombi"
     ]
     
+    private static var carTexturesAnimationMap: [String: [SKTexture]] = [
+        "car": [
+            SKTexture(imageNamed: "car_frame_1"),
+            SKTexture(imageNamed: "car_frame_2"),
+            SKTexture(imageNamed: "car_frame_3"),
+            SKTexture(imageNamed: "car_frame_4"),
+            SKTexture(imageNamed: "car_frame_5"),
+            SKTexture(imageNamed: "car_frame_6"),
+            SKTexture(imageNamed: "car_frame_7"),
+            SKTexture(imageNamed: "car_frame_8")
+        ],
+        "rounded_car": [
+            SKTexture(imageNamed: "rounded_car_frame_1"),
+            SKTexture(imageNamed: "rounded_car_frame_2"),
+            SKTexture(imageNamed: "rounded_car_frame_3"),
+            SKTexture(imageNamed: "rounded_car_frame_4"),
+            SKTexture(imageNamed: "rounded_car_frame_5"),
+            SKTexture(imageNamed: "rounded_car_frame_6"),
+            SKTexture(imageNamed: "rounded_car_frame_7"),
+            SKTexture(imageNamed: "rounded_car_frame_8")
+        ],
+        "jeep": [
+            SKTexture(imageNamed: "jeep_frame_1"),
+            SKTexture(imageNamed: "jeep_frame_2"),
+            SKTexture(imageNamed: "jeep_frame_3"),
+            SKTexture(imageNamed: "jeep_frame_4"),
+            SKTexture(imageNamed: "jeep_frame_5"),
+            SKTexture(imageNamed: "jeep_frame_6"),
+            SKTexture(imageNamed: "jeep_frame_7"),
+            SKTexture(imageNamed: "jeep_frame_8")
+        ],
+        "super_car": [
+            SKTexture(imageNamed: "super_car_frame_1"),
+            SKTexture(imageNamed: "super_car_frame_2"),
+            SKTexture(imageNamed: "super_car_frame_3"),
+            SKTexture(imageNamed: "super_car_frame_4"),
+            SKTexture(imageNamed: "super_car_frame_5"),
+            SKTexture(imageNamed: "super_car_frame_6"),
+            SKTexture(imageNamed: "super_car_frame_7"),
+            SKTexture(imageNamed: "super_car_frame_8")
+        ],
+        "kombi": [
+            SKTexture(imageNamed: "kombi_frame_1"),
+            SKTexture(imageNamed: "kombi_frame_2"),
+            SKTexture(imageNamed: "kombi_frame_3"),
+            SKTexture(imageNamed: "kombi_frame_4"),
+            SKTexture(imageNamed: "kombi_frame_5"),
+            SKTexture(imageNamed: "kombi_frame_6"),
+            SKTexture(imageNamed: "kombi_frame_7"),
+            SKTexture(imageNamed: "kombi_frame_8")
+        ]
+    ]
+    
     init(node: SKSpriteNode) {
         self.node = node.copy() as! SKSpriteNode
         physicsSetup()
@@ -61,15 +114,7 @@ class Car {
     
     private func startAnimation() {
         guard let carTexture = carTextures.shuffled().first else { return }
-        var textures = [SKTexture]()
-        textures.append(SKTexture(imageNamed: carTexture + "_frame_1"))
-        textures.append(SKTexture(imageNamed: carTexture + "_frame_2"))
-        textures.append(SKTexture(imageNamed: carTexture + "_frame_3"))
-        textures.append(SKTexture(imageNamed: carTexture + "_frame_4"))
-        textures.append(SKTexture(imageNamed: carTexture + "_frame_5"))
-        textures.append(SKTexture(imageNamed: carTexture + "_frame_6"))
-        textures.append(SKTexture(imageNamed: carTexture + "_frame_7"))
-        textures.append(SKTexture(imageNamed: carTexture + "_frame_8"))
+        let textures = Car.carTexturesAnimationMap[carTexture]!
         
         let frames = SKAction.animate(with: textures, timePerFrame: 0.1, resize: false, restore: false)
         let repeatAnim = SKAction.repeatForever(frames)
