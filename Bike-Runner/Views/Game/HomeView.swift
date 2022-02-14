@@ -72,8 +72,14 @@ class HomeView: UIView {
         let button = UIButton()
         button.setImage(.bikeButton, for: .normal)
         button.setImage(.bikeButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(bikeButtonClicked), for: .touchUpInside)
         return button
     }()
+    @objc func bikeButtonClicked() {
+        let vc = StoreViewController()
+        vc.modalPresentationStyle = .fullScreen
+        parent.present(vc, animated: false, completion: nil)
+    }
     
     init(parent: GameViewController, frame: CGRect = .zero) {
         self.parent = parent

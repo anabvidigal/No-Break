@@ -38,6 +38,8 @@
 		617E497427B5F1240052F021 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E497327B5F1240052F021 /* HighscoreManager.swift */; };
 		617E497627B6DA5C0052F021 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E497527B6DA5C0052F021 /* ScoreView.swift */; };
 		61A7D90027B9AB0F008F8539 /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D8FF27B9AB0F008F8539 /* CoinsView.swift */; };
+		61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90327B9CA2F008F8539 /* StoreViewController.swift */; };
+		61A7D90627B9D102008F8539 /* PlayerCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		617E497327B5F1240052F021 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
 		617E497527B6DA5C0052F021 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		61A7D8FF27B9AB0F008F8539 /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
+		61A7D90327B9CA2F008F8539 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCoinsView.swift; sourceTree = "<group>"; };
 		7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B1DB2D6C82E803505A2478 /* Pods-Bike-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.release.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		D577AD4367CA3EC4EC4FE58C /* Pods-Bike-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,7 +169,7 @@
 			children = (
 				2B56DA6527AABD5F00AD63E5 /* Info.plist */,
 				2B99C05427A3A350003606C9 /* AppDelegate.swift */,
-				2B56DA7D27ABFC0800AD63E5 /* Game */,
+				61A7D90227B9CA0E008F8539 /* Views */,
 				2B56DA7527AB383D00AD63E5 /* LaunchScreen.storyboard */,
 				2B99C06127A3A352003606C9 /* Assets.xcassets */,
 				2B99C06B27A3AD64003606C9 /* Player.swift */,
@@ -202,6 +206,24 @@
 				2B56DA8327AC142600AD63E5 /* Lane.swift */,
 			);
 			path = Car;
+			sourceTree = "<group>";
+		};
+		61A7D90127B9C9F9008F8539 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				61A7D90327B9CA2F008F8539 /* StoreViewController.swift */,
+				61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		61A7D90227B9CA0E008F8539 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2B56DA7D27ABFC0800AD63E5 /* Game */,
+				61A7D90127B9C9F9008F8539 /* Store */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B3CE340DA79A2DE795C80AFA /* Pods */ = {
@@ -333,7 +355,9 @@
 				617E496F27B5B6D30052F021 /* HighscoreRepository.swift in Sources */,
 				2B56DA7827ABFB7D00AD63E5 /* CoinManager.swift in Sources */,
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
+				61A7D90627B9D102008F8539 /* PlayerCoinsView.swift in Sources */,
 				617E497627B6DA5C0052F021 /* ScoreView.swift in Sources */,
+				61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */,
 				61A7D90027B9AB0F008F8539 /* CoinsView.swift in Sources */,
 				2B6D73B327AD7416002B56C7 /* GameCenter.swift in Sources */,
 				2B56DA8227AC0EF000AD63E5 /* Coin.swift in Sources */,

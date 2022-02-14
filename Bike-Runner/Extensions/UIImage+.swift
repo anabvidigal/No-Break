@@ -64,4 +64,8 @@ extension UIImage {
     open class var smallLeaderboardButtonPressed: UIImage { get {
         UIImage(named: "smallLeaderboardButtonPressed")!
     }}
+    
+    open class var coin: UIImage { get {
+        UIImage(named: "coin_1")!
+    }}
 }
