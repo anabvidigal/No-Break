@@ -4,6 +4,7 @@
 target 'Bike-Runner' do
 
 pod 'SnapKit', '~> 5.0'
+pod 'Google-Mobile-Ads-SDK'
 
 
   # Comment the next line if you don't want to use dynamic frameworks

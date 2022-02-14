@@ -40,6 +40,7 @@
 		61A7D90027B9AB0F008F8539 /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D8FF27B9AB0F008F8539 /* CoinsView.swift */; };
 		61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90327B9CA2F008F8539 /* StoreViewController.swift */; };
 		61A7D90627B9D102008F8539 /* PlayerCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */; };
+		9BBBA2908837B0BCF97A368F /* Pods_Bike_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B56DA6827AAD23900AD63E5 /* GameKit.framework in Frameworks */,
+				9BBBA2908837B0BCF97A368F /* Pods_Bike_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
