@@ -76,7 +76,7 @@ class HomeView: UIView {
         return button
     }()
     @objc func bikeButtonClicked() {
-        let vc = StoreViewController()
+        let vc = StoreViewController(bikersRepository: parent.bikersRepository)
         vc.modalPresentationStyle = .fullScreen
         parent.present(vc, animated: false, completion: nil)
     }
