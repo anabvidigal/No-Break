@@ -42,6 +42,7 @@
 		61A7D90627B9D102008F8539 /* PlayerCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */; };
 		61A7D90827B9F6FF008F8539 /* BikerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */; };
 		61A7D90A27B9F7F5008F8539 /* Biker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90927B9F7F5008F8539 /* Biker.swift */; };
+		61A7D90C27BA8C44008F8539 /* BikerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90B27BA8C44008F8539 /* BikerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCoinsView.swift; sourceTree = "<group>"; };
 		61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikerHeaderView.swift; sourceTree = "<group>"; };
 		61A7D90927B9F7F5008F8539 /* Biker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biker.swift; sourceTree = "<group>"; };
+		61A7D90B27BA8C44008F8539 /* BikerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikerManager.swift; sourceTree = "<group>"; };
 		7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B1DB2D6C82E803505A2478 /* Pods-Bike-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.release.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		D577AD4367CA3EC4EC4FE58C /* Pods-Bike-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				2B99C06127A3A352003606C9 /* Assets.xcassets */,
 				2B99C06B27A3AD64003606C9 /* Player.swift */,
 				61A7D90927B9F7F5008F8539 /* Biker.swift */,
+				61A7D90B27BA8C44008F8539 /* BikerManager.swift */,
 				2B99C06D27A3B321003606C9 /* Scenery.swift */,
 				2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */,
 				2B99C07127A3BC69003606C9 /* SpeedManager.swift */,
@@ -382,6 +385,7 @@
 				2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */,
 				617E496327B3E7CD0052F021 /* UIColor+.swift in Sources */,
 				617E496B27B5533C0052F021 /* HomeView.swift in Sources */,
+				61A7D90C27BA8C44008F8539 /* BikerManager.swift in Sources */,
 				2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */,
 				2B56DA7C27ABFBF200AD63E5 /* BikersRepository.swift in Sources */,
 				617E496927B54EBD0052F021 /* UIImage+.swift in Sources */,

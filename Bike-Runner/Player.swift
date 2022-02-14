@@ -43,14 +43,14 @@ class Player {
     }
     
     private func setBottomLane() {
-        node.position.y = -124
+        node.position.y = Constants.bikeBottomLane
         status = .bottomLane
         node.physicsBody?.categoryBitMask = Constants.bikeBottomLaneCategory
         node.physicsBody?.contactTestBitMask = Constants.bikeBottomLaneContact
     }
     
     private func setTopLane() {
-        node.position.y = -74
+        node.position.y = Constants.bikeTopLane
         status = .topLane
         node.physicsBody?.categoryBitMask = Constants.bikeTopLaneCategory
         node.physicsBody?.contactTestBitMask = Constants.bikeTopLaneContact

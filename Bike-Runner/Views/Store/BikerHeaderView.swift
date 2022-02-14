@@ -10,11 +10,9 @@ import SnapKit
 
 class BikerHeaderView: UIView {
     private var parent: StoreViewController
-    private var biker: Biker
 
     lazy var previousButton: UIButton = {
         let button = UIButton()
-        button.isEnabled = false
         button.setImage(.previousButton, for: .normal)
         button.setImage(.previousButtonPressed, for: .highlighted)
         button.setImage(.previousButtonDisabled, for: .disabled)
@@ -22,11 +20,11 @@ class BikerHeaderView: UIView {
         return button
     }()
     @objc func clickedPreviousButton() {
+        parent.show(biker: parent.bikerManager.getPreviousBiker())
     }
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = biker.name
         label.font = .kenneyFont.withSize(30)
         label.textAlignment = .center
         label.textColor = .appBrown1
@@ -35,7 +33,6 @@ class BikerHeaderView: UIView {
 
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = biker.description
         label.font = .kenneyFont.withSize(24)
         label.textAlignment = .center
         label.textColor = .appBrown2
@@ -51,14 +48,14 @@ class BikerHeaderView: UIView {
         return button
     }()
     @objc func clickedNextButton() {
+        parent.show(biker: parent.bikerManager.getNextBiker())
     }
     
     init(frame: CGRect = .zero, parent: StoreViewController) {
         self.parent = parent
-        biker = parent.showedBiker
         super.init(frame: frame)
         
-        backgroundColor = .appBeige
+        backgroundColor = .appGreen3
         
         setupPreviousButton()
         setupNextButton()

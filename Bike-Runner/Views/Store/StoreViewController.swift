@@ -9,9 +9,8 @@ import UIKit
 import SnapKit
 
 class StoreViewController: UIViewController {
-    var bikersRepository: BikersRepository
-    var showedBiker: Biker
-    private var coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
+    var bikerManager = BikerManager(bikersRepository: UserDefaultsBikersRepository())
+    var coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
     
     lazy var backButton: UIButton = {
         let button = UIButton()
@@ -47,7 +46,6 @@ class StoreViewController: UIViewController {
     
     lazy var bikeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "\(showedBiker.imagesId)_bike")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -62,14 +60,13 @@ class StoreViewController: UIViewController {
     
     lazy var bikerImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "\(showedBiker.imagesId)_rider")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .appBrown2
+        view.backgroundColor = .appBeige
         
         setupBackButton()
         setupPlayerCoinsView()
@@ -83,12 +80,12 @@ class StoreViewController: UIViewController {
             selectButton
         ].forEach { contentStack.addArrangedSubview($0) }
         setupSelectButton()
+        
+        show(biker: bikerManager.selectedBiker)
     }
     
-    init(bikersRepository: BikersRepository) {
-        self.bikersRepository = bikersRepository
-        showedBiker = bikersRepository.getSelectedBiker()
-        super.init(nibName: nil, bundle: nil)
+    override func viewWillDisappear(_ animated: Bool) {
+        
     }
     
     private func setupBackButton() {
@@ -138,7 +135,11 @@ class StoreViewController: UIViewController {
         }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func show(biker: Biker) {
+        bikerHeaderView.nameLabel.text = biker.name
+        bikerHeaderView.descriptionLabel.text = biker.description
+        bikeImageView.image = UIImage(named: "\(biker.id)_bike")
+        bikerImageView.image = UIImage(named: "\(biker.id)_rider")
+        selectButton.backgroundColor = [.blue, .red, .orange].shuffled().first!
     }
 }

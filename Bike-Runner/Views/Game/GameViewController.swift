@@ -23,7 +23,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
 
     var gameScene: GameScene?
     var gameCenter = GameCenter()
-    var bikersRepository: BikersRepository
+    var bikerManager = BikerManager(bikersRepository: UserDefaultsBikersRepository())
     
     lazy var skView: SKView = {
         let view = SKView()
@@ -60,11 +60,6 @@ class GameViewController: UIViewController, GameSceneDelegate {
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
             scene.lastUpdate = 0
         }
-    }
-    
-    init(bikersRepository: BikersRepository) {
-        self.bikersRepository = bikersRepository
-        super.init(nibName: nil, bundle: nil)
     }
     
     override func viewDidLoad() {
@@ -174,10 +169,6 @@ class GameViewController: UIViewController, GameSceneDelegate {
 
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 

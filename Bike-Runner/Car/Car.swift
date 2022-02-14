@@ -85,23 +85,23 @@ class Car {
     
     func setLane(_ lane: Lane) {
         switch lane {
-        case .topLane: setTopLane()
         case .bottomLane: setBottomLane()
+        case .topLane: setTopLane()
         }
     }
     
-    private func setTopLane() {
-        node.position.y = -533
-        node.physicsBody?.contactTestBitMask = Constants.carTopLaneContact
-        node.physicsBody?.categoryBitMask = Constants.carTopLaneCategory
-        node.zPosition = 1
-    }
-    
     private func setBottomLane() {
-        node.position.y = -579
+        node.position.y = Constants.carBottomLane
         node.physicsBody?.contactTestBitMask = Constants.carBottomLaneContact
         node.physicsBody?.categoryBitMask = Constants.carBottomLaneCategory
         node.zPosition = 6
+    }
+    
+    private func setTopLane() {
+        node.position.y = Constants.carTopLane
+        node.physicsBody?.contactTestBitMask = Constants.carTopLaneContact
+        node.physicsBody?.categoryBitMask = Constants.carTopLaneCategory
+        node.zPosition = 1
     }
     
     private func physicsSetup() {

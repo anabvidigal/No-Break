@@ -9,19 +9,45 @@ import Foundation
 
 protocol BikersRepository {
     func getBikers() -> [Biker]
-    func save(bikers: [Biker])
     func getSelectedBiker() -> Biker
+    func save(bikers: [Biker])
 }
 
 class UserDefaultsBikersRepository: BikersRepository {
-    func getBikers() -> [Biker] {
-        return []
-    }
+    let defaultBikers = [
+        Biker(name: "James", description: "The boy is an artist", id: "fixed", price: 0, status: .selected, index: 0),
+        Biker(name: "Nati", description: "She's really into dinosaurs", id: "fixie", price: 0, status: .bought, index: 1),
+        Biker(name: "Carol", description: "I think she likes the president", id: "MTB", price: 150, status: .forSale, index: 2),
+        Biker(name: "Gabe", description: "He loves his cats", id: "BMX", price: 1000, status: .forSale, index: 3),
+        Biker(name: "Oil Man", description: "What's with the swim suit tho?", id: "barra_forte", price: 3000, status: .forSale, index: 4)
+    ]
     
-    func save(bikers: [Biker]) {
+    var playerBikers: [Biker] = []
+    
+    func getBikers() -> [Biker] {
+        for biker in defaultBikers {
+            guard let bikerStatus = Biker.Status(rawValue: UserDefaults.standard.integer(forKey: biker.id)) else { return defaultBikers }
+            biker.status = bikerStatus
+            playerBikers.append(biker)
+        }
+        return playerBikers
     }
     
     func getSelectedBiker() -> Biker {
-        return Biker(name: "James", description: "The boy is an artist, you know?", imagesId: "fixed", price: 0, status: .selected)
+        if playerBikers.isEmpty {
+            _ = getBikers()
+        }
+        for biker in playerBikers {
+            if biker.status == .selected {
+                return biker
+            }
+        }
+        return defaultBikers.first!
+    }
+    
+    func save(bikers: [Biker]) {
+        for biker in bikers {
+            UserDefaults.standard.set(biker.status.rawValue, forKey: biker.id)
+        }
     }
 }
