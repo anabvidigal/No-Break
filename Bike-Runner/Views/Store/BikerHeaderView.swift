@@ -20,7 +20,8 @@ class BikerHeaderView: UIView {
         return button
     }()
     @objc func clickedPreviousButton() {
-        parent.show(biker: parent.bikerManager.getPreviousBiker())
+        guard let previousBiker = parent.bikerManager?.getPreviousBiker() else { return }
+        parent.show(biker: previousBiker)
     }
     
     lazy var nameLabel: UILabel = {
@@ -48,7 +49,8 @@ class BikerHeaderView: UIView {
         return button
     }()
     @objc func clickedNextButton() {
-        parent.show(biker: parent.bikerManager.getNextBiker())
+        guard let nextBiker = parent.bikerManager?.getNextBiker() else { return }
+        parent.show(biker: nextBiker)
     }
     
     init(frame: CGRect = .zero, parent: StoreViewController) {

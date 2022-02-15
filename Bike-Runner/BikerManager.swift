@@ -52,10 +52,12 @@ class BikerManager {
         unselectedBiker.status = .bought
         bikers[selectedBiker.index] = unselectedBiker
         
-        let newSelectedBike = bikers[showingIndex]
-        newSelectedBike.status = .selected
-        bikers[showingIndex] = newSelectedBike
+        let newSelectedBiker = bikers[showingIndex]
+        newSelectedBiker.status = .selected
+        bikers[showingIndex] = newSelectedBiker
         
         bikersRepository.save(bikers: bikers)
+        
+        selectedBiker = newSelectedBiker
     }
 }

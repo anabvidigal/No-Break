@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 class StoreViewController: UIViewController {
-    var bikerManager = BikerManager(bikersRepository: UserDefaultsBikersRepository())
-    var coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
+    var bikerManager: BikerManager?
+    var coinManager: CoinManager?
     
     lazy var backButton: UIButton = {
         let button = UIButton()
@@ -24,7 +24,7 @@ class StoreViewController: UIViewController {
     }
     
     lazy var playerCoinsView: PlayerCoinsView = {
-        let view = PlayerCoinsView(coins: coinManager.playerCoins)
+        let view = PlayerCoinsView(coins: coinManager?.playerCoins ?? 0)
         view.layer.borderColor = UIColor.appBrown1.cgColor
         view.layer.borderWidth = 2
         return view
@@ -38,7 +38,7 @@ class StoreViewController: UIViewController {
     lazy var contentStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.alignment = .center
+        stack.alignment = .bottom
         stack.distribution = .fillEqually
         stack.spacing = 16
         return stack
@@ -59,7 +59,7 @@ class StoreViewController: UIViewController {
         return button
     }()
     @objc func selectButtonClicked() {
-        bikerManager.selectBiker()
+        bikerManager?.selectBiker()
     }
     
     lazy var bikerImageView: UIImageView = {
@@ -85,7 +85,8 @@ class StoreViewController: UIViewController {
         ].forEach { contentStack.addArrangedSubview($0) }
         setupSelectButton()
         
-        show(biker: bikerManager.selectedBiker)
+        guard let selectedBiker = bikerManager?.selectedBiker else { return }
+        show(biker: selectedBiker)
     }
 
     private func setupBackButton() {

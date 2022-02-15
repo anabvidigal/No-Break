@@ -24,6 +24,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
     var gameScene: GameScene?
     var gameCenter = GameCenter()
     var bikerManager = BikerManager(bikersRepository: UserDefaultsBikersRepository())
+    var coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
     
     lazy var skView: SKView = {
         let view = SKView()
@@ -57,12 +58,10 @@ class GameViewController: UIViewController, GameSceneDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
-            scene.lastUpdate = 0
-            if scene.player != nil {
-                scene.player.biker = bikerManager.selectedBiker
-                scene.player.reset()
-            }
+        gameScene?.lastUpdate = 0
+        if let player = gameScene?.player {
+            player.biker = bikerManager.selectedBiker
+            player.startAnimation()
         }
     }
     
@@ -97,6 +96,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
             gameScene = scene
             scene.scaleMode = .aspectFill
             scene.gameDelegate = self
+            scene.coinManager = coinManager
             scene.bikerManager = bikerManager
             skView.presentScene(scene)
         }
@@ -139,8 +139,8 @@ class GameViewController: UIViewController, GameSceneDelegate {
         gameOverView.alpha = 1
         gameOverView.scoreLabel.text = "Score: \(sender.scoreDetector.score)"
         gameOverView.highscoreLabel.alpha = sender.isHighscore ? 1 : 0
-        gameOverView.coinsLabel.text = "Coins: \(sender.coinManager.playerCoins)"
-        gameOverView.collectedCoinsLabel.text = "+\(sender.coinManager.collectedCoins)"
+        gameOverView.coinsLabel.text = "Coins: \(sender.coinManager?.playerCoins ?? 0)"
+        gameOverView.collectedCoinsLabel.text = "+\(sender.coinManager?.collectedCoins ?? 0)"
         gameOverView.updateCoinsStackConstrainsIf(isHighScore: sender.isHighscore)
     }
     
@@ -152,7 +152,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
     }
     
     func catchCoin(_ sender: GameScene) {
-        coinsView.coinsLabel.text = "\(sender.coinManager.collectedCoins)"
+        coinsView.coinsLabel.text = "\(sender.coinManager?.collectedCoins ?? 0)"
     }
     
     func setHighscore(_ sender: GameScene) {
