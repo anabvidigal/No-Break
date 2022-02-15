@@ -10,6 +10,7 @@ import SpriteKit
 import GameplayKit
 import SnapKit
 import GameKit
+import GoogleMobileAds
 
 protocol GameSceneDelegate: AnyObject {
     func gameIsOver(_ sender: GameScene)
@@ -19,10 +20,12 @@ protocol GameSceneDelegate: AnyObject {
     func reset()
 }
 
-class GameViewController: UIViewController, GameSceneDelegate {
+class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenContentDelegate {
 
     var gameScene: GameScene?
     var gameCenter = GameCenter()
+    
+    private var interstitial: GADInterstitialAd?
     
     lazy var skView: SKView = {
         let view = SKView()
@@ -64,6 +67,8 @@ class GameViewController: UIViewController, GameSceneDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        requestInterstitial()
+        
         view.backgroundColor = .appBrown1
         
         let value = UIInterfaceOrientation.landscapeRight.rawValue
@@ -77,6 +82,35 @@ class GameViewController: UIViewController, GameSceneDelegate {
         setupGameOverView()
     
         gameCenter.authenticateUser(self)
+    }
+    
+    func requestInterstitial() {
+        let request = GADRequest()
+        GADInterstitialAd.load(withAdUnitID: "ca-app-pub-3940256099942544/4411468910", request: request, completionHandler: { [self] ad, error in
+            if let error = error {
+              print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+              return
+            }
+            interstitial = ad
+            interstitial?.fullScreenContentDelegate = self
+          }
+        )
+    }
+    
+    /// Tells the delegate that the ad failed to present full screen content.
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+      print("Ad did fail to present full screen content.")
+    }
+
+    /// Tells the delegate that the ad presented full screen content.
+    func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+      print("Ad did present full screen content.")
+    }
+
+    /// Tells the delegate that the ad dismissed full screen content.
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+      print("Ad did dismiss full screen content.")
+        requestInterstitial()
     }
     
     private func setupSkView() {
@@ -136,6 +170,15 @@ class GameViewController: UIViewController, GameSceneDelegate {
         gameOverView.coinsLabel.text = "Coins: \(sender.coinManager.playerCoins)"
         gameOverView.collectedCoinsLabel.text = "+\(sender.coinManager.collectedCoins)"
         gameOverView.updateCoinsStackConstrainsIf(isHighScore: sender.isHighscore)
+        showAd()
+    }
+    
+    func showAd() {
+        if interstitial != nil {
+            interstitial!.present(fromRootViewController: self)
+          } else {
+            print("Ad wasn't ready")
+          }
     }
     
     func score(_ sender: GameScene) {

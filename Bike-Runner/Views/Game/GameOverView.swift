@@ -8,10 +8,12 @@
 import UIKit
 import GameKit
 import SnapKit
+import GoogleMobileAds
 
 class GameOverView: UIView {
-    private var parent: GameViewController
     
+    private var parent: GameViewController
+        
     lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(.backButton, for: .normal)
