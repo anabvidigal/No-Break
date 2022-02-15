@@ -31,6 +31,12 @@ class GameOverView: UIView {
         
         alpha = 0
     }
+//    
+//    @objc func duplicateCoinsClicked() {
+//        
+//        button.addTarget(self, action: #selector(backClicked), for: .touchUpInside)
+//        
+//    }
     
     lazy var scoreLabel: UILabel = {
         let label = UILabel()

@@ -22,7 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var gameCenter = GameCenter()
     var highscoreManager = HighscoreManager(repository: UserDefaultsHighScoreRepository())
     
-    var coinManager: CoinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
+    var coinManager: CoinManager?
     var scoreDetector: ScoreDetector!
     var status: GameStatus = .animating
     var lastUpdate = TimeInterval(0)
@@ -142,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func catchCoin() {
         coinSpawner.removeCoin()
-        coinManager.incrementCoins()
+        coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
     }
     
@@ -162,7 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreDetector.resetScore()
         speedManager.resetSpeed()
         coinSpawner.reset()
-        coinManager.addCoins()
+        coinManager?.addCoins()
         gameDelegate?.reset()
         addChild(introNode)
     }

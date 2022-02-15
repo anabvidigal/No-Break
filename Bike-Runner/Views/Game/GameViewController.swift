@@ -23,9 +23,11 @@ protocol GameSceneDelegate: AnyObject {
 class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenContentDelegate {
 
     var gameScene: GameScene?
+    var coinManager: CoinManager?
     var gameCenter = GameCenter()
     
-    private var interstitial: GADInterstitialAd?
+    private var interstitialAd: GADInterstitialAd?
+    private var rewardedAd: GADRewardedAd?
     
     lazy var skView: SKView = {
         let view = SKView()
@@ -65,9 +67,11 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         requestInterstitial()
+        requestRewarded()
         
         view.backgroundColor = .appBrown1
         
@@ -91,8 +95,21 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
               print("Failed to load interstitial ad with error: \(error.localizedDescription)")
               return
             }
-            interstitial = ad
-            interstitial?.fullScreenContentDelegate = self
+            interstitialAd = ad
+            interstitialAd?.fullScreenContentDelegate = self
+          }
+        )
+    }
+    
+    func requestRewarded() {
+        let request = GADRequest()
+        GADRewardedAd.load(withAdUnitID: "ca-app-pub-3940256099942544/1712485313", request: request, completionHandler: { [self] ad, error in
+            if let error = error {
+              print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+              return
+            }
+            rewardedAd = ad
+            rewardedAd?.fullScreenContentDelegate = self
           }
         )
     }
@@ -111,6 +128,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
       print("Ad did dismiss full screen content.")
         requestInterstitial()
+        requestRewarded()
     }
     
     private func setupSkView() {
@@ -126,6 +144,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             gameScene = scene
             scene.scaleMode = .aspectFill
             scene.gameDelegate = self
+            scene.coinManager = coinManager
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true
@@ -167,15 +186,27 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         gameOverView.alpha = 1
         gameOverView.scoreLabel.text = "Score: \(sender.scoreDetector.score)"
         gameOverView.highscoreLabel.alpha = sender.isHighscore ? 1 : 0
-        gameOverView.coinsLabel.text = "Coins: \(sender.coinManager.playerCoins)"
-        gameOverView.collectedCoinsLabel.text = "+\(sender.coinManager.collectedCoins)"
+        gameOverView.coinsLabel.text = "Coins: \(sender.coinManager?.playerCoins ?? 0)"
+        gameOverView.collectedCoinsLabel.text = "+\(sender.coinManager?.collectedCoins ?? 0)"
         gameOverView.updateCoinsStackConstrainsIf(isHighScore: sender.isHighscore)
-        showAd()
+        showRewardedAd()
     }
     
-    func showAd() {
-        if interstitial != nil {
-            interstitial!.present(fromRootViewController: self)
+    func showInterstitialAd() {
+        if interstitialAd != nil {
+            interstitialAd!.present(fromRootViewController: self)
+          } else {
+            print("Ad wasn't ready")
+          }
+    }
+    
+    func showRewardedAd() {
+        if rewardedAd != nil {
+            rewardedAd!.present(fromRootViewController: self, userDidEarnRewardHandler: {
+                // get coin amount and double it
+                print("doubled coin")
+//                coinManager.doubleCoins()
+            })
           } else {
             print("Ad wasn't ready")
           }
@@ -189,7 +220,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     }
     
     func catchCoin(_ sender: GameScene) {
-        coinsView.coinsLabel.text = "\(sender.coinManager.collectedCoins)"
+        coinsView.coinsLabel.text = "\(sender.coinManager?.collectedCoins ?? 0)"
     }
     
     func setHighscore(_ sender: GameScene) {
