@@ -26,7 +26,6 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     var coinManager: CoinManager?
     var gameCenter = GameCenter()
     var bikerManager = BikerManager(bikersRepository: UserDefaultsBikersRepository())
-    var coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
     
     private var interstitialAd: GADInterstitialAd?
     private var rewardedAd: GADRewardedAd?

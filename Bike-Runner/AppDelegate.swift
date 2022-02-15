@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         let vc = GameViewController()
         vc.coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
-        window?.rootViewController = GameViewController()
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
             
                 return true
