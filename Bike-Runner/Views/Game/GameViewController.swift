@@ -57,8 +57,12 @@ class GameViewController: UIViewController, GameSceneDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
+        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             scene.lastUpdate = 0
+            if scene.player != nil {
+                scene.player.biker = bikerManager.selectedBiker
+                scene.player.reset()
+            }
         }
     }
     
@@ -93,6 +97,7 @@ class GameViewController: UIViewController, GameSceneDelegate {
             gameScene = scene
             scene.scaleMode = .aspectFill
             scene.gameDelegate = self
+            scene.bikerManager = bikerManager
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true

@@ -12,10 +12,10 @@ import SnapKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var player: Player!
+    var player: Player!
     private var scenery: Scenery!
     private var carSpawner: CarSpawner!
-    private var speedManager: SpeedManager = SpeedManager()
+    var speedManager = SpeedManager()
     private var coinSpawner: CoinSpawner!
     var introNode: SKSpriteNode!
     
@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var status: GameStatus = .animating
     var lastUpdate = TimeInterval(0)
     var isHighscore = false
+    var bikerManager: BikerManager!
     
     weak var gameDelegate: GameSceneDelegate?
     
@@ -40,7 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // player
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
-        player = Player(node: playerNode, speedManager: speedManager)
+        player = Player(node: playerNode, speedManager: speedManager, biker: bikerManager.selectedBiker)
         player.startAnimation()
         
         // bg

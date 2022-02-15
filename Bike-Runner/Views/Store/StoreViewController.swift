@@ -55,8 +55,12 @@ class StoreViewController: UIViewController {
         button.setTitle("Selected", for: .normal)
         button.titleLabel?.font = .kenneyFont.withSize(30)
         button.backgroundColor = .appGreen1
+        button.addTarget(selectButtonClicked, action: #selector(selectButtonClicked), for: .touchUpInside)
         return button
     }()
+    @objc func selectButtonClicked() {
+        bikerManager.selectBiker()
+    }
     
     lazy var bikerImageView: UIImageView = {
         let imageView = UIImageView()
@@ -83,11 +87,7 @@ class StoreViewController: UIViewController {
         
         show(biker: bikerManager.selectedBiker)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-    }
-    
+
     private func setupBackButton() {
         view.addSubview(backButton)
         backButton.snp.makeConstraints { make in
