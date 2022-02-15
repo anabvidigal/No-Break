@@ -57,8 +57,6 @@ class BikerHeaderView: UIView {
         self.parent = parent
         super.init(frame: frame)
         
-        backgroundColor = .appGreen3
-        
         setupPreviousButton()
         setupNextButton()
         

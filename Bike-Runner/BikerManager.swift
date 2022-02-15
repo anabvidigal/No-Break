@@ -12,12 +12,14 @@ class BikerManager {
     
     var bikers: [Biker] = []
     var selectedBiker: Biker
-    var showingIndex: Int = 0
+    var showingBiker: Biker
+    var showingIndex: Int
     
     init(bikersRepository: BikersRepository) {
         self.bikersRepository = bikersRepository
         bikers = bikersRepository.getBikers()
         selectedBiker = bikersRepository.getSelectedBiker()
+        showingBiker = selectedBiker
         showingIndex = selectedBiker.index
     }
     
@@ -32,19 +34,24 @@ class BikerManager {
     func getNextBiker() -> Biker {
         showingIndex += 1
         if showingIndex < bikers.count {
-            return bikers[showingIndex]
+            showingBiker = bikers[showingIndex]
+            return showingBiker
         }
         showingIndex = 0
-        return bikers[showingIndex]
+        showingBiker = bikers[showingIndex]
+        return showingBiker
     }
     
     func getPreviousBiker() -> Biker {
+        bikersRepository.reset()
         showingIndex -= 1
         if showingIndex >= 0 {
-            return bikers[showingIndex]
+            showingBiker = bikers[showingIndex]
+            return showingBiker
         }
         showingIndex = bikers.count - 1
-        return bikers[showingIndex]
+        showingBiker = bikers[showingIndex]
+        return showingBiker
     }
     
     func selectBiker() {
@@ -52,12 +59,11 @@ class BikerManager {
         unselectedBiker.status = .bought
         bikers[selectedBiker.index] = unselectedBiker
         
-        let newSelectedBiker = bikers[showingIndex]
-        newSelectedBiker.status = .selected
-        bikers[showingIndex] = newSelectedBiker
+        showingBiker.status = .selected
+        bikers[showingIndex] = showingBiker
         
         bikersRepository.save(bikers: bikers)
         
-        selectedBiker = newSelectedBiker
+        selectedBiker = showingBiker
     }
 }

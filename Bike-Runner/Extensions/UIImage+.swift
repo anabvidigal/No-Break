@@ -88,4 +88,22 @@ extension UIImage {
     open class var nextButtonDisabled: UIImage { get {
         UIImage(named: "nextButtonDisabled")!
     }}
+    
+    open class var selectButton: UIImage { get {
+        UIImage(named: "selectButton")!
+    }}
+    open class var selectButtonPressed: UIImage { get {
+        UIImage(named: "selectButtonPressed")!
+    }}
+    
+    open class var buyButton: UIImage { get {
+        UIImage(named: "buyButton")!
+    }}
+    open class var buyButtonPressed: UIImage { get {
+        UIImage(named: "buyButtonPressed")!
+    }}
+    
+    open class var selectedButton: UIImage { get {
+        UIImage(named: "selectedButton")!
+    }}
 }

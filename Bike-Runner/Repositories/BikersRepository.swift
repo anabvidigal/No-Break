@@ -11,6 +11,7 @@ protocol BikersRepository {
     func getBikers() -> [Biker]
     func getSelectedBiker() -> Biker
     func save(bikers: [Biker])
+    func reset()
 }
 
 class UserDefaultsBikersRepository: BikersRepository {
@@ -25,9 +26,13 @@ class UserDefaultsBikersRepository: BikersRepository {
     var playerBikers: [Biker] = []
     
     func getBikers() -> [Biker] {
-        for biker in defaultBikers {
+        for (index, biker) in defaultBikers.enumerated() {
             guard let bikerStatus = Biker.Status(rawValue: UserDefaults.standard.integer(forKey: biker.id)) else { return defaultBikers }
-            biker.status = bikerStatus
+            if bikerStatus == .unregistered {
+                biker.status = defaultBikers[index].status
+            } else {
+                biker.status = bikerStatus
+            }
             playerBikers.append(biker)
         }
         return playerBikers
@@ -47,6 +52,12 @@ class UserDefaultsBikersRepository: BikersRepository {
     
     func save(bikers: [Biker]) {
         for biker in bikers {
+            UserDefaults.standard.set(biker.status.rawValue, forKey: biker.id)
+        }
+    }
+    
+    func reset() {
+        for biker in defaultBikers {
             UserDefaults.standard.set(biker.status.rawValue, forKey: biker.id)
         }
     }
