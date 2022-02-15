@@ -85,11 +85,16 @@ class StoreViewController: UIViewController {
     }
     
     private func showConfirmationPopUp() {
-        
     }
     
     lazy var priceView: PriceView = {
         let view = PriceView()
+        return view
+    }()
+    
+    lazy var confirmationPopUpView: ConfirmationPopUpView = {
+        let view = ConfirmationPopUpView()
+//        view.alpha = 0
         return view
     }()
 
@@ -112,6 +117,8 @@ class StoreViewController: UIViewController {
         ].forEach { contentStack.addArrangedSubview($0) }
         setupSelectButton()
         setupPriceView()
+        
+        setupConfirmationPopUpView()
         
         guard let selectedBiker = bikerManager?.selectedBiker else { return }
         show(biker: selectedBiker)
@@ -184,6 +191,13 @@ class StoreViewController: UIViewController {
             make.bottom.equalTo(selectButton.snp.top).offset(-4)
             make.top.equalToSuperview()
             make.height.equalTo(24)
+        }
+    }
+    
+    private func setupConfirmationPopUpView() {
+        view.addSubview(confirmationPopUpView)
+        confirmationPopUpView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
