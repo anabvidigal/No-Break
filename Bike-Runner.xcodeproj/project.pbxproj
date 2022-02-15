@@ -15,7 +15,7 @@
 		2B56DA7627AB383D00AD63E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B56DA7527AB383D00AD63E5 /* LaunchScreen.storyboard */; };
 		2B56DA7827ABFB7D00AD63E5 /* CoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7727ABFB7D00AD63E5 /* CoinManager.swift */; };
 		2B56DA7A27ABFBD700AD63E5 /* CoinsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7927ABFBD700AD63E5 /* CoinsRepository.swift */; };
-		2B56DA7C27ABFBF200AD63E5 /* PlayersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7B27ABFBF200AD63E5 /* PlayersRepository.swift */; };
+		2B56DA7C27ABFBF200AD63E5 /* BikersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7B27ABFBF200AD63E5 /* BikersRepository.swift */; };
 		2B56DA8027ABFE1000AD63E5 /* CoinSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA7F27ABFE1000AD63E5 /* CoinSpawner.swift */; };
 		2B56DA8227AC0EF000AD63E5 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA8127AC0EF000AD63E5 /* Coin.swift */; };
 		2B56DA8427AC142600AD63E5 /* Lane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA8327AC142600AD63E5 /* Lane.swift */; };
@@ -42,6 +42,9 @@
 		61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90327B9CA2F008F8539 /* StoreViewController.swift */; };
 		61A7D90627B9D102008F8539 /* PlayerCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */; };
 		9BBBA2908837B0BCF97A368F /* Pods_Bike_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */; };
+		61A7D90827B9F6FF008F8539 /* BikerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */; };
+		61A7D90A27B9F7F5008F8539 /* Biker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90927B9F7F5008F8539 /* Biker.swift */; };
+		61A7D90C27BA8C44008F8539 /* BikerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90B27BA8C44008F8539 /* BikerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +57,7 @@
 		2B56DA7527AB383D00AD63E5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B56DA7727ABFB7D00AD63E5 /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
 		2B56DA7927ABFBD700AD63E5 /* CoinsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsRepository.swift; sourceTree = "<group>"; };
-		2B56DA7B27ABFBF200AD63E5 /* PlayersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersRepository.swift; sourceTree = "<group>"; };
+		2B56DA7B27ABFBF200AD63E5 /* BikersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikersRepository.swift; sourceTree = "<group>"; };
 		2B56DA7F27ABFE1000AD63E5 /* CoinSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSpawner.swift; sourceTree = "<group>"; };
 		2B56DA8127AC0EF000AD63E5 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		2B56DA8327AC142600AD63E5 /* Lane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lane.swift; sourceTree = "<group>"; };
@@ -81,6 +84,9 @@
 		61A7D8FF27B9AB0F008F8539 /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
 		61A7D90327B9CA2F008F8539 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCoinsView.swift; sourceTree = "<group>"; };
+		61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikerHeaderView.swift; sourceTree = "<group>"; };
+		61A7D90927B9F7F5008F8539 /* Biker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biker.swift; sourceTree = "<group>"; };
+		61A7D90B27BA8C44008F8539 /* BikerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikerManager.swift; sourceTree = "<group>"; };
 		7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bike_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B1DB2D6C82E803505A2478 /* Pods-Bike-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.release.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		D577AD4367CA3EC4EC4FE58C /* Pods-Bike-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bike-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				2B56DA7927ABFBD700AD63E5 /* CoinsRepository.swift */,
-				2B56DA7B27ABFBF200AD63E5 /* PlayersRepository.swift */,
+				2B56DA7B27ABFBF200AD63E5 /* BikersRepository.swift */,
 				617E496E27B5B6D30052F021 /* HighscoreRepository.swift */,
 			);
 			path = Repositories;
@@ -177,6 +183,8 @@
 				2B56DA7527AB383D00AD63E5 /* LaunchScreen.storyboard */,
 				2B99C06127A3A352003606C9 /* Assets.xcassets */,
 				2B99C06B27A3AD64003606C9 /* Player.swift */,
+				61A7D90927B9F7F5008F8539 /* Biker.swift */,
+				61A7D90B27BA8C44008F8539 /* BikerManager.swift */,
 				2B99C06D27A3B321003606C9 /* Scenery.swift */,
 				2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */,
 				2B99C07127A3BC69003606C9 /* SpeedManager.swift */,
@@ -218,6 +226,7 @@
 			children = (
 				61A7D90327B9CA2F008F8539 /* StoreViewController.swift */,
 				61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */,
+				61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -356,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61A7D90827B9F6FF008F8539 /* BikerHeaderView.swift in Sources */,
 				617E497427B5F1240052F021 /* HighscoreManager.swift in Sources */,
 				2BE7612A27BBE81E00A3420B /* AdsHelper.swift in Sources */,
 				617E496F27B5B6D30052F021 /* HighscoreRepository.swift in Sources */,
@@ -365,6 +375,7 @@
 				617E497627B6DA5C0052F021 /* ScoreView.swift in Sources */,
 				61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */,
 				61A7D90027B9AB0F008F8539 /* CoinsView.swift in Sources */,
+				61A7D90A27B9F7F5008F8539 /* Biker.swift in Sources */,
 				2B6D73B327AD7416002B56C7 /* GameCenter.swift in Sources */,
 				2B56DA8227AC0EF000AD63E5 /* Coin.swift in Sources */,
 				6114A62D27AD7CBE002290EB /* GameViewController.swift in Sources */,
@@ -380,8 +391,9 @@
 				2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */,
 				617E496327B3E7CD0052F021 /* UIColor+.swift in Sources */,
 				617E496B27B5533C0052F021 /* HomeView.swift in Sources */,
+				61A7D90C27BA8C44008F8539 /* BikerManager.swift in Sources */,
 				2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */,
-				2B56DA7C27ABFBF200AD63E5 /* PlayersRepository.swift in Sources */,
+				2B56DA7C27ABFBF200AD63E5 /* BikersRepository.swift in Sources */,
 				617E496927B54EBD0052F021 /* UIImage+.swift in Sources */,
 				2B58BD6627A8146800DCF69D /* Constants.swift in Sources */,
 				2B99C06E27A3B321003606C9 /* Scenery.swift in Sources */,
@@ -568,7 +580,6 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ana.bittencourt.Bike-Runner";
-				PRODUCT_NAME = "Bike-Runner";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

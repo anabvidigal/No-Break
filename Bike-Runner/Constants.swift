@@ -55,4 +55,10 @@ class Constants {
     
     static let roadAngle = CGFloat(-15)
     
+    static let bikeBottomLane = CGFloat(-49)
+    static let bikeTopLane = CGFloat(1)
+    
+    static let carBottomLane = CGFloat(-504)
+    static let carTopLane = CGFloat(-458)
+    
 }

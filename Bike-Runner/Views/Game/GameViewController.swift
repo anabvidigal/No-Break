@@ -25,6 +25,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     var gameScene: GameScene?
     var coinManager: CoinManager?
     var gameCenter = GameCenter()
+    var bikerManager = BikerManager(bikersRepository: UserDefaultsBikersRepository())
+    var coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
     
     private var interstitialAd: GADInterstitialAd?
     private var rewardedAd: GADRewardedAd?
@@ -61,8 +63,10 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let scene = SKScene(fileNamed: "GameScene") as? GameScene{
-            scene.lastUpdate = 0
+        gameScene?.lastUpdate = 0
+        if let player = gameScene?.player {
+            player.biker = bikerManager.selectedBiker
+            player.startAnimation()
         }
     }
     
@@ -145,6 +149,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             scene.scaleMode = .aspectFill
             scene.gameDelegate = self
             scene.coinManager = coinManager
+            scene.bikerManager = bikerManager
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true

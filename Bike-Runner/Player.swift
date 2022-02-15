@@ -13,13 +13,15 @@ class Player {
     var node: SKSpriteNode
     private var startPosition: CGPoint
     private var speedManager: SpeedManager!
+    var biker: Biker
     
     var status: LaneBikeStatus = .topLane
     
-    init(node: SKSpriteNode, speedManager: SpeedManager) {
+    init(node: SKSpriteNode, speedManager: SpeedManager, biker: Biker) {
         self.node = node
         self.startPosition = node.position
         self.speedManager = speedManager
+        self.biker = biker
         status = .topLane
         physicsSetup()
     }
@@ -43,14 +45,14 @@ class Player {
     }
     
     private func setBottomLane() {
-        node.position.y = -124
+        node.position.y = Constants.bikeBottomLane
         status = .bottomLane
         node.physicsBody?.categoryBitMask = Constants.bikeBottomLaneCategory
         node.physicsBody?.contactTestBitMask = Constants.bikeBottomLaneContact
     }
     
     private func setTopLane() {
-        node.position.y = -74
+        node.position.y = Constants.bikeTopLane
         status = .topLane
         node.physicsBody?.categoryBitMask = Constants.bikeTopLaneCategory
         node.physicsBody?.contactTestBitMask = Constants.bikeTopLaneContact
@@ -66,12 +68,12 @@ class Player {
     
     func startAnimation() {
         var textures = [SKTexture]()
-        textures.append(SKTexture(imageNamed: "fixed_frame_1"))
-        textures.append(SKTexture(imageNamed: "fixed_frame_2"))
-        textures.append(SKTexture(imageNamed: "fixed_frame_3"))
-        textures.append(SKTexture(imageNamed: "fixed_frame_4"))
-        textures.append(SKTexture(imageNamed: "fixed_frame_5"))
-        textures.append(SKTexture(imageNamed: "fixed_frame_6"))
+        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_1"))
+        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_2"))
+        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_3"))
+        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_4"))
+        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_5"))
+        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_6"))
         
         let frames = SKAction.animate(with: textures, timePerFrame: 0.09, resize: false, restore: false)
         let repeatAnim = SKAction.repeatForever(frames)

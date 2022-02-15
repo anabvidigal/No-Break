@@ -14,7 +14,7 @@ class PlayerCoinsView: UIView {
     lazy var coinIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .coin
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -30,6 +30,8 @@ class PlayerCoinsView: UIView {
     init(frame: CGRect = .zero, coins: Int) {
         self.coins = coins
         super.init(frame: frame)
+        
+        backgroundColor = .appBrown2
         
         setupCoinIcon()
         setupCoinsLabel()
