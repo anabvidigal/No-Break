@@ -193,7 +193,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         gameOverView.coinsLabel.text = "Coins: \(coinManager?.playerCoins ?? 0)"
         gameOverView.collectedCoinsLabel.text = "+\(coinManager?.collectedCoins ?? 0)"
         gameOverView.updateCoinsStackConstrainsIf(isHighScore: sender.isHighscore)
-//        showRewardedAd()
+//        showInterstitialAd()
     }
     
     func showInterstitialAd() {
