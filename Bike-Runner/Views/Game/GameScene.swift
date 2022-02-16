@@ -163,7 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreDetector.resetScore()
         speedManager.resetSpeed()
         coinSpawner.reset()
-        coinManager?.addCoins()
+        coinManager?.addCollectedCoins()
         gameDelegate?.reset()
         addChild(introNode)
     }

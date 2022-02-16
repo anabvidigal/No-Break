@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class ConfirmationPopUpView: UIView {
+    var parent: StoreViewController
 
     lazy var darkeningView: UIView = {
         let view = UIView()
@@ -43,13 +44,65 @@ class ConfirmationPopUpView: UIView {
         return label
     }()
     
-    override init(frame: CGRect = .zero) {
+    lazy var buttonsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10
+        return stack
+    }()
+    
+    lazy var confirmButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.confirmButton, for: .normal)
+        button.setImage(.confirmButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(clickedConfirmButton), for: .touchUpInside)
+        return button
+    }()
+    @objc func clickedConfirmButton() {
+        guard let bikerManager = parent.bikerManager,
+              let coinManager = parent.coinManager else { return }
+        coinManager.spend(coins: bikerManager.showingBiker.price)
+        parent.playerCoinsView.refresh()
+        bikerManager.selectShowingBiker()
+        parent.setButtonToSelected()
+        alpha = 0
+    }
+    
+    lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.cancelButton, for: .normal)
+        button.setImage(.cancelButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(clickedCancelButton), for: .touchUpInside)
+        return button
+    }()
+    @objc func clickedCancelButton() {
+        alpha = 0
+    }
+    
+    lazy var okButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.okButton, for: .normal)
+        button.setImage(.okButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(clickedOkButton), for: .touchUpInside)
+        return button
+    }()
+    @objc func clickedOkButton() {
+        alpha = 0
+    }
+    
+    
+    init(frame: CGRect = .zero, parent: StoreViewController) {
+        self.parent = parent
         super.init(frame: frame)
         
         setupDarkeningView()
         setupPopUpView()
         setupTitleLabel()
         setupTextLabel()
+        
+        setupButtonsStack()
+        
+        setupOkButton()
     }
     
     private func setupDarkeningView() {
@@ -63,7 +116,7 @@ class ConfirmationPopUpView: UIView {
         addSubview(popUpView)
         popUpView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.width.equalTo(250)
+            make.width.equalTo(300)
             make.height.equalTo(200)
         }
     }
@@ -83,6 +136,45 @@ class ConfirmationPopUpView: UIView {
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
+        }
+    }
+    
+    private func setupButtonsStack() {
+        popUpView.addSubview(buttonsStack)
+        buttonsStack.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-8)
+        }
+        
+        [
+            confirmButton,
+            cancelButton
+        ].forEach { buttonsStack.addArrangedSubview($0) }
+        setupConfirmButton()
+        setupCancelButton()
+    }
+    
+    private func setupConfirmButton() {
+        confirmButton.snp.makeConstraints { make in
+            make.width.equalTo(60)
+            make.height.equalTo(60)
+        }
+    }
+    
+    private func setupCancelButton() {
+        cancelButton.snp.makeConstraints { make in
+            make.width.equalTo(60)
+            make.height.equalTo(60)
+        }
+    }
+    
+    private func setupOkButton() {
+        popUpView.addSubview(okButton)
+        okButton.snp.makeConstraints { make in
+            make.width.equalTo(60)
+            make.height.equalTo(60)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-8)
         }
     }
     

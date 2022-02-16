@@ -106,4 +106,25 @@ extension UIImage {
     open class var selectedButton: UIImage { get {
         UIImage(named: "selectedButton")!
     }}
+    
+    open class var confirmButton: UIImage { get {
+        UIImage(named: "confirmButton")!
+    }}
+    open class var confirmButtonPressed: UIImage { get {
+        UIImage(named: "confirmButtonPressed")!
+    }}
+    
+    open class var cancelButton: UIImage { get {
+        UIImage(named: "cancelButton")!
+    }}
+    open class var cancelButtonPressed: UIImage { get {
+        UIImage(named: "cancelButtonPressed")!
+    }}
+    
+    open class var okButton: UIImage { get {
+        UIImage(named: "okButton")!
+    }}
+    open class var okButtonPressed: UIImage { get {
+        UIImage(named: "okButtonPressed")!
+    }}
 }

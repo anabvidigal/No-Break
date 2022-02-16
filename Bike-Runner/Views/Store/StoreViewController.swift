@@ -24,7 +24,7 @@ class StoreViewController: UIViewController {
     }
     
     lazy var playerCoinsView: PlayerCoinsView = {
-        let view = PlayerCoinsView(coins: coinManager?.playerCoins ?? 0)
+        let view = PlayerCoinsView(coinManager: coinManager)
         return view
     }()
     
@@ -74,17 +74,31 @@ class StoreViewController: UIViewController {
     @objc func selectButtonClicked() {
         switch bikerManager?.showingBiker.status {
         case .bought:
-            bikerManager?.selectBiker()
+            bikerManager?.selectShowingBiker()
             setButtonToSelected()
         case .forSale:
             showConfirmationPopUp()
-            print("Tentando comprar o biker de id \(bikerManager?.showingBiker.id) que custa \(bikerManager?.showingBiker.price) moedas")
         default:
             break
         }
     }
     
     private func showConfirmationPopUp() {
+        guard let playerCoins = coinManager?.playerCoins,
+              let bikerPrice = bikerManager?.showingBiker.price else { return }
+        
+        confirmationPopUpView.alpha = 1
+        if playerCoins >= bikerPrice {
+            confirmationPopUpView.titleLabel.text = "Are you sure?"
+            confirmationPopUpView.textLabel.text = "This will cost \(bikerPrice) coins"
+            confirmationPopUpView.okButton.alpha = 0
+            confirmationPopUpView.buttonsStack.alpha = 1
+        } else {
+            confirmationPopUpView.titleLabel.text = "Not enough coins!"
+            confirmationPopUpView.textLabel.text = "You need more \(bikerPrice - playerCoins) coins"
+            confirmationPopUpView.buttonsStack.alpha = 0
+            confirmationPopUpView.okButton.alpha = 1
+        }
     }
     
     lazy var priceView: PriceView = {
@@ -93,8 +107,8 @@ class StoreViewController: UIViewController {
     }()
     
     lazy var confirmationPopUpView: ConfirmationPopUpView = {
-        let view = ConfirmationPopUpView()
-//        view.alpha = 0
+        let view = ConfirmationPopUpView(parent: self)
+        view.alpha = 0
         return view
     }()
 
@@ -226,7 +240,7 @@ class StoreViewController: UIViewController {
         }
     }
     
-    private func setButtonToSelected() {
+    func setButtonToSelected() {
         priceView.alpha = 0
         selectButton.isEnabled = false
         selectButton.setImage(.selectedButton, for: .disabled)

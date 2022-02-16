@@ -54,7 +54,7 @@ class BikerManager {
         return showingBiker
     }
     
-    func selectBiker() {
+    func selectShowingBiker() {
         let unselectedBiker = selectedBiker
         unselectedBiker.status = .bought
         bikers[selectedBiker.index] = unselectedBiker
