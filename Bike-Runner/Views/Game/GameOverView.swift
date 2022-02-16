@@ -91,6 +91,7 @@ class GameOverView: UIView {
         let button = UIButton()
         button.setImage(.duplicateCoinsButton, for: .normal)
         button.setImage(.duplicateCoinsButtonPressed, for: .highlighted)
+        button.setImage(.duplicateCoinsButtonDisabled, for: .disabled)
         button.addTarget(self, action: #selector(duplicateCoinsButtonClicked), for: .touchUpInside)
         return button
     }()

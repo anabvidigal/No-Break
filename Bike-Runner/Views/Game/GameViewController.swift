@@ -210,6 +210,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
                 print("doubled coins")
                 self.coinManager?.doubleCoins()
                 self.gameOverView.collectedCoinsLabel.text = "+\((self.coinManager?.collectedCoins ?? 0)/2)" + " x2"
+                self.gameOverView.duplicateCoinsButton.isEnabled = false
             })
           } else {
             print("Ad wasn't ready")
@@ -234,6 +235,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     func reset() {
         scoreView.scoreLabel.text = "0"
         coinsView.coinsLabel.text = "0"
+        gameOverView.duplicateCoinsButton.isEnabled = true
     }
     
     override var shouldAutorotate: Bool {

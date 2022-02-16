@@ -36,6 +36,9 @@ extension UIImage {
     open class var duplicateCoinsButtonPressed: UIImage { get {
         UIImage(named: "duplicateCoinsButtonPressed")!
     }}
+    open class var duplicateCoinsButtonDisabled: UIImage { get {
+        UIImage(named: "duplicateCoinsButtonDisabled")!
+    }}
     
     open class var leaderboardButton: UIImage { get {
         UIImage(named: "leaderboardButton")!
