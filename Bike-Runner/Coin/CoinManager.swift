@@ -26,10 +26,23 @@ class CoinManager {
         collectedCoins *= 2
     }
     
-    func addCoins() {
+    func addCollectedCoins() {
         playerCoins += collectedCoins
         coinsRepository.add(coins: collectedCoins)
         collectedCoins = 0
     }
     
+    func spend(coins: Int) {
+        playerCoins -= coins
+        coinsRepository.spend(coins: coins)
+    }
+    
+    func hitTheJackpot() {
+        collectedCoins = 99999
+        addCollectedCoins()
+    }
+    
+    func goPoor() {
+        spend(coins: playerCoins)
+    }
 }

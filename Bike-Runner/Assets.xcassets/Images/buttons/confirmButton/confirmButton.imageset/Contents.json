@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "NextButton.png",
+      "filename" : "confirmButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

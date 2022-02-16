@@ -25,8 +25,9 @@ class Biker {
     }
     
     enum Status: Int {
-        case bought
+        case unregistered
         case selected
+        case bought
         case forSale
     }
 }

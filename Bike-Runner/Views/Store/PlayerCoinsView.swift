@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class PlayerCoinsView: UIView {
-    var coins: Int
+    var coinManager: CoinManager?
     
     lazy var coinIcon: UIImageView = {
         let imageView = UIImageView()
@@ -23,12 +23,12 @@ class PlayerCoinsView: UIView {
         label.font = .kenneyFont.withSize(24)
         label.textColor = .appBeige
         label.textAlignment = .right
-        label.text = "\(coins)"
+        label.text = "\(coinManager?.playerCoins ?? 0)"
         return label
     }()
     
-    init(frame: CGRect = .zero, coins: Int) {
-        self.coins = coins
+    init(frame: CGRect = .zero, coinManager: CoinManager?) {
+        self.coinManager = coinManager
         super.init(frame: frame)
         
         backgroundColor = .appBrown2
@@ -37,7 +37,7 @@ class PlayerCoinsView: UIView {
         setupCoinsLabel()
     }
     
-    func setupCoinIcon() {
+    private func setupCoinIcon() {
         addSubview(coinIcon)
         coinIcon.snp.makeConstraints { make in
             make.width.equalTo(30)
@@ -47,13 +47,17 @@ class PlayerCoinsView: UIView {
         }
     }
     
-    func setupCoinsLabel() {
+    private func setupCoinsLabel() {
         addSubview(coinsLabel)
         coinsLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(coinIcon.snp.trailing).offset(4)
             make.trailing.equalToSuperview().offset(-4)
         }
+    }
+    
+    func refresh() {
+        coinsLabel.text = "\(coinManager?.playerCoins ?? 0)"
     }
     
     required init?(coder: NSCoder) {

@@ -91,4 +91,43 @@ extension UIImage {
     open class var nextButtonDisabled: UIImage { get {
         UIImage(named: "nextButtonDisabled")!
     }}
+    
+    open class var selectButton: UIImage { get {
+        UIImage(named: "selectButton")!
+    }}
+    open class var selectButtonPressed: UIImage { get {
+        UIImage(named: "selectButtonPressed")!
+    }}
+    
+    open class var buyButton: UIImage { get {
+        UIImage(named: "buyButton")!
+    }}
+    open class var buyButtonPressed: UIImage { get {
+        UIImage(named: "buyButtonPressed")!
+    }}
+    
+    open class var selectedButton: UIImage { get {
+        UIImage(named: "selectedButton")!
+    }}
+    
+    open class var confirmButton: UIImage { get {
+        UIImage(named: "confirmButton")!
+    }}
+    open class var confirmButtonPressed: UIImage { get {
+        UIImage(named: "confirmButtonPressed")!
+    }}
+    
+    open class var cancelButton: UIImage { get {
+        UIImage(named: "cancelButton")!
+    }}
+    open class var cancelButtonPressed: UIImage { get {
+        UIImage(named: "cancelButtonPressed")!
+    }}
+    
+    open class var okButton: UIImage { get {
+        UIImage(named: "okButton")!
+    }}
+    open class var okButtonPressed: UIImage { get {
+        UIImage(named: "okButtonPressed")!
+    }}
 }

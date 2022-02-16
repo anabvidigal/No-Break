@@ -11,6 +11,7 @@ protocol CoinsRepository {
     func add(coins: Int)
     func getCoins() -> Int
     func spend(coins: Int)
+    func reset()
 }
 
 class UserDefaultsCoinsRepository: CoinsRepository {
@@ -28,5 +29,7 @@ class UserDefaultsCoinsRepository: CoinsRepository {
         UserDefaults.standard.setValue(getCoins() - coins, forKey: key)
     }
     
-    
+    func reset() {
+        UserDefaults.standard.setValue(0, forKey: key)
+    }
 }
