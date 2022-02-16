@@ -61,4 +61,12 @@ class Constants {
     static let carBottomLane = CGFloat(-504)
     static let carTopLane = CGFloat(-458)
     
+    // ads
+    static let interstitialAdUnitID: String = "ca-app-pub-6812178981373996/7920800585"
+    static let rewardedAdUnitID: String = "ca-app-pub-6812178981373996/7900920601"
+    
+    static let testInterstitialAdUnitID: String = "ca-app-pub-3940256099942544/4411468910"
+    static let testRewardedAdUnitID: String = "ca-app-pub-3940256099942544/1712485313"
+
+    
 }
