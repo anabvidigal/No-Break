@@ -23,9 +23,11 @@ protocol GameSceneDelegate: AnyObject {
 class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenContentDelegate {
 
     var gameScene: GameScene?
+    
     var coinManager: CoinManager?
+    var bikerManager: BikerManager?
+    var highscoreManager: HighscoreManager?
     var gameCenter = GameCenter()
-    var bikerManager = BikerManager(bikersRepository: UserDefaultsBikersRepository())
     
     private var interstitialAd: GADInterstitialAd?
     private var rewardedAd: GADRewardedAd?
@@ -63,10 +65,10 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         gameScene?.lastUpdate = 0
-        if let player = gameScene?.player {
-            player.biker = bikerManager.selectedBiker
-            player.startAnimation()
-        }
+        guard let player = gameScene?.player,
+              let bikerManager = bikerManager else { return }
+        player.biker = bikerManager.selectedBiker
+        player.startAnimation()
     }
     
     override func viewDidLoad() {
@@ -149,6 +151,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             scene.gameDelegate = self
             scene.coinManager = coinManager
             scene.bikerManager = bikerManager
+            scene.highscoreManager = highscoreManager
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true
@@ -219,7 +222,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     
     func score(_ sender: GameScene) {
         scoreView.scoreLabel.text = "\(sender.scoreDetector.score)"
-        if sender.scoreDetector.score > sender.highscoreManager.highscore {
+        guard let highscore = highscoreManager?.highscore else { return }
+        if sender.scoreDetector.score > highscore {
             scoreView.highscoreLabel.text = "\(sender.scoreDetector.score)"
         }
     }
@@ -229,7 +233,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     }
     
     func setHighscore(_ sender: GameScene) {
-        scoreView.highscoreLabel.text = "\(sender.highscoreManager.highscore)"
+        guard let highscoreManager = highscoreManager else { return }
+        scoreView.highscoreLabel.text = "\(highscoreManager.highscore)"
     }
     
     func reset() {

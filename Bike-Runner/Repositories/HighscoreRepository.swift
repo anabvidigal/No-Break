@@ -13,7 +13,7 @@ protocol HighscoreRepository {
     func resetHighscore()
 }
 
-class UserDefaultsHighScoreRepository: HighscoreRepository {
+class UserDefaultsHighscoreRepository: HighscoreRepository {
     private let key = "highscore"
     
     func save(new highscore: Int) {

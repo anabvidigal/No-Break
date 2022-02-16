@@ -20,14 +20,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var introNode: SKSpriteNode!
     
     private var gameCenter = GameCenter()
-    var highscoreManager = HighscoreManager(repository: UserDefaultsHighScoreRepository())
     
+    var highscoreManager: HighscoreManager?
     var coinManager: CoinManager?
+    var bikerManager: BikerManager!
+    
     var scoreDetector: ScoreDetector!
     var status: GameStatus = .animating
     var lastUpdate = TimeInterval(0)
     var isHighscore = false
-    var bikerManager: BikerManager!
+    
     
     weak var gameDelegate: GameSceneDelegate?
     
@@ -152,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.die()
         carSpawner.stopCarsAnimation()
         gameCenter.submitScore(score: scoreDetector.score)
-        isHighscore = highscoreManager.setIfHighscore(for: scoreDetector.score)
+        isHighscore = highscoreManager?.setIfHighscore(for: scoreDetector.score)
         gameDelegate?.gameIsOver(self)
     }
     

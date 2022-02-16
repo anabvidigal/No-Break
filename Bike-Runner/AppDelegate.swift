@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         let vc = GameViewController()
-        vc.coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
+        vc.coinManager = CoinManager(repository: UserDefaultsCoinsRepository())
+        vc.highscoreManager = HighscoreManager(repository: UserDefaultsHighscoreRepository())
+        vc.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
             
