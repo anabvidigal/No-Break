@@ -21,14 +21,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var gameCenter = GameCenter()
     
-    var highscoreManager: HighscoreManager?
+    var scoreManager: ScoreManager?
     var coinManager: CoinManager?
     var bikerManager: BikerManager!
     
     var scoreDetector: ScoreDetector!
     var status: GameStatus = .animating
     var lastUpdate = TimeInterval(0)
-    var isHighscore = false
     
     
     weak var gameDelegate: GameSceneDelegate?
@@ -68,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
-        scoreDetector = ScoreDetector(node: scoreNode, gameCenter: gameCenter)
+        scoreDetector = ScoreDetector(node: scoreNode)
         
         gameDelegate?.setHighscore(self)
     }
@@ -139,7 +138,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func score() {
-        scoreDetector.incrementScore()
+        scoreManager?.incrementScore()
         gameDelegate?.score(self)
     }
     
@@ -153,8 +152,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         status = .gameOver
         player.die()
         carSpawner.stopCarsAnimation()
-        gameCenter.submitScore(score: scoreDetector.score)
-        isHighscore = highscoreManager?.setIfHighscore(for: scoreDetector.score)
+        gameCenter.submitScore(score: scoreManager?.currentScore ?? 0)
+        scoreManager?.setHighscore()
         gameDelegate?.gameIsOver(self)
     }
     
@@ -162,7 +161,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         status = .intro
         carSpawner.reset()
         player.reset()
-        scoreDetector.resetScore()
+        scoreManager?.resetScore()
         speedManager.resetSpeed()
         coinSpawner.reset()
         coinManager?.addCollectedCoins()

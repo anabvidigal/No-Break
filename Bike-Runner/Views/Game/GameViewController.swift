@@ -26,8 +26,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     
     var coinManager: CoinManager?
     var bikerManager: BikerManager?
-    var highscoreManager: HighscoreManager?
-    var gameCenter = GameCenter()
+    var scoreManager: ScoreManager?
+    var gameCenter: GameCenter?
     
     private var interstitialAd: GADInterstitialAd?
     private var rewardedAd: GADRewardedAd?
@@ -90,7 +90,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         setupCoinsView()
         setupGameOverView()
     
-        gameCenter.authenticateUser(self)
+        gameCenter?.authenticateUser(self)
     }
     
     func requestInterstitial() {
@@ -125,7 +125,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     }
 
     /// Tells the delegate that the ad presented full screen content.
-    func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
       print("Ad did present full screen content.")
     }
 
@@ -151,7 +151,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             scene.gameDelegate = self
             scene.coinManager = coinManager
             scene.bikerManager = bikerManager
-            scene.highscoreManager = highscoreManager
+            scene.scoreManager = scoreManager
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true
@@ -190,12 +190,13 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     }
 
     func gameIsOver(_ sender: GameScene) {
+        guard let scoreManager = scoreManager else { return }
         gameOverView.alpha = 1
-        gameOverView.scoreLabel.text = "Score: \(sender.scoreDetector.score)"
-        gameOverView.highscoreLabel.alpha = sender.isHighscore ? 1 : 0
+        gameOverView.scoreLabel.text = "Score: \(scoreManager.currentScore)"
+        gameOverView.highscoreLabel.alpha = scoreManager.currentScoreIsHighscore ? 1 : 0
+        gameOverView.updateCoinsStackConstrainsIf(isHighScore: scoreManager.currentScoreIsHighscore)
         gameOverView.coinsLabel.text = "Coins: \(coinManager?.playerCoins ?? 0)"
         gameOverView.collectedCoinsLabel.text = "+\(coinManager?.collectedCoins ?? 0)"
-        gameOverView.updateCoinsStackConstrainsIf(isHighScore: sender.isHighscore)
 //        showInterstitialAd()
     }
     
@@ -221,10 +222,10 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     }
     
     func score(_ sender: GameScene) {
-        scoreView.scoreLabel.text = "\(sender.scoreDetector.score)"
-        guard let highscore = highscoreManager?.highscore else { return }
-        if sender.scoreDetector.score > highscore {
-            scoreView.highscoreLabel.text = "\(sender.scoreDetector.score)"
+        guard let scoreManager = scoreManager else { return }
+        scoreView.scoreLabel.text = "\(scoreManager.currentScore)"
+        if scoreManager.currentScoreIsHighscore {
+            scoreView.highscoreLabel.text = "\(scoreManager.currentScore)"
         }
     }
     
@@ -233,8 +234,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     }
     
     func setHighscore(_ sender: GameScene) {
-        guard let highscoreManager = highscoreManager else { return }
-        scoreView.highscoreLabel.text = "\(highscoreManager.highscore)"
+        guard let scoreManager = scoreManager else { return }
+        scoreView.highscoreLabel.text = "\(scoreManager.highscore)"
     }
     
     func reset() {

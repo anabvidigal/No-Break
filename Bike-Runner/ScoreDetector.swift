@@ -9,14 +9,10 @@ import Foundation
 import SpriteKit
 
 class ScoreDetector {
-    
-    var score: Int = 0
     var node: SKNode
-    private var gameCenter: GameCenter
     
-    init(node: SKNode, gameCenter: GameCenter){
+    init(node: SKNode){
         self.node = node
-        self.gameCenter = gameCenter
         setupPhysics()
     }
     
@@ -28,19 +24,4 @@ class ScoreDetector {
         body.contactTestBitMask = Constants.scoreDetectorContact
         node.physicsBody = body
     }
-    
-    func incrementScore() {
-        score += 1
-        if score == 30 {
-            gameCenter.unlock30PointsAchievement()
-        }
-        if score == 10 {
-            gameCenter.unlock10PointsAchievement()
-        }
-    }
-    
-    func resetScore() {
-        score = 0
-    }
-    
 }

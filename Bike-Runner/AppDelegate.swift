@@ -24,9 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         let vc = GameViewController()
+        let gameCenter = GameCenter()
         vc.coinManager = CoinManager(repository: UserDefaultsCoinsRepository())
-        vc.highscoreManager = HighscoreManager(repository: UserDefaultsHighscoreRepository())
+        vc.scoreManager = ScoreManager(gameCenter: gameCenter, repository: UserDefaultsHighscoreRepository())
         vc.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
+        vc.gameCenter = gameCenter
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
             
