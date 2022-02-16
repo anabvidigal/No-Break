@@ -31,12 +31,7 @@ class GameOverView: UIView {
         
         alpha = 0
     }
-//    
-//    @objc func duplicateCoinsClicked() {
-//        
-//        button.addTarget(self, action: #selector(backClicked), for: .touchUpInside)
-//        
-//    }
+
     
     lazy var scoreLabel: UILabel = {
         let label = UILabel()
@@ -96,8 +91,13 @@ class GameOverView: UIView {
         let button = UIButton()
         button.setImage(.duplicateCoinsButton, for: .normal)
         button.setImage(.duplicateCoinsButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(duplicateCoinsButtonClicked), for: .touchUpInside)
         return button
     }()
+    
+    @objc func duplicateCoinsButtonClicked() {
+        parent.showRewardedAd()
+    }
     
     lazy var buttonsStack: UIStackView = {
         let stack = UIStackView()
@@ -131,6 +131,7 @@ class GameOverView: UIView {
         vc.gameCenterDelegate = parent
         parent.present(vc, animated: true, completion: nil)
     }
+    
     
     init(frame: CGRect = .zero, parent: GameViewController) {
         self.parent = parent

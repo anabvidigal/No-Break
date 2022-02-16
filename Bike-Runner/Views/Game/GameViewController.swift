@@ -190,10 +190,10 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         gameOverView.alpha = 1
         gameOverView.scoreLabel.text = "Score: \(sender.scoreDetector.score)"
         gameOverView.highscoreLabel.alpha = sender.isHighscore ? 1 : 0
-        gameOverView.coinsLabel.text = "Coins: \(sender.coinManager?.playerCoins ?? 0)"
-        gameOverView.collectedCoinsLabel.text = "+\(sender.coinManager?.collectedCoins ?? 0)"
+        gameOverView.coinsLabel.text = "Coins: \(coinManager?.playerCoins ?? 0)"
+        gameOverView.collectedCoinsLabel.text = "+\(coinManager?.collectedCoins ?? 0)"
         gameOverView.updateCoinsStackConstrainsIf(isHighScore: sender.isHighscore)
-        showRewardedAd()
+//        showRewardedAd()
     }
     
     func showInterstitialAd() {
@@ -207,9 +207,9 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     func showRewardedAd() {
         if rewardedAd != nil {
             rewardedAd!.present(fromRootViewController: self, userDidEarnRewardHandler: {
-                // get coin amount and double it
-                print("doubled coin")
-//                coinManager.doubleCoins()
+                print("doubled coins")
+                self.coinManager?.doubleCoins()
+                self.gameOverView.collectedCoinsLabel.text = "+\((self.coinManager?.collectedCoins ?? 0)/2)" + " x2"
             })
           } else {
             print("Ad wasn't ready")
