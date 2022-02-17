@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2B99C05027A3A350003606C9"
-               BuildableName = ".app"
-               BlueprintName = "Bike-Runner"
-               ReferencedContainer = "container:Bike-Runner.xcodeproj">
+               BuildableName = "BikeRunner.app"
+               BlueprintName = "No Break"
+               ReferencedContainer = "container:No Break.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B99C05027A3A350003606C9"
-            BuildableName = ".app"
-            BlueprintName = "Bike-Runner"
-            ReferencedContainer = "container:Bike-Runner.xcodeproj">
+            BuildableName = "BikeRunner.app"
+            BlueprintName = "No Break"
+            ReferencedContainer = "container:No Break.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B99C05027A3A350003606C9"
-            BuildableName = ".app"
-            BlueprintName = "Bike-Runner"
-            ReferencedContainer = "container:Bike-Runner.xcodeproj">
+            BuildableName = "BikeRunner.app"
+            BlueprintName = "No Break"
+            ReferencedContainer = "container:No Break.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

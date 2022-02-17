@@ -258,9 +258,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B99C05027A3A350003606C9 /* Bike-Runner */ = {
+		2B99C05027A3A350003606C9 /* No Break */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B99C06827A3A352003606C9 /* Build configuration list for PBXNativeTarget "Bike-Runner" */;
+			buildConfigurationList = 2B99C06827A3A352003606C9 /* Build configuration list for PBXNativeTarget "No Break" */;
 			buildPhases = (
 				F25174F1199E9EA4A9F2DE61 /* [CP] Check Pods Manifest.lock */,
 				2B99C04D27A3A350003606C9 /* Sources */,
@@ -272,7 +272,7 @@
 			);
 			dependencies = (
 			);
-			name = "Bike-Runner";
+			name = "No Break";
 			productName = "Bike-Runner";
 			productReference = 2B99C05127A3A350003606C9 /* BikeRunner.app */;
 			productType = "com.apple.product-type.application";
@@ -292,7 +292,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2B99C04C27A3A350003606C9 /* Build configuration list for PBXProject "Bike-Runner" */;
+			buildConfigurationList = 2B99C04C27A3A350003606C9 /* Build configuration list for PBXProject "No Break" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -305,7 +305,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B99C05027A3A350003606C9 /* Bike-Runner */,
+				2B99C05027A3A350003606C9 /* No Break */,
 			);
 		};
 /* End PBXProject section */
@@ -462,6 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "No Break";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -517,6 +518,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "No Break";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -600,7 +602,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B99C04C27A3A350003606C9 /* Build configuration list for PBXProject "Bike-Runner" */ = {
+		2B99C04C27A3A350003606C9 /* Build configuration list for PBXProject "No Break" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B99C06627A3A352003606C9 /* Debug */,
@@ -609,7 +611,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B99C06827A3A352003606C9 /* Build configuration list for PBXNativeTarget "Bike-Runner" */ = {
+		2B99C06827A3A352003606C9 /* Build configuration list for PBXNativeTarget "No Break" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B99C06927A3A352003606C9 /* Debug */,
