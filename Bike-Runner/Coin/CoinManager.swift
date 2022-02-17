@@ -9,13 +9,13 @@ import Foundation
 import SpriteKit
 
 class CoinManager {
-    private var coinsRepository: CoinsRepository
+    private var repository: CoinsRepository
     var playerCoins: Int
     var collectedCoins: Int = 0
     
-    init(coinsRepository: CoinsRepository) {
-        self.coinsRepository = coinsRepository
-        playerCoins = coinsRepository.getCoins()
+    init(repository: CoinsRepository) {
+        self.repository = repository
+        playerCoins = repository.getCoins()
     }
     
     func incrementCoins() {
@@ -28,13 +28,13 @@ class CoinManager {
     
     func addCollectedCoins() {
         playerCoins += collectedCoins
-        coinsRepository.add(coins: collectedCoins)
+        repository.add(coins: collectedCoins)
         collectedCoins = 0
     }
     
     func spend(coins: Int) {
         playerCoins -= coins
-        coinsRepository.spend(coins: coins)
+        repository.spend(coins: coins)
     }
     
     func hitTheJackpot() {

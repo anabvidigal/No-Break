@@ -12,7 +12,7 @@ class Scenery {
     
     private var nodes: [SKNode]
     private var initialPositions: [CGPoint] = []
-    private var speedManager: SpeedManager!
+    private var speedManager: SpeedManager
 
     init(nodes: [SKNode], speedManager: SpeedManager) {
         self.nodes = nodes

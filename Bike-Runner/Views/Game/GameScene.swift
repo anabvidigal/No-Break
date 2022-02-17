@@ -13,21 +13,24 @@ import SnapKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: Player!
-    private var scenery: Scenery!
-    private var carSpawner: CarSpawner!
-    var speedManager = SpeedManager()
-    private var coinSpawner: CoinSpawner!
+    private var scoreDetector: ScoreDetector!
     var introNode: SKSpriteNode!
     
-    private var gameCenter = GameCenter()
-    var highscoreManager = HighscoreManager(repository: UserDefaultsHighScoreRepository())
+    private var scenery: Scenery?
+    private var carSpawner: CarSpawner?
+    private var coinSpawner: CoinSpawner?
+    var speedManager = SpeedManager()
     
+    
+    var gameCenter: GameCenter?
+    var scoreManager: ScoreManager?
     var coinManager: CoinManager?
-    var scoreDetector: ScoreDetector!
+    var bikerManager: BikerManager?
+    
+    
     var status: GameStatus = .animating
     var lastUpdate = TimeInterval(0)
-    var isHighscore = false
-    var bikerManager: BikerManager!
+    
     
     weak var gameDelegate: GameSceneDelegate?
     
@@ -41,8 +44,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // player
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
-        player = Player(node: playerNode, speedManager: speedManager, biker: bikerManager.selectedBiker)
-        player.startAnimation()
+        if let biker = bikerManager?.selectedBiker {
+            player = Player(node: playerNode, speedManager: speedManager, biker: biker)
+            player.startAnimation()
+        }
         
         // bg
         let backgroundNodes = [
@@ -66,7 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
-        scoreDetector = ScoreDetector(node: scoreNode, gameCenter: gameCenter)
+        scoreDetector = ScoreDetector(node: scoreNode)
         
         gameDelegate?.setHighscore(self)
     }
@@ -114,12 +119,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func introUpdate(deltaTime: TimeInterval) {
-        scenery.update(deltaTime: deltaTime)
+        scenery?.update(deltaTime: deltaTime)
     }
     
     func playingUpdate(deltaTime: TimeInterval) {
-        scenery.update(deltaTime: deltaTime)
-        carSpawner.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
+        scenery?.update(deltaTime: deltaTime)
+        carSpawner?.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
         speedManager.update(deltaTime: deltaTime)
     }
     
@@ -129,7 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if contact.bodyA == scoreDetector.node.physicsBody {
             score()
-        } else if contact.bodyB == coinSpawner.coins.first?.node.physicsBody {
+        } else if contact.bodyB == coinSpawner?.coins.first?.node.physicsBody {
             catchCoin()
         } else {
             gameOver()
@@ -137,12 +142,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func score() {
-        scoreDetector.incrementScore()
+        scoreManager?.incrementScore()
         gameDelegate?.score(self)
     }
     
     private func catchCoin() {
-        coinSpawner.removeCoin()
+        coinSpawner?.removeCoin()
         coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
     }
@@ -150,19 +155,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func gameOver() {
         status = .gameOver
         player.die()
-        carSpawner.stopCarsAnimation()
-        gameCenter.submitScore(score: scoreDetector.score)
-        isHighscore = highscoreManager.setIfHighscore(for: scoreDetector.score)
+        carSpawner?.stopCarsAnimation()
+        gameCenter?.submitScore(score: scoreManager?.currentScore ?? 0)
+        scoreManager?.setHighscore()
         gameDelegate?.gameIsOver(self)
     }
     
     func reset(){
         status = .intro
-        carSpawner.reset()
+        carSpawner?.reset()
         player.reset()
-        scoreDetector.resetScore()
+        scoreManager?.resetScore()
         speedManager.resetSpeed()
-        coinSpawner.reset()
+        coinSpawner?.reset()
         coinManager?.addCollectedCoins()
         gameDelegate?.reset()
         addChild(introNode)

@@ -8,24 +8,24 @@
 import Foundation
 
 class BikerManager {
-    private var bikersRepository: BikersRepository
+    private var repository: BikersRepository
     
     var bikers: [Biker] = []
     var selectedBiker: Biker
     var showingBiker: Biker
     var showingIndex: Int
     
-    init(bikersRepository: BikersRepository) {
-        self.bikersRepository = bikersRepository
-        bikers = bikersRepository.getBikers()
-        selectedBiker = bikersRepository.getSelectedBiker()
+    init(repository: BikersRepository) {
+        self.repository = repository
+        bikers = repository.getBikers()
+        selectedBiker = repository.getSelectedBiker()
         showingBiker = selectedBiker
         showingIndex = selectedBiker.index
     }
     
     func getBikers() -> [Biker] {
         if bikers.isEmpty {
-            bikers = bikersRepository.getBikers()
+            bikers = repository.getBikers()
             return bikers
         }
         return bikers
@@ -43,7 +43,7 @@ class BikerManager {
     }
     
     func getPreviousBiker() -> Biker {
-        bikersRepository.reset()
+        repository.reset()
         showingIndex -= 1
         if showingIndex >= 0 {
             showingBiker = bikers[showingIndex]
@@ -62,7 +62,7 @@ class BikerManager {
         showingBiker.status = .selected
         bikers[showingIndex] = showingBiker
         
-        bikersRepository.save(bikers: bikers)
+        repository.save(bikers: bikers)
         
         selectedBiker = showingBiker
     }

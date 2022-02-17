@@ -31,7 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         let vc = GameViewController()
-        vc.coinManager = CoinManager(coinsRepository: UserDefaultsCoinsRepository())
+        let gameCenter = GameCenter()
+        vc.coinManager = CoinManager(repository: UserDefaultsCoinsRepository())
+        vc.scoreManager = ScoreManager(gameCenter: gameCenter, repository: UserDefaultsHighscoreRepository())
+        vc.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
+        vc.gameCenter = gameCenter
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         

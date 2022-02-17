@@ -13,7 +13,7 @@ class CarSpawner {
     private var carNode: SKSpriteNode
     private var parent: SKNode
     private var cars: [Car] = []
-    private var speedManager: SpeedManager!
+    private var speedManager: SpeedManager
 
     
     private var interval: TimeInterval = 1
@@ -25,7 +25,7 @@ class CarSpawner {
         self.speedManager = speedManager
     }
     
-    func update(deltaTime: TimeInterval, coinSpawner: CoinSpawner) {
+    func update(deltaTime: TimeInterval, coinSpawner: CoinSpawner?) {
         
         currentTime += deltaTime
         
@@ -46,7 +46,7 @@ class CarSpawner {
         }
     }
     
-    private func removeCarOutOfScreen(cars: [Car], coinSpawner: CoinSpawner) {
+    private func removeCarOutOfScreen(cars: [Car], coinSpawner: CoinSpawner?) {
         
         guard let firstCar = cars.first,
               firstCar.node.position.x < -1000 else { return }
@@ -55,11 +55,11 @@ class CarSpawner {
         self.cars.removeFirst()
         
         if firstCar.node.childNode(withName: "coin") != nil {
-            coinSpawner.removeCoin()
+            coinSpawner?.removeCoin()
         }
     }
     
-    func spawn(coinSpawner: CoinSpawner) {
+    func spawn(coinSpawner: CoinSpawner?) {
         let new = Car(node: carNode)
         let randomLane = Lane.allCases.randomElement()!
         new.setLane(randomLane)
@@ -67,7 +67,7 @@ class CarSpawner {
         
         cars.append(new)
         
-        coinSpawner.randomizeCoinSpawn(parent: new.node, lane: randomLane)
+        coinSpawner?.randomizeCoinSpawn(parent: new.node, lane: randomLane)
     }
     
     func reset() {
