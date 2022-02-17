@@ -130,4 +130,8 @@ extension UIImage {
     open class var okButtonPressed: UIImage { get {
         UIImage(named: "okButtonPressed")!
     }}
+    
+    open class var logo: UIImage { get {
+        UIImage(named: "logo")!
+    }}
 }

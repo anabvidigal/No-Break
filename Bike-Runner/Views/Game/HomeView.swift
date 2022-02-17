@@ -7,19 +7,22 @@
 
 import UIKit
 import GameKit
+import SnapKit
 
 class HomeView: UIView {
     private var parent: GameViewController
     
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "NO BREAK"
-        label.textAlignment = .center
-        label.font = .kenneyFont.withSize(60)
-        label.textColor = .appBrown1
-        return label
+    lazy var logoView: UIView = {
+        let view = UIView()
+        return view
     }()
     
+    lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = .logo
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     lazy var playButton: UIButton = {
         let button = UIButton()
@@ -89,20 +92,13 @@ class HomeView: UIView {
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        setupTitleLabel()
         
         setupPlayButton()
         setupAchievementButton()
         setupLeaderboardButton()
         setupBikeButton()
-    }
-    
-    private func setupTitleLabel() {
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(UIScreen.main.bounds.height * 0.2)
-            make.centerX.equalToSuperview()
-        }
+        
+        setupLogoImageView()
     }
     
     private func setupPlayButton() {
@@ -145,6 +141,22 @@ class HomeView: UIView {
         }
     }
     
+    private func setupLogoImageView() {
+        addSubview(logoView)
+        logoView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalTo(playButton.snp.top)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+        
+        logoView.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(400)
+            make.height.equalTo(80)
+        }
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
