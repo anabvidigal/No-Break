@@ -22,6 +22,8 @@
 		2B58BD6627A8146800DCF69D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6527A8146800DCF69D /* Constants.swift */; };
 		2B58BD6827A976D900DCF69D /* CarSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B58BD6727A976D900DCF69D /* CarSpawner.swift */; };
 		2B6D73B327AD7416002B56C7 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D73B227AD7416002B56C7 /* GameCenter.swift */; };
+		2B8A63BC27BD81E8004017C4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8A63BB27BD81E8004017C4 /* AdSupport.framework */; };
+		2B8A63BE27BD820E004017C4 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8A63BD27BD820E004017C4 /* AppTrackingTransparency.framework */; };
 		2B99C05527A3A350003606C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C05427A3A350003606C9 /* AppDelegate.swift */; };
 		2B99C05727A3A350003606C9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2B99C05627A3A350003606C9 /* GameScene.sks */; };
 		2B99C06227A3A352003606C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B99C06127A3A352003606C9 /* Assets.xcassets */; };
@@ -66,6 +68,8 @@
 		2B58BD6527A8146800DCF69D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B58BD6727A976D900DCF69D /* CarSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSpawner.swift; sourceTree = "<group>"; };
 		2B6D73B227AD7416002B56C7 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
+		2B8A63BB27BD81E8004017C4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		2B8A63BD27BD820E004017C4 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		2B99C05127A3A350003606C9 /* BikeRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B99C05427A3A350003606C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B99C05627A3A350003606C9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = "Bike-Runner/GameScene.sks"; sourceTree = SOURCE_ROOT; };
@@ -102,7 +106,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B56DA6827AAD23900AD63E5 /* GameKit.framework in Frameworks */,
+				2B8A63BE27BD820E004017C4 /* AppTrackingTransparency.framework in Frameworks */,
 				9BBBA2908837B0BCF97A368F /* Pods_Bike_Runner.framework in Frameworks */,
+				2B8A63BC27BD81E8004017C4 /* AdSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +136,8 @@
 		2B56DA6627AAD23900AD63E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B8A63BD27BD820E004017C4 /* AppTrackingTransparency.framework */,
+				2B8A63BB27BD81E8004017C4 /* AdSupport.framework */,
 				2B56DA6727AAD23900AD63E5 /* GameKit.framework */,
 				7B7AE202D71C88CE487BAB43 /* Pods_Bike_Runner.framework */,
 			);
