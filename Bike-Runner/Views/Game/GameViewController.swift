@@ -134,6 +134,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
       print("Ad did dismiss full screen content.")
         requestInterstitial()
         requestRewarded()
+        gameScene?.player.die()
     }
     
     private func setupSkView() {
@@ -197,7 +198,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         gameOverView.updateCoinsStackConstrainsIf(isHighScore: scoreManager.currentScoreIsHighscore)
         gameOverView.coinsLabel.text = "Coins: \(coinManager?.playerCoins ?? 0)"
         gameOverView.collectedCoinsLabel.text = "+\(coinManager?.collectedCoins ?? 0)"
-//        showInterstitialAd()
+        showInterstitialAd()
     }
     
     func showInterstitialAd() {
