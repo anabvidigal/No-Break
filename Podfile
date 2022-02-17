@@ -12,6 +12,8 @@ target 'Bike-Runner' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+
 
   # Pods for Bike-Runner
 

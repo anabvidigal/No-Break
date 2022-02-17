@@ -37,8 +37,9 @@ class HomeView: UIView {
         parent.gameScene?.status = .intro
         parent.scoreView.alpha = 1
         parent.coinsView.alpha = 1
-        
+
         alpha = 0
+        
     }
     
     

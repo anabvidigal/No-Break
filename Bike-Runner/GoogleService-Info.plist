@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>922197247683-labrb5lhcsikct7l96495528u7f96hrl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.922197247683-labrb5lhcsikct7l96495528u7f96hrl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDV-BO4yKq2HV5ORFOqcF0VG--hq7tU3bk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>922197247683</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ana.bittencourt.Bike-Runner</string>
+	<key>PROJECT_ID</key>
+	<string>bike-runner-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bike-runner-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:922197247683:ios:ff72b2b116820846570476</string>
+</dict>
+</plist>
