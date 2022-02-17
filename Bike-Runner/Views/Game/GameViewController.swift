@@ -137,6 +137,27 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         gameScene?.player.die()
     }
     
+    func showInterstitialAd() {
+        if interstitialAd != nil {
+            interstitialAd!.present(fromRootViewController: self)
+          } else {
+            print("Ad wasn't ready")
+          }
+    }
+    
+    func showRewardedAd() {
+        if rewardedAd != nil {
+            rewardedAd!.present(fromRootViewController: self, userDidEarnRewardHandler: {
+                print("doubled coins")
+                self.coinManager?.doubleCoins()
+                self.gameOverView.collectedCoinsLabel.text = "+\((self.coinManager?.collectedCoins ?? 0)/2)" + " x2"
+                self.gameOverView.duplicateCoinsButton.isEnabled = false
+            })
+          } else {
+            print("Ad wasn't ready")
+          }
+    }
+    
     private func setupSkView() {
         view.addSubview(skView)
         skView.snp.makeConstraints { make in
@@ -199,28 +220,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         gameOverView.updateCoinsStackConstrainsIf(isHighScore: scoreManager.currentScoreIsHighscore)
         gameOverView.coinsLabel.text = "Coins: \(coinManager?.playerCoins ?? 0)"
         gameOverView.collectedCoinsLabel.text = "+\(coinManager?.collectedCoins ?? 0)"
-        showInterstitialAd()
-    }
-    
-    func showInterstitialAd() {
-        if interstitialAd != nil {
-            interstitialAd!.present(fromRootViewController: self)
-          } else {
-            print("Ad wasn't ready")
-          }
-    }
-    
-    func showRewardedAd() {
-        if rewardedAd != nil {
-            rewardedAd!.present(fromRootViewController: self, userDidEarnRewardHandler: {
-                print("doubled coins")
-                self.coinManager?.doubleCoins()
-                self.gameOverView.collectedCoinsLabel.text = "+\((self.coinManager?.collectedCoins ?? 0)/2)" + " x2"
-                self.gameOverView.duplicateCoinsButton.isEnabled = false
-            })
-          } else {
-            print("Ad wasn't ready")
-          }
+//        showInterstitialAd()
     }
     
     func score(_ sender: GameScene) {
