@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B1BBC27A9F344008A9792 /* Car.swift */; };
 		2B23A52427B34AF4000B6C9D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23A52327B34AF4000B6C9D /* UIFont+.swift */; };
+		2B41B10D27BE80F2007556B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B41B10C27BE80F2007556B5 /* GoogleService-Info.plist */; };
 		2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */; };
 		2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */; };
 		2B56DA6827AAD23900AD63E5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B56DA6727AAD23900AD63E5 /* GameKit.framework */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		2B1B1BBC27A9F344008A9792 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2B23A52327B34AF4000B6C9D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		2B41B10C27BE80F2007556B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetector.swift; sourceTree = "<group>"; };
 		2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kenney Mini.ttf"; sourceTree = "<group>"; };
 		2B56DA6527AABD5F00AD63E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				2B56DA6527AABD5F00AD63E5 /* Info.plist */,
+				2B41B10C27BE80F2007556B5 /* GoogleService-Info.plist */,
 				2B99C05427A3A350003606C9 /* AppDelegate.swift */,
 				61A7D90227B9CA0E008F8539 /* Views */,
 				2B56DA7527AB383D00AD63E5 /* LaunchScreen.storyboard */,
@@ -275,6 +278,7 @@
 				2B99C04E27A3A350003606C9 /* Frameworks */,
 				2B99C04F27A3A350003606C9 /* Resources */,
 				17EE7362640F71A3FF1EE799 /* [CP] Embed Pods Frameworks */,
+				2B41B10A27BE7C6E007556B5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -325,6 +329,7 @@
 			files = (
 				2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */,
 				2B99C05727A3A350003606C9 /* GameScene.sks in Resources */,
+				2B41B10D27BE80F2007556B5 /* GoogleService-Info.plist in Resources */,
 				2B56DA7627AB383D00AD63E5 /* LaunchScreen.storyboard in Resources */,
 				2B99C06227A3A352003606C9 /* Assets.xcassets in Resources */,
 			);
@@ -349,6 +354,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bike-Runner/Pods-Bike-Runner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		2B41B10A27BE7C6E007556B5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		F25174F1199E9EA4A9F2DE61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -544,6 +568,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 58J47MFRH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bike-Runner/Info.plist";
@@ -555,7 +580,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeRight;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -590,7 +615,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeRight;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
