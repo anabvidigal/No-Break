@@ -12,7 +12,7 @@ class Player {
     
     var node: SKSpriteNode
     private var startPosition: CGPoint
-    private var speedManager: SpeedManager!
+    private var speedManager: SpeedManager
     var biker: Biker
     
     var status: LaneBikeStatus = .topLane

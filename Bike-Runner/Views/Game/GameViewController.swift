@@ -153,6 +153,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             scene.coinManager = coinManager
             scene.bikerManager = bikerManager
             scene.scoreManager = scoreManager
+            scene.gameCenter = gameCenter
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true
