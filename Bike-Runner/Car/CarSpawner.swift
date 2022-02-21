@@ -32,7 +32,8 @@ class CarSpawner {
         if currentTime > interval {
             spawn(coinSpawner: coinSpawner)
             currentTime = 0
-            interval = TimeInterval(Float.random(in: 0.7...1.3))
+//            interval = TimeInterval(Float.random(in: 0.7...1.3))
+            interval = TimeInterval(0.5)
         }
         
         move(cars: cars, deltaTime: deltaTime)

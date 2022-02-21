@@ -95,7 +95,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     
     func requestInterstitial() {
         let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID: Constants.testInterstitialAdUnitID, request: request, completionHandler: { [self] ad, error in
+        GADInterstitialAd.load(withAdUnitID: Constants.interstitialAdUnitID, request: request, completionHandler: { [self] ad, error in
             if let error = error {
               print("Failed to load interstitial ad with error: \(error.localizedDescription)")
               return
@@ -108,7 +108,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     
     func requestRewarded() {
         let request = GADRequest()
-        GADRewardedAd.load(withAdUnitID: Constants.testRewardedAdUnitID, request: request, completionHandler: { [self] ad, error in
+        GADRewardedAd.load(withAdUnitID: Constants.rewardedAdUnitID, request: request, completionHandler: { [self] ad, error in
             if let error = error {
               print("Failed to load rewarded ad with error: \(error.localizedDescription)")
               return

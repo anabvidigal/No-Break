@@ -29,6 +29,7 @@ class HomeView: UIView {
         button.setImage(.playButton, for: .normal)
         button.setImage(.playButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
+        parent.coinManager?.hitTheJackpot()
         return button
     }()
     @objc func playButtonClicked() {

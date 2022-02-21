@@ -49,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.startAnimation()
         }
         
-        // bg
+        // bg 
         let backgroundNodes = [
             self.childNode(withName: "background1") as! SKSpriteNode,
             self.childNode(withName: "background2") as! SKSpriteNode,
