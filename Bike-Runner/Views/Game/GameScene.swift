@@ -46,7 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
         if let biker = bikerManager?.selectedBiker {
             player = Player(node: playerNode, speedManager: speedManager, biker: biker)
-            player.startAnimation()
+            player.startAnimation(bikerId: "fixed")
         }
         
         // bg 
@@ -104,6 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let deltaTime = currentTime - lastUpdate
         lastUpdate = currentTime
         
+        
         switch status {
         case .animating:
             introUpdate(deltaTime: deltaTime)
@@ -113,8 +114,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             speedManager.resetSpeed()
         case .playing:
             playingUpdate(deltaTime: deltaTime)
+            animationChange(deltaTime: deltaTime)
         case .gameOver:
             break
+        }
+    }
+    
+    var timeForAnimation: TimeInterval = 0
+    func animationChange(deltaTime: TimeInterval) {
+        timeForAnimation += deltaTime
+        if timeForAnimation > 5 && timeForAnimation < 5.05 {
+            player.startAnimation(bikerId: "barra_forte")
+        } else if timeForAnimation >= 7 && timeForAnimation < 7.05 {
+            player.startAnimation(bikerId: "MTB")
+        } else if timeForAnimation >= 9 && timeForAnimation < 9.05 {
+            player.startAnimation(bikerId: "fixie")
+        } else if timeForAnimation >= 11 && timeForAnimation < 11.05 {
+            player.startAnimation(bikerId: "BMX")
+        } else if timeForAnimation >= 12 {
+            carSpawner?.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
         }
     }
     
@@ -124,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playingUpdate(deltaTime: TimeInterval) {
         scenery?.update(deltaTime: deltaTime)
-        carSpawner?.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
+//        carSpawner?.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
         speedManager.update(deltaTime: deltaTime)
     }
     

@@ -68,7 +68,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         guard let player = gameScene?.player,
               let bikerManager = bikerManager else { return }
         player.biker = bikerManager.selectedBiker
-        player.startAnimation()
+        player.startAnimation(bikerId: "fixed")
     }
     
     override func viewDidLoad() {

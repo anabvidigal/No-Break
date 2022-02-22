@@ -63,17 +63,18 @@ class Player {
     }
     
     func reset() {
-        startAnimation()
+        startAnimation(bikerId: "fixed")
     }
     
-    func startAnimation() {
+    func startAnimation(bikerId: String) {
+        node.removeAllActions()
         var textures = [SKTexture]()
-        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_1"))
-        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_2"))
-        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_3"))
-        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_4"))
-        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_5"))
-        textures.append(SKTexture(imageNamed: "\(biker.id)_frame_6"))
+        textures.append(SKTexture(imageNamed: "\(bikerId)_frame_1"))
+        textures.append(SKTexture(imageNamed: "\(bikerId)_frame_2"))
+        textures.append(SKTexture(imageNamed: "\(bikerId)_frame_3"))
+        textures.append(SKTexture(imageNamed: "\(bikerId)_frame_4"))
+        textures.append(SKTexture(imageNamed: "\(bikerId)_frame_5"))
+        textures.append(SKTexture(imageNamed: "\(bikerId)_frame_6"))
         
         let frames = SKAction.animate(with: textures, timePerFrame: 0.09, resize: false, restore: false)
         let repeatAnim = SKAction.repeatForever(frames)
