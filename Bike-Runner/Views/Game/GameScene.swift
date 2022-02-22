@@ -131,7 +131,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.startAnimation(bikerId: "fixie")
         } else if timeForAnimation >= 11 && timeForAnimation < 11.05 {
             player.startAnimation(bikerId: "BMX")
-        } else if timeForAnimation >= 12 {
+        } else if timeForAnimation >= 11.05 {
             carSpawner?.update(deltaTime: deltaTime, coinSpawner: coinSpawner)
         }
     }
