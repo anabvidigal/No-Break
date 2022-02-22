@@ -13,12 +13,16 @@ class GameCenter {
     
     // Leaderboards
     func submitScore(score: Int) {
-        Task {
-            do {
-                try await GKLeaderboard.submitScore(score, context: 0, player: GKLocalPlayer.local, leaderboardIDs: ["0001"])
-            } catch {
-                print(error.localizedDescription)
+         if #available(iOS 15.0, *) {
+            Task {
+                do {
+                    try await GKLeaderboard.submitScore(score, context: 0, player: GKLocalPlayer.local, leaderboardIDs: ["0001"])
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

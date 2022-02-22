@@ -86,8 +86,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         
         setupSkView()
         setupHomeView()
-        setupScoreView()
-        setupCoinsView()
+//        setupScoreView()
+//        setupCoinsView()
         setupGameOverView()
     
         gameCenter?.authenticateUser(self)
