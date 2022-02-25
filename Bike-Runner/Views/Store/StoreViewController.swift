@@ -23,8 +23,9 @@ class StoreViewController: UIViewController {
         dismiss(animated: false, completion: nil)
     }
     
-    lazy var playerCoinsView: PlayerCoinsView = {
-        let view = PlayerCoinsView(coinManager: coinManager)
+    lazy var playerCoinsView: CoinsView = {
+        let view = CoinsView(width: 120)
+        view.set(coins: coinManager?.playerCoins ?? 0)
         return view
     }()
     
@@ -151,8 +152,6 @@ class StoreViewController: UIViewController {
     private func setupPlayerCoinsView() {
         view.addSubview(playerCoinsView)
         playerCoinsView.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.width.equalTo(120)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
         }

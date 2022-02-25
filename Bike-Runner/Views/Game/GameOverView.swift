@@ -13,30 +13,22 @@ import GoogleMobileAds
 class GameOverView: UIView {
     
     private var parent: GameViewController
-        
-    lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.backButton, for: .normal)
-        button.setImage(.backButtonPressed, for: .highlighted)
-        button.addTarget(self, action: #selector(backClicked), for: .touchUpInside)
-        return button
+    
+    lazy var innerRectangleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .appBrown1
+        return view
     }()
-    @objc func backClicked() {
-        parent.gameScene?.reset()
-        parent.gameScene?.status = .animating
-        parent.gameScene?.introNode.removeFromParent()
-        parent.homeView.alpha = 1
-        parent.scoreView.alpha = 0
-        parent.coinsView.alpha = 0
-        
-        alpha = 0
-    }
-
+    
+    lazy var collectedCoinsView: CoinsView = {
+        let view = CoinsView(width: 80, height: 30)
+        return view
+    }()
     
     lazy var scoreLabel: UILabel = {
         let label = UILabel()
         label.font = .kenneyFont
-        label.font = label.font.withSize(52)
+        label.font = label.font.withSize(36)
         label.textColor = .appBeige
         label.textAlignment = .center
         return label
@@ -45,85 +37,72 @@ class GameOverView: UIView {
     lazy var highscoreLabel: UILabel = {
         let label = UILabel()
         label.font = .kenneyFont
-        label.font = label.font.withSize(26)
-        label.textColor = .appGreen1
+        label.font = label.font.withSize(18)
+        label.textColor = .appBrightGreen
         label.textAlignment = .center
         label.text = "New highscore!"
         return label
     }()
     
-    lazy var coinsStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.distribution = .equalCentering
-        return stack
-    }()
-    
-    
-    lazy var coinsValueStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.spacing = 4
-        return stack
-    }()
-    
-    lazy var coinsLabel: UILabel = {
-        let label = UILabel()
-        label.font = .kenneyFont
-        label.font = label.font.withSize(40)
-        label.textColor = .appBeige
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var collectedCoinsLabel: UILabel = {
-        let label = UILabel()
-        label.font = .kenneyFont
-        label.font = label.font.withSize(40)
-        label.textColor = .appGreen2
-        label.textAlignment = .center
-        return label
-    }()
-    
-    lazy var duplicateCoinsButton: UIButton = {
+    lazy var extraLifeButton: UIButton = {
         let button = UIButton()
-        button.setImage(.duplicateCoinsButton, for: .normal)
-        button.setImage(.duplicateCoinsButtonPressed, for: .highlighted)
-        button.setImage(.duplicateCoinsButtonDisabled, for: .disabled)
-        button.addTarget(self, action: #selector(duplicateCoinsButtonClicked), for: .touchUpInside)
+        button.setImage(.extraLifeButton, for: .normal)
+        button.addTarget(self, action: #selector(extraLifeButtonClicked), for: .touchUpInside)
         return button
     }()
-    
-    @objc func duplicateCoinsButtonClicked() {
+    @objc func extraLifeButtonClicked() {
         parent.showRewardedAd()
     }
     
-    lazy var buttonsStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.spacing = 5
-        return stack
-    }()
-    
-    lazy var restartButton: UIButton = {
+    lazy var playAgainButton: UIButton = {
         let button = UIButton()
-        button.setImage(.restartButton, for: .normal)
-        button.setImage(.restartButtonPressed, for: .highlighted)
-        button.addTarget(self, action: #selector(restartClicked), for: .touchUpInside)
+        button.setImage(.playAgainButton, for: .normal)
+        button.addTarget(self, action: #selector(playAgainButtonClicked), for: .touchUpInside)
         return button
     }()
-    @objc func restartClicked() {
+    @objc func playAgainButtonClicked() {
         alpha = 0
         parent.gameScene?.reset()
     }
     
+    lazy var outerRectangleView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    lazy var playerCoinsView: CoinsView = {
+        let view = CoinsView(width: 86, height: 30)
+        return view
+    }()
+    
+    lazy var shopButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.bikeButton, for: .normal)
+        button.setImage(.bikeButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(shopButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    @objc func shopButtonClicked() {
+        let vc = StoreViewController()
+        vc.bikerManager = parent.bikerManager
+        vc.coinManager = parent.coinManager
+        vc.modalPresentationStyle = .fullScreen
+        parent.present(vc, animated: false, completion: nil)
+    }
+    
+    lazy var shopLabel: UILabel = {
+        let label = UILabel()
+        label.font = .kenneyFont.withSize(16)
+        label.textColor = .appGray
+        label.textAlignment = .center
+        label.text = "SHOP"
+        return label
+    }()
+    
     lazy var leaderboardButton: UIButton = {
         let button = UIButton()
-        button.setImage(.smallLeaderboardButton, for: .normal)
-        button.setImage(.smallLeaderboardButtonPressed, for: .highlighted)
+        button.setImage(.leaderboardButton, for: .normal)
+        button.setImage(.leaderboardButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(leaderboardButtonClicked), for: .touchUpInside)
         return button
     }()
@@ -133,6 +112,38 @@ class GameOverView: UIView {
         parent.present(vc, animated: true, completion: nil)
     }
     
+    lazy var scoresLabel: UILabel = {
+        let label = UILabel()
+        label.font = .kenneyFont.withSize(16)
+        label.textColor = .appGray
+        label.textAlignment = .center
+        label.text = "SCORES"
+        return label
+    }()
+    
+    lazy var achievementButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.achievementButton, for: .normal)
+        button.setImage(.achievementButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(achievementButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    @objc func achievementButtonClicked() {
+        let vc = GKGameCenterViewController(state: .achievements)
+        vc.gameCenterDelegate = parent
+        GKAchievement.loadAchievements()
+        parent.present(vc, animated: true, completion: nil)
+    }
+    
+    lazy var awardsLabel: UILabel = {
+        let label = UILabel()
+        label.font = .kenneyFont.withSize(16)
+        label.textColor = .appGray
+        label.textAlignment = .center
+        label.text = "AWARDS"
+        return label
+    }()
+    
     
     init(frame: CGRect = .zero, parent: GameViewController) {
         self.parent = parent
@@ -140,102 +151,152 @@ class GameOverView: UIView {
         
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .appBrown2
-        layer.borderColor = UIColor.appBrown1.cgColor
-        layer.borderWidth = 2
         
-        setupBackButton()
+        setupInnerRectangleView()
+        
+        setupCollectedCoinsView()
         setupScoreLabel()
         setupHighscoreLabel()
+        setupPlayAgainButton()
+        setupExtraLifeButton()
         
-        [
-            coinsLabel,
-            collectedCoinsLabel
-        ].forEach { coinsValueStack.addArrangedSubview($0) }
+        setupOuterRectangleView()
         
-        setupCoinsStack()
-        [
-            coinsValueStack,
-            duplicateCoinsButton
-        ].forEach { coinsStack.addArrangedSubview($0) }
-        setupDuplicateCoinsButton()
+        setupPlayerCoinsView()
+        setupShopButton()
+        setupShopLabel()
         
+        setupAwardsLabel()
+        setupAchievementButton()
+        setupScoresLabel()
+        setupScoresButton()
         
-        setupButtonsStack()
-        [
-            leaderboardButton,
-            restartButton
-        ].forEach { buttonsStack.addArrangedSubview($0) }
-        setupLeaderboardButton()
-        setupRestartButton()
     }
     
-    private func setupBackButton() {
-        addSubview(backButton)
-        backButton.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.width.equalTo(40)
-            make.leading.equalToSuperview().offset(8)
-            make.top.equalToSuperview().offset(8)
+    private func setupInnerRectangleView() {
+        addSubview(innerRectangleView)
+        innerRectangleView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+            make.width.equalTo(300)
+        }
+    }
+    
+    private func setupCollectedCoinsView() {
+        innerRectangleView.addSubview(collectedCoinsView)
+        collectedCoinsView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(16)
         }
     }
     
     private func setupScoreLabel() {
-        addSubview(scoreLabel)
+        innerRectangleView.addSubview(scoreLabel)
         scoreLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(8)
+            make.top.equalTo(collectedCoinsView.snp.bottom)
         }
     }
     
     private func setupHighscoreLabel() {
-        addSubview(highscoreLabel)
+        innerRectangleView.addSubview(highscoreLabel)
         highscoreLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(scoreLabel.snp.bottom).offset(-8)
+            make.top.equalTo(scoreLabel.snp.bottom).offset(-6)
         }
     }
     
-    private func setupCoinsStack() {
-        addSubview(coinsStack)
-        coinsStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(highscoreLabel.snp.bottom).offset(8)
-        }
-    }
-    
-    private func setupDuplicateCoinsButton() {
-        duplicateCoinsButton.snp.makeConstraints { make in
-            make.width.equalTo(180)
+    private func setupPlayAgainButton() {
+        innerRectangleView.addSubview(playAgainButton)
+        playAgainButton.snp.makeConstraints { make in
+            make.width.equalTo(200)
             make.height.equalTo(60)
-        }
-    }
-    
-    private func setupButtonsStack() {
-        addSubview(buttonsStack)
-        buttonsStack.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-8)
             make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-16)
+            
         }
     }
     
-    private func setupLeaderboardButton() {
+    private func setupExtraLifeButton() {
+        innerRectangleView.addSubview(extraLifeButton)
+        extraLifeButton.snp.makeConstraints { make in
+            make.width.equalTo(200)
+            make.height.equalTo(60)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(playAgainButton.snp.top).offset(-8)
+        }
+    }
+    
+    private func setupOuterRectangleView() {
+        addSubview(outerRectangleView)
+        outerRectangleView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.leading.equalTo(innerRectangleView.snp.trailing)
+        }
+    }
+    
+    private func setupPlayerCoinsView() {
+        outerRectangleView.addSubview(playerCoinsView)
+        playerCoinsView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(26)
+        }
+    }
+    
+    private func setupShopButton() {
+        outerRectangleView.addSubview(shopButton)
+        shopButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(playerCoinsView.snp.bottom)
+            make.width.equalTo(90)
+            make.height.equalTo(40)
+        }
+    }
+    
+    private func setupShopLabel() {
+        outerRectangleView.addSubview(shopLabel)
+        shopLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(shopButton.snp.bottom)
+        }
+    }
+    
+    private func setupAwardsLabel() {
+        outerRectangleView.addSubview(awardsLabel)
+        awardsLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-24)
+        }
+    }
+    
+    private func setupAchievementButton() {
+        outerRectangleView.addSubview(achievementButton)
+        achievementButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(awardsLabel.snp.top)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+        }
+    }
+    
+    private func setupScoresLabel() {
+        outerRectangleView.addSubview(scoresLabel)
+        scoresLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(achievementButton.snp.top).offset(-8)
+        }
+    }
+    
+    private func setupScoresButton() {
+        outerRectangleView.addSubview(leaderboardButton)
         leaderboardButton.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.width.equalTo(60)
-        }
-    }
-    
-    private func setupRestartButton() {
-        restartButton.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.width.equalTo(60)
-        }
-    }
-    
-    func updateCoinsStackConstrainsIf(isHighScore: Bool) {
-        coinsStack.snp.remakeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(isHighScore ? highscoreLabel.snp.bottom : scoreLabel.snp.bottom).offset(8)
+            make.bottom.equalTo(scoresLabel.snp.top)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
         }
     }
     

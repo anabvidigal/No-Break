@@ -36,7 +36,7 @@ class HomeView: UIView {
         parent.gameScene?.addChild(introNode)
         parent.gameScene?.status = .intro
         parent.scoreView.alpha = 1
-        parent.coinsView.alpha = 1
+        parent.collectedCoinsView.alpha = 1
 
         alpha = 0
         

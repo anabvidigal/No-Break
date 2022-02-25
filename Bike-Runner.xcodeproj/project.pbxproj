@@ -41,9 +41,8 @@
 		617E496D27B565DE0052F021 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496C27B565DE0052F021 /* GameOverView.swift */; };
 		617E496F27B5B6D30052F021 /* HighscoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496E27B5B6D30052F021 /* HighscoreRepository.swift */; };
 		617E497627B6DA5C0052F021 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E497527B6DA5C0052F021 /* ScoreView.swift */; };
-		61A7D90027B9AB0F008F8539 /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D8FF27B9AB0F008F8539 /* CoinsView.swift */; };
 		61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90327B9CA2F008F8539 /* StoreViewController.swift */; };
-		61A7D90627B9D102008F8539 /* PlayerCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */; };
+		61A7D90627B9D102008F8539 /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90527B9D102008F8539 /* CoinsView.swift */; };
 		61A7D90827B9F6FF008F8539 /* BikerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */; };
 		61A7D90A27B9F7F5008F8539 /* Biker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90927B9F7F5008F8539 /* Biker.swift */; };
 		61A7D90C27BA8C44008F8539 /* BikerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90B27BA8C44008F8539 /* BikerManager.swift */; };
@@ -89,9 +88,8 @@
 		617E496C27B565DE0052F021 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		617E496E27B5B6D30052F021 /* HighscoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreRepository.swift; sourceTree = "<group>"; };
 		617E497527B6DA5C0052F021 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		61A7D8FF27B9AB0F008F8539 /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
 		61A7D90327B9CA2F008F8539 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
-		61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCoinsView.swift; sourceTree = "<group>"; };
+		61A7D90527B9D102008F8539 /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
 		61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikerHeaderView.swift; sourceTree = "<group>"; };
 		61A7D90927B9F7F5008F8539 /* Biker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biker.swift; sourceTree = "<group>"; };
 		61A7D90B27BA8C44008F8539 /* BikerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikerManager.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				6114A62C27AD7CBE002290EB /* GameViewController.swift */,
 				617E496A27B5533C0052F021 /* HomeView.swift */,
 				617E497527B6DA5C0052F021 /* ScoreView.swift */,
-				61A7D8FF27B9AB0F008F8539 /* CoinsView.swift */,
 				617E496C27B565DE0052F021 /* GameOverView.swift */,
 			);
 			path = Game;
@@ -195,6 +192,7 @@
 				2B41B10C27BE80F2007556B5 /* GoogleService-Info.plist */,
 				2B99C05427A3A350003606C9 /* AppDelegate.swift */,
 				61A7D90227B9CA0E008F8539 /* Views */,
+				E8A4676C27C904220079E292 /* Components */,
 				2B56DA7527AB383D00AD63E5 /* LaunchScreen.storyboard */,
 				2B99C06127A3A352003606C9 /* Assets.xcassets */,
 				2B99C06B27A3AD64003606C9 /* Player.swift */,
@@ -240,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				61A7D90327B9CA2F008F8539 /* StoreViewController.swift */,
-				61A7D90527B9D102008F8539 /* PlayerCoinsView.swift */,
 				61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */,
 				61A7D90D27BC34F7008F8539 /* PriceView.swift */,
 				61A7D90F27BC5C02008F8539 /* ConfirmationPopUpView.swift */,
@@ -264,6 +261,14 @@
 				C6B1DB2D6C82E803505A2478 /* Pods-Bike-Runner.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E8A4676C27C904220079E292 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				61A7D90527B9D102008F8539 /* CoinsView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,10 +413,9 @@
 				617E496F27B5B6D30052F021 /* HighscoreRepository.swift in Sources */,
 				2B56DA7827ABFB7D00AD63E5 /* CoinManager.swift in Sources */,
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
-				61A7D90627B9D102008F8539 /* PlayerCoinsView.swift in Sources */,
+				61A7D90627B9D102008F8539 /* CoinsView.swift in Sources */,
 				617E497627B6DA5C0052F021 /* ScoreView.swift in Sources */,
 				61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */,
-				61A7D90027B9AB0F008F8539 /* CoinsView.swift in Sources */,
 				61A7D90A27B9F7F5008F8539 /* Biker.swift in Sources */,
 				2B6D73B327AD7416002B56C7 /* GameCenter.swift in Sources */,
 				2B56DA8227AC0EF000AD63E5 /* Coin.swift in Sources */,
@@ -569,7 +573,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 46LT924HJ5;
+				DEVELOPMENT_TEAM = 58J47MFRH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bike-Runner/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "No Break";
@@ -605,7 +609,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = 46LT924HJ5;
+				DEVELOPMENT_TEAM = 58J47MFRH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bike-Runner/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "No Break";

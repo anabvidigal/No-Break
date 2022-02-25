@@ -134,4 +134,12 @@ extension UIImage {
     open class var logo: UIImage { get {
         UIImage(named: "logo")!
     }}
+    
+    open class var extraLifeButton: UIImage { get {
+        UIImage(named: "extraLifeButton")!
+    }}
+    
+    open class var playAgainButton: UIImage { get {
+        UIImage(named: "playAgainButton")!
+    }}
 }
