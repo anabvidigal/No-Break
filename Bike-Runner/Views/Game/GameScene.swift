@@ -147,7 +147,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func catchCoin() {
-        coinSpawner?.removeCoin()
+        if let coin = coinSpawner?.coins.first {
+            coin.node.physicsBody?.velocity = CGVector(dx: 100, dy:1000)
+        }
         coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
     }

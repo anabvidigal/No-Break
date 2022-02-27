@@ -13,6 +13,7 @@ import GameKit
 import GoogleMobileAds
 
 protocol GameSceneDelegate: AnyObject {
+    func getCoinsViewPosition() -> CGPoint
     func gameIsOver(_ sender: GameScene)
     func setHighscore(_ sender: GameScene)
     func score(_ sender: GameScene)
@@ -91,6 +92,10 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         setupGameOverView()
     
         gameCenter?.authenticateUser(self)
+    }
+    
+    func getCoinsViewPosition() -> CGPoint {
+        coinsView.center
     }
     
     func requestInterstitial() {
@@ -178,6 +183,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true
+        skView.showsNodeCount = true
     }
     
     private func setupHomeView() {
