@@ -41,7 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         introNode.removeFromParent()
         
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
-        if let biker = bikerManager?.selectedBiker {
+        if let biker = bikerManager?.getSelectedBiker() {
             player = Player(node: playerNode, speedManager: speedManager, biker: biker)
             player.startAnimation()
         }

@@ -85,7 +85,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         super.viewWillAppear(animated)
         guard let player = gameScene?.player,
               let bikerManager = bikerManager else { return }
-        player.biker = bikerManager.selectedBiker
+        player.biker = bikerManager.getSelectedBiker()
         player.startAnimation()
         if gameScene?.status != .animating && gameScene?.status != .intro {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
