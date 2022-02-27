@@ -11,7 +11,7 @@ class BikerManager {
     private var repository: BikersRepository
     
     var bikers: [Biker] = []
-    var selectedBiker: Biker
+    private var selectedBiker: Biker
     var showingBiker: Biker
     var showingIndex: Int
     
@@ -65,5 +65,10 @@ class BikerManager {
         repository.save(bikers: bikers)
         
         selectedBiker = showingBiker
+    }
+    
+    func getSelectedBiker() -> Biker {
+        showingIndex = selectedBiker.index
+        return selectedBiker
     }
 }

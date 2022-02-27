@@ -134,7 +134,7 @@ class StoreViewController: UIViewController {
         
         setupConfirmationPopUpView()
         
-        guard let selectedBiker = bikerManager?.selectedBiker else { return }
+        guard let selectedBiker = bikerManager?.getSelectedBiker() else { return }
         show(biker: selectedBiker)
     }
 

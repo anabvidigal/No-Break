@@ -67,7 +67,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         gameScene?.lastUpdate = 0
         guard let player = gameScene?.player,
               let bikerManager = bikerManager else { return }
-        player.biker = bikerManager.selectedBiker
+        player.biker = bikerManager.getSelectedBiker()
         player.startAnimation()
     }
     
