@@ -11,7 +11,7 @@ class SpeedManager {
     
     private var interval: TimeInterval = 0.1
     private var currentTime: TimeInterval = 0
-    var speed: CGFloat = 800
+    var speed: CGFloat = 0
     
     func update(deltaTime: TimeInterval) {
         

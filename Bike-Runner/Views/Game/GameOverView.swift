@@ -61,7 +61,7 @@ class GameOverView: UIView {
         return button
     }()
     @objc func playAgainButtonClicked() {
-        alpha = 0
+        parent.hideGameOver()
         parent.gameScene?.reset()
     }
     
