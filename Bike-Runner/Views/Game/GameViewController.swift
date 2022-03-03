@@ -13,7 +13,6 @@ import GameKit
 import GoogleMobileAds
 
 protocol GameSceneDelegate: AnyObject {
-    func getCoinsViewPosition() -> CGPoint
     func gameIsOver(_ sender: GameScene)
     func score(_ sender: GameScene)
     func catchCoin(_ sender: GameScene)
@@ -116,10 +115,6 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         setupBackButton()
     
         gameCenter?.authenticateUser(self)
-    }
-    
-    func getCoinsViewPosition() -> CGPoint {
-        coinsView.center
     }
     
     func requestInterstitial() {
