@@ -19,7 +19,7 @@ class Coin {
     }
     
     private func physicsSetup() {
-        let body = SKPhysicsBody(circleOfRadius: 20)
+        let body = SKPhysicsBody(circleOfRadius: 30)
         body.isDynamic = true
         body.affectedByGravity = false
         body.collisionBitMask = Constants.coinCollision

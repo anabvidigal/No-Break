@@ -58,8 +58,17 @@ class CoinsView: UIView {
         }
     }
     
+    func set(collectedCoins: Int) {
+        coinsLabel.text = "+\(collectedCoins)"
+    }
+    
     func set(coins: Int) {
         coinsLabel.text = "\(coins)"
+    }
+    
+    func set(coins: Int, fontSize: CGFloat) {
+        coinsLabel.text = "\(coins)"
+        coinsLabel.font = .kenneyFont.withSize(fontSize)
     }
     
     required init?(coder: NSCoder) {
