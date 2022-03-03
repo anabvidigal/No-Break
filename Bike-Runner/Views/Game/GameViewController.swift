@@ -202,7 +202,6 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true
-        skView.showsNodeCount = true
     }
     
     private func setupHomeView() {
