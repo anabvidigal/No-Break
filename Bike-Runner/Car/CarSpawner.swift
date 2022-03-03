@@ -70,11 +70,15 @@ class CarSpawner {
         coinSpawner?.randomizeCoinSpawn(parent: new.node, lane: randomLane)
     }
     
-    func reset() {
+    func removeAllCars() {
         for car in cars {
             car.node.removeFromParent()
         }
         cars.removeAll()
+    }
+    
+    func reset() {
+        removeAllCars()
         currentTime = interval
     }
     

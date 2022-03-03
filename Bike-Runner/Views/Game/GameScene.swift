@@ -35,21 +35,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     weak var gameDelegate: GameSceneDelegate?
     
     override func didMove(to view: SKView) {
-        
         physicsWorld.contactDelegate = self
         
-        // intro
         introNode = childNode(withName: "intro") as? SKSpriteNode
         introNode.removeFromParent()
         
-        // player
         let playerNode = self.childNode(withName: "biker") as! SKSpriteNode
         if let biker = bikerManager?.getSelectedBiker() {
             player = Player(node: playerNode, speedManager: speedManager, biker: biker)
             player.startAnimation()
         }
         
-        // bg
         let backgroundNodes = [
             self.childNode(withName: "background1") as! SKSpriteNode,
             self.childNode(withName: "background2") as! SKSpriteNode,
@@ -61,19 +57,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ]
         scenery = Scenery(nodes: backgroundNodes, speedManager: speedManager)
         
-        // car
         let carNode = childNode(withName: "car") as! SKSpriteNode
         carSpawner = CarSpawner(carNode: carNode, parent: self, speedManager: speedManager)
         
-//         coin
         let coinNode = carNode.childNode(withName: "coin") as! SKSpriteNode
         coinSpawner = CoinSpawner(coinNode: coinNode)
         
-        // score
         let scoreNode = player.node.childNode(withName: "bikerScoreDetector")!
         scoreDetector = ScoreDetector(node: scoreNode)
-        
-        gameDelegate?.setHighscore(self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,15 +73,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .animating:
             break
         case .intro:
-            status = .playing
-            player.changeLane()
-            introNode.removeFromParent()
-            speedManager.resetSpeed()
+            introTouched()
         case .playing:
             player.changeLane()
         case .gameOver:
             break
         }
+    }
+    
+    private func introTouched() {
+        status = .playing
+        player.changeLane()
+        introNode.removeFromParent()
+        gameDelegate?.showStats()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -107,10 +102,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         switch status {
         case .animating:
             introUpdate(deltaTime: deltaTime)
-            speedManager.resetSpeed()
         case .intro:
             introUpdate(deltaTime: deltaTime)
-            speedManager.resetSpeed()
         case .playing:
             playingUpdate(deltaTime: deltaTime)
         case .gameOver:
@@ -152,27 +145,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
+        score()
     }
     
     private func gameOver() {
         status = .gameOver
         player.die()
         carSpawner?.stopCarsAnimation()
-        gameCenter?.submitScore(score: scoreManager?.currentScore ?? 0)
         scoreManager?.setHighscore()
         gameDelegate?.gameIsOver(self)
     }
     
-    func reset(){
+    func reset() {
+        gameCenter?.submitScore(score: scoreManager?.currentScore ?? 0)
         status = .intro
         carSpawner?.reset()
         player.reset()
+        coinSpawner?.reset()
         scoreManager?.resetScore()
         speedManager.resetSpeed()
-        coinSpawner?.reset()
-        coinManager?.addCollectedCoins()
+        coinManager?.resetCollectedCoins()
         gameDelegate?.reset()
         addChild(introNode)
+    }
+    
+    func continueGame() {
+        addChild(introNode)
+        status = .intro
+        carSpawner?.reset()
+        coinSpawner?.reset()
+        player.reset()
     }
 }
 

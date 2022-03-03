@@ -8,8 +8,7 @@
 import UIKit
 import SnapKit
 
-class PlayerCoinsView: UIView {
-    var coinManager: CoinManager?
+class CoinsView: UIView {
     
     lazy var coinIcon: UIImageView = {
         let imageView = UIImageView()
@@ -21,17 +20,20 @@ class PlayerCoinsView: UIView {
     lazy var coinsLabel: UILabel = {
         let label = UILabel()
         label.font = .kenneyFont.withSize(24)
-        label.textColor = .appBeige
-        label.textAlignment = .right
-        label.text = "\(coinManager?.playerCoins ?? 0)"
+        label.textColor = .appBrown2
+        label.textAlignment = .center
+        label.text = "0"
         return label
     }()
     
-    init(frame: CGRect = .zero, coinManager: CoinManager?) {
-        self.coinManager = coinManager
+    init(frame: CGRect = .zero, width: CGFloat, height: CGFloat = 40) {
         super.init(frame: frame)
         
-        backgroundColor = .appBrown2
+        backgroundColor = .appBeige
+        snp.makeConstraints { make in
+            make.width.equalTo(width)
+            make.height.equalTo(height)
+        }
         
         setupCoinIcon()
         setupCoinsLabel()
@@ -40,8 +42,8 @@ class PlayerCoinsView: UIView {
     private func setupCoinIcon() {
         addSubview(coinIcon)
         coinIcon.snp.makeConstraints { make in
-            make.width.equalTo(30)
-            make.height.equalTo(30)
+            make.width.equalTo(25)
+            make.height.equalTo(25)
             make.leading.equalToSuperview().offset(4)
             make.centerY.equalToSuperview()
         }
@@ -56,8 +58,17 @@ class PlayerCoinsView: UIView {
         }
     }
     
-    func refresh() {
-        coinsLabel.text = "\(coinManager?.playerCoins ?? 0)"
+    func set(collectedCoins: Int) {
+        coinsLabel.text = "+\(collectedCoins)"
+    }
+    
+    func set(coins: Int) {
+        coinsLabel.text = "\(coins)"
+    }
+    
+    func set(coins: Int, fontSize: CGFloat) {
+        coinsLabel.text = "\(coins)"
+        coinsLabel.font = .kenneyFont.withSize(fontSize)
     }
     
     required init?(coder: NSCoder) {

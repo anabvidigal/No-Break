@@ -12,6 +12,7 @@ class CoinManager {
     private var repository: CoinsRepository
     var playerCoins: Int
     var collectedCoins: Int = 0
+    var notAddedCollectedCoins: Int = 0
     
     init(repository: CoinsRepository) {
         self.repository = repository
@@ -20,6 +21,7 @@ class CoinManager {
     
     func incrementCoins() {
         collectedCoins += 1
+        notAddedCollectedCoins += 1
     }
     
     func doubleCoins() {
@@ -27,8 +29,12 @@ class CoinManager {
     }
     
     func addCollectedCoins() {
-        playerCoins += collectedCoins
-        repository.add(coins: collectedCoins)
+        playerCoins += notAddedCollectedCoins
+        repository.add(coins: notAddedCollectedCoins)
+        notAddedCollectedCoins = 0
+    }
+    
+    func resetCollectedCoins() {
         collectedCoins = 0
     }
     
@@ -38,7 +44,7 @@ class CoinManager {
     }
     
     func hitTheJackpot() {
-        collectedCoins = 99999
+        notAddedCollectedCoins = 99999
         addCollectedCoins()
     }
     

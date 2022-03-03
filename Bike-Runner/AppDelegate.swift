@@ -17,6 +17,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var vc: GameViewController?
     
     // added var for deviceOrientation
     var deviceOrientation = UIInterfaceOrientationMask.landscape
@@ -30,12 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         window = UIWindow()
-        let vc = GameViewController()
+        vc = GameViewController()
         let gameCenter = GameCenter()
-        vc.coinManager = CoinManager(repository: UserDefaultsCoinsRepository())
-        vc.scoreManager = ScoreManager(gameCenter: gameCenter, repository: UserDefaultsHighscoreRepository())
-        vc.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
-        vc.gameCenter = gameCenter
+        vc?.coinManager = CoinManager(repository: UserDefaultsCoinsRepository())
+        vc?.scoreManager = ScoreManager(gameCenter: gameCenter, repository: UserDefaultsHighscoreRepository())
+        vc?.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
+        vc?.gameCenter = gameCenter
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
@@ -60,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        vc?.gameScene?.lastUpdate = 0
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         requestDataPermission()
     }

@@ -15,9 +15,9 @@ import GoogleMobileAds
 protocol GameSceneDelegate: AnyObject {
     func getCoinsViewPosition() -> CGPoint
     func gameIsOver(_ sender: GameScene)
-    func setHighscore(_ sender: GameScene)
     func score(_ sender: GameScene)
     func catchCoin(_ sender: GameScene)
+    func showStats()
     func reset()
 }
 
@@ -51,8 +51,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         return view
     }()
     
-    lazy var coinsView: CoinsView = {
-        let view = CoinsView(parent: self)
+    lazy var collectedCoinsView: CoinsView = {
+        let view = CoinsView(width: 80, height: 30)
         view.alpha = 0
         return view
     }()
@@ -63,13 +63,36 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         return view
     }()
     
+    lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.backButton, for: .normal)
+        button.setImage(.backButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
+        button.alpha = 0
+        return button
+    }()
+    @objc func backButtonClicked() {
+        gameScene?.reset()
+        gameScene?.status = .animating
+        gameScene?.introNode.removeFromParent()
+        homeView.alpha = 1
+        scoreView.alpha = 0
+        collectedCoinsView.alpha = 0
+        
+        hideGameOver()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        gameScene?.lastUpdate = 0
         guard let player = gameScene?.player,
               let bikerManager = bikerManager else { return }
         player.biker = bikerManager.getSelectedBiker()
         player.startAnimation()
+        if gameScene?.status != .animating && gameScene?.status != .intro {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                player.die()                
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -90,6 +113,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         setupScoreView()
         setupCoinsView()
         setupGameOverView()
+        setupBackButton()
     
         gameCenter?.authenticateUser(self)
     }
@@ -139,7 +163,6 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
       print("Ad did dismiss full screen content.")
         requestInterstitial()
         requestRewarded()
-        gameScene?.player.die()
     }
     
     func showInterstitialAd() {
@@ -153,13 +176,14 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     func showRewardedAd() {
         if rewardedAd != nil {
             rewardedAd!.present(fromRootViewController: self, userDidEarnRewardHandler: {
-                print("doubled coins")
-                self.coinManager?.doubleCoins()
-                self.gameOverView.collectedCoinsLabel.text = "+\((self.coinManager?.collectedCoins ?? 0)/2)" + " x2"
-                self.gameOverView.duplicateCoinsButton.isEnabled = false
+                self.gameOverView.alpha = 0
+                self.backButton.alpha = 0
+                self.gameScene?.continueGame()
+                self.gameOverView.extraLifeButton.isEnabled = false
             })
           } else {
-            print("Ad wasn't ready")
+              self.gameOverView.extraLifeButton.isEnabled = false
+              print("Ad wasn't ready")
           }
     }
     
@@ -196,16 +220,16 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     private func setupScoreView() {
         view.addSubview(scoreView)
         scoreView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(32)
             make.top.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
         }
     }
     
     private func setupCoinsView() {
-        view.addSubview(coinsView)
-        coinsView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(16)
-            make.leading.equalToSuperview().offset(16)
+        view.addSubview(collectedCoinsView)
+        collectedCoinsView.snp.makeConstraints { make in
+            make.centerY.equalTo(scoreView)
+            make.leading.equalTo(scoreView.snp.trailing).offset(8)
         }
     }
     
@@ -213,43 +237,68 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         view.addSubview(gameOverView)
         gameOverView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.width.equalTo(400)
+            make.width.equalTo(500)
             make.height.equalTo(300)
+        }
+    }
+    
+    private func setupBackButton() {
+        view.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+            make.top.equalTo(gameOverView)
+            make.trailing.equalTo(gameOverView.snp.leading).offset(-8)
         }
     }
 
     func gameIsOver(_ sender: GameScene) {
+        hideStats()
+        coinManager?.addCollectedCoins()
+        showGameOver()
+        if scoreManager?.currentScore ?? 0 % 7 == 0 {
+            showInterstitialAd()
+        }
+    }
+    
+    private func hideStats() {
+        collectedCoinsView.alpha = 0
+        scoreView.alpha = 0
+    }
+    
+    private func showGameOver() {
         guard let scoreManager = scoreManager else { return }
         gameOverView.alpha = 1
+        backButton.alpha = 1
+        gameOverView.collectedCoinsView.set(collectedCoins: coinManager?.collectedCoins ?? 0)
+        gameOverView.playerCoinsView.set(coins: coinManager?.playerCoins ?? 0, fontSize: 16)
         gameOverView.scoreLabel.text = "Score: \(scoreManager.currentScore)"
         gameOverView.highscoreLabel.alpha = scoreManager.currentScoreIsHighscore ? 1 : 0
-        gameOverView.updateCoinsStackConstrainsIf(isHighScore: scoreManager.currentScoreIsHighscore)
-        gameOverView.coinsLabel.text = "Coins: \(coinManager?.playerCoins ?? 0)"
-        gameOverView.collectedCoinsLabel.text = "+\(coinManager?.collectedCoins ?? 0)"
-//        showInterstitialAd()
+    }
+    
+    func hideGameOver() {
+        gameOverView.alpha = 0
+        backButton.alpha = 0
+        gameOverView.extraLifeButton.isEnabled = true
+    }
+    
+    func showStats() {
+        collectedCoinsView.alpha = 1
+        scoreView.alpha = 1
     }
     
     func score(_ sender: GameScene) {
         guard let scoreManager = scoreManager else { return }
         scoreView.scoreLabel.text = "\(scoreManager.currentScore)"
-        if scoreManager.currentScoreIsHighscore {
-            scoreView.highscoreLabel.text = "\(scoreManager.currentScore)"
-        }
     }
     
     func catchCoin(_ sender: GameScene) {
-        coinsView.coinsLabel.text = "\(sender.coinManager?.collectedCoins ?? 0)"
-    }
-    
-    func setHighscore(_ sender: GameScene) {
-        guard let scoreManager = scoreManager else { return }
-        scoreView.highscoreLabel.text = "\(scoreManager.highscore)"
+        collectedCoinsView.set(coins: coinManager?.collectedCoins ?? 0)
     }
     
     func reset() {
         scoreView.scoreLabel.text = "0"
-        coinsView.coinsLabel.text = "0"
-        gameOverView.duplicateCoinsButton.isEnabled = true
+        collectedCoinsView.coinsLabel.text = "0"
     }
     
     override var shouldAutorotate: Bool {

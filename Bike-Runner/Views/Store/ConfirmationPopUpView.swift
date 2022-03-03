@@ -62,7 +62,7 @@ class ConfirmationPopUpView: UIView {
         guard let bikerManager = parent.bikerManager,
               let coinManager = parent.coinManager else { return }
         coinManager.spend(coins: bikerManager.showingBiker.price)
-        parent.playerCoinsView.refresh()
+        parent.playerCoinsView.set(coins: coinManager.playerCoins)
         bikerManager.selectShowingBiker()
         parent.setButtonToSelected()
         alpha = 0
