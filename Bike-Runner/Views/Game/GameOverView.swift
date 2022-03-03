@@ -47,6 +47,7 @@ class GameOverView: UIView {
     lazy var extraLifeButton: UIButton = {
         let button = UIButton()
         button.setImage(.extraLifeButton, for: .normal)
+        button.setImage(.extraLifeButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(extraLifeButtonClicked), for: .touchUpInside)
         return button
     }()
@@ -57,6 +58,7 @@ class GameOverView: UIView {
     lazy var playAgainButton: UIButton = {
         let button = UIButton()
         button.setImage(.playAgainButton, for: .normal)
+        button.setImage(.playAgainButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(playAgainButtonClicked), for: .touchUpInside)
         return button
     }()

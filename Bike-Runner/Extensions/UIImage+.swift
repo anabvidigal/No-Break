@@ -138,8 +138,14 @@ extension UIImage {
     open class var extraLifeButton: UIImage { get {
         UIImage(named: "extraLifeButton")!
     }}
+    open class var extraLifeButtonPressed: UIImage { get {
+        UIImage(named: "extraLifeButtonPressed")!
+    }}
     
     open class var playAgainButton: UIImage { get {
         UIImage(named: "playAgainButton")!
+    }}
+    open class var playAgainButtonPressed: UIImage { get {
+        UIImage(named: "playAgainButtonPressed")!
     }}
 }
