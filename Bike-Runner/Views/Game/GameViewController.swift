@@ -28,6 +28,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     var bikerManager: BikerManager?
     var scoreManager: ScoreManager?
     var gameCenter: GameCenter?
+    var hapticsManager: HapticsManager?
     
     private var interstitialAd: GADInterstitialAd?
     private var rewardedAd: GADRewardedAd?
@@ -199,6 +200,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             scene.bikerManager = bikerManager
             scene.scoreManager = scoreManager
             scene.gameCenter = gameCenter
+            scene.hapticsManager = hapticsManager
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true

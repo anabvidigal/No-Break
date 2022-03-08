@@ -9,6 +9,7 @@ import SpriteKit
 import GameplayKit
 import GameKit
 import SnapKit
+import UIKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -26,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreManager: ScoreManager?
     var coinManager: CoinManager?
     var bikerManager: BikerManager?
+    var hapticsManager: HapticsManager?
     
     
     var status: GameStatus = .animating
@@ -76,6 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             introTouched()
         case .playing:
             player.changeLane()
+            hapticsManager?.changeLaneVibrate()
         case .gameOver:
             break
         }
@@ -129,8 +132,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score()
         } else if contact.bodyB == coinSpawner?.coins.first?.node.physicsBody {
             catchCoin()
+            hapticsManager?.vibrate(for: .success)
         } else {
             gameOver()
+            hapticsManager?.vibrate(for: .error)
         }
     }
     
@@ -146,6 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
         score()
+        // haptics for coin caught
     }
     
     private func gameOver() {

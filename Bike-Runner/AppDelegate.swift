@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc?.scoreManager = ScoreManager(gameCenter: gameCenter, repository: UserDefaultsHighscoreRepository())
         vc?.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
         vc?.gameCenter = gameCenter
+        vc?.hapticsManager = HapticsManager()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
