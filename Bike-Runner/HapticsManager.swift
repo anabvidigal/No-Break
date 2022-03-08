@@ -17,9 +17,16 @@ class HapticsManager {
         }
     }
     
-    func vibrate(for type: UINotificationFeedbackGenerator.FeedbackType) {
+    func playerDiedVibrate(for type: UINotificationFeedbackGenerator.FeedbackType) {
         let notificationGenerator = UINotificationFeedbackGenerator()
         notificationGenerator.prepare()
         notificationGenerator.notificationOccurred(type)
     }
+    
+    func catchCoinVibrate() {
+        let catchCoinVibrateGenerator = UIImpactFeedbackGenerator(style: .medium)
+        catchCoinVibrateGenerator.prepare()
+        catchCoinVibrateGenerator.impactOccurred()
+    }
+    
 }

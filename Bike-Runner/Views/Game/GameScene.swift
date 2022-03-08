@@ -132,10 +132,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score()
         } else if contact.bodyB == coinSpawner?.coins.first?.node.physicsBody {
             catchCoin()
-            hapticsManager?.vibrate(for: .success)
+            hapticsManager?.catchCoinVibrate()
         } else {
             gameOver()
-            hapticsManager?.vibrate(for: .error)
+            hapticsManager?.playerDiedVibrate(for: .error)
         }
     }
     
@@ -151,7 +151,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
         score()
-        // haptics for coin caught
     }
     
     private func gameOver() {
