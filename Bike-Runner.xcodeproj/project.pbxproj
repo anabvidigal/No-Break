@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B1BBC27A9F344008A9792 /* Car.swift */; };
 		2B23A52427B34AF4000B6C9D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23A52327B34AF4000B6C9D /* UIFont+.swift */; };
+		2B40501A27D78B3200A7DE67 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40501927D78B3200A7DE67 /* HapticsManager.swift */; };
 		2B41B10D27BE80F2007556B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B41B10C27BE80F2007556B5 /* GoogleService-Info.plist */; };
 		2B56DA6127AAAFD700AD63E5 /* ScoreDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */; };
 		2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		2B1B1BBC27A9F344008A9792 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2B23A52327B34AF4000B6C9D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		2B40501927D78B3200A7DE67 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		2B41B10C27BE80F2007556B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDetector.swift; sourceTree = "<group>"; };
 		2B56DA6327AABCF800AD63E5 /* Kenney Mini.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kenney Mini.ttf"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */,
 				6131BB1527BDB62C000D3400 /* ScoreManager.swift */,
 				2B99C07127A3BC69003606C9 /* SpeedManager.swift */,
+				2B40501927D78B3200A7DE67 /* HapticsManager.swift */,
 				2B6D73B227AD7416002B56C7 /* GameCenter.swift */,
 				2B58BD6527A8146800DCF69D /* Constants.swift */,
 				617E497227B5F05A0052F021 /* Car */,
@@ -416,6 +419,7 @@
 				61A7D90627B9D102008F8539 /* CoinsView.swift in Sources */,
 				617E497627B6DA5C0052F021 /* ScoreView.swift in Sources */,
 				61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */,
+				2B40501A27D78B3200A7DE67 /* HapticsManager.swift in Sources */,
 				61A7D90A27B9F7F5008F8539 /* Biker.swift in Sources */,
 				2B6D73B327AD7416002B56C7 /* GameCenter.swift in Sources */,
 				2B56DA8227AC0EF000AD63E5 /* Coin.swift in Sources */,
@@ -573,7 +577,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 46LT924HJ5;
+				DEVELOPMENT_TEAM = 58J47MFRH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bike-Runner/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "No Break";
@@ -610,7 +614,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 58J47MFRH8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bike-Runner/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "No Break";
