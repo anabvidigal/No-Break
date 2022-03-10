@@ -23,10 +23,40 @@ class StoreViewController: UIViewController {
         dismiss(animated: false, completion: nil)
     }
     
+    lazy var shopLabel: UILabel = {
+        let label = UILabel()
+        label.text = "BIKER'S SHOP"
+        label.font = .kenneyFont.withSize(26)
+        label.textColor = .appBeige
+        label.textAlignment = .left
+        return label
+    }()
+    
+    lazy var moreCoinsButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .appBrown1
+        return button
+    }()
+    
     lazy var playerCoinsView: CoinsView = {
         let view = CoinsView(width: 120)
         view.set(coins: coinManager?.playerCoins ?? 0)
         return view
+    }()
+    
+    lazy var walletLabel: UILabel = {
+        let label = UILabel()
+        label.text = "WALLET"
+        label.font = .kenneyFont.withSize(18)
+        label.textColor = .appBeige
+        label.textAlignment = .left
+        return label
+    }()
+
+    lazy var ridersCollection: UIView = {
+        let collection = UIView()
+        collection.backgroundColor = .red
+        return collection
     }()
     
     lazy var backgroundView: UIView = {
@@ -35,17 +65,10 @@ class StoreViewController: UIViewController {
         return view
     }()
     
-    lazy var bikerHeaderView: BikerHeaderView = {
-        let view = BikerHeaderView(parent: self)
-        return view
-    }()
-    
-    lazy var contentStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .bottom
-        stack.distribution = .fillEqually
-        return stack
+    lazy var ambientImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .green
+        return imageView
     }()
     
     lazy var bikeImageView: UIImageView = {
@@ -60,7 +83,7 @@ class StoreViewController: UIViewController {
         return imageView
     }()
     
-    lazy var selectButtonView: UIView = {
+    lazy var riderInfoView: UIView = {
         let view = UIView()
         return view
     }()
@@ -115,23 +138,19 @@ class StoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .appBrown1
+        view.backgroundColor = .appBrown2
         
         setupBackButton()
+        setupShopLabel()
+        
+        setupMoreCoinsButton()
         setupPlayerCoinsView()
+        setupWalletLabel()
+        
+        setupRidersCollection()
         
         setupBackgroundView()
-        
-        setupBikerHeaderView()
-        
-        setupContentStack()
-        [
-            bikeImageView,
-            bikerImageView,
-            selectButtonView
-        ].forEach { contentStack.addArrangedSubview($0) }
-        setupSelectButton()
-        setupPriceView()
+        setupAmbientImageView()
         
         setupConfirmationPopUpView()
         
@@ -144,51 +163,77 @@ class StoreViewController: UIViewController {
         backButton.snp.makeConstraints { make in
             make.width.equalTo(40)
             make.height.equalTo(40)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.leading.equalToSuperview().offset(22)
+            make.top.equalToSuperview().offset(22)
+        }
+    }
+    
+    private func setupShopLabel() {
+        view.addSubview(shopLabel)
+        shopLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(backButton)
+            make.leading.equalTo(backButton.snp.trailing).offset(20)
+        }
+    }
+    
+    private func setupMoreCoinsButton() {
+        view.addSubview(moreCoinsButton)
+        moreCoinsButton.snp.makeConstraints { make in
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+            make.centerY.equalTo(backButton)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
     }
     
     private func setupPlayerCoinsView() {
         view.addSubview(playerCoinsView)
         playerCoinsView.snp.makeConstraints { make in
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.trailing.equalTo(moreCoinsButton.snp.leading)
+            make.centerY.equalTo(moreCoinsButton)
+        }
+    }
+    
+    private func setupWalletLabel() {
+        view.addSubview(walletLabel)
+        walletLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(playerCoinsView)
+            make.trailing.equalTo(playerCoinsView.snp.leading).offset(-16)
+        }
+    }
+    
+    private func setupRidersCollection() {
+        view.addSubview(ridersCollection)
+        ridersCollection.snp.makeConstraints { make in
+            make.top.equalTo(backButton.snp.bottom).offset(8)
+            make.leading.equalTo(backButton.snp.trailing).offset(20)
+            make.width.equalTo(166)
+            make.bottom.equalToSuperview()
         }
     }
     
     private func setupBackgroundView() {
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
-            make.top.equalTo(backButton.snp.bottom).offset(16)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
+            make.top.equalTo(backButton.snp.bottom).offset(8)
+            make.leading.equalTo(ridersCollection.snp.trailing).offset(16)
+            make.trailing.equalTo(moreCoinsButton)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
         }
     }
     
-    private func setupBikerHeaderView() {
-        backgroundView.addSubview(bikerHeaderView)
-        bikerHeaderView.snp.makeConstraints { make in
-            make.height.equalTo(80)
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-        }
-    }
-    
-    private func setupContentStack() {
-        backgroundView.addSubview(contentStack)
-        contentStack.snp.makeConstraints { make in
-            make.top.equalTo(bikerHeaderView.snp.bottom)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-16)
+    private func setupAmbientImageView() {
+        backgroundView.addSubview(ambientImageView)
+        ambientImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.leading.equalToSuperview().offset(8)
+            make.bottom.equalToSuperview().offset(-8)
+            make.width.equalTo(ambientImageView.snp.height).multipliedBy(1044 / 816)
         }
     }
     
     private func setupSelectButton() {
-        selectButtonView.addSubview(selectButton)
+        riderInfoView.addSubview(selectButton)
         selectButton.snp.makeConstraints { make in
             make.height.equalTo(60)
             make.width.equalTo(180)
@@ -198,7 +243,7 @@ class StoreViewController: UIViewController {
     }
     
     private func setupPriceView() {
-        selectButtonView.addSubview(priceView)
+        riderInfoView.addSubview(priceView)
         priceView.snp.makeConstraints { make in
             make.centerX.equalTo(selectButton)
             make.bottom.equalTo(selectButton.snp.top).offset(-4)
@@ -215,8 +260,6 @@ class StoreViewController: UIViewController {
     }
     
     func show(biker: Biker) {
-        bikerHeaderView.nameLabel.text = biker.name
-        bikerHeaderView.descriptionLabel.text = biker.description
         bikeImageView.image = UIImage(named: "\(biker.id)_bike")
         bikerImageView.image = UIImage(named: "\(biker.id)_rider")
         priceView.priceLabel.text = "\(biker.price)"

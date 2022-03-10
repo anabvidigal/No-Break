@@ -44,7 +44,6 @@
 		617E497627B6DA5C0052F021 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E497527B6DA5C0052F021 /* ScoreView.swift */; };
 		61A7D90427B9CA2F008F8539 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90327B9CA2F008F8539 /* StoreViewController.swift */; };
 		61A7D90627B9D102008F8539 /* CoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90527B9D102008F8539 /* CoinsView.swift */; };
-		61A7D90827B9F6FF008F8539 /* BikerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */; };
 		61A7D90A27B9F7F5008F8539 /* Biker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90927B9F7F5008F8539 /* Biker.swift */; };
 		61A7D90C27BA8C44008F8539 /* BikerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90B27BA8C44008F8539 /* BikerManager.swift */; };
 		61A7D90E27BC34F7008F8539 /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7D90D27BC34F7008F8539 /* PriceView.swift */; };
@@ -92,7 +91,6 @@
 		617E497527B6DA5C0052F021 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		61A7D90327B9CA2F008F8539 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		61A7D90527B9D102008F8539 /* CoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsView.swift; sourceTree = "<group>"; };
-		61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikerHeaderView.swift; sourceTree = "<group>"; };
 		61A7D90927B9F7F5008F8539 /* Biker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biker.swift; sourceTree = "<group>"; };
 		61A7D90B27BA8C44008F8539 /* BikerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikerManager.swift; sourceTree = "<group>"; };
 		61A7D90D27BC34F7008F8539 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				61A7D90327B9CA2F008F8539 /* StoreViewController.swift */,
-				61A7D90727B9F6FF008F8539 /* BikerHeaderView.swift */,
 				61A7D90D27BC34F7008F8539 /* PriceView.swift */,
 				61A7D90F27BC5C02008F8539 /* ConfirmationPopUpView.swift */,
 			);
@@ -411,7 +408,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61A7D90827B9F6FF008F8539 /* BikerHeaderView.swift in Sources */,
 				2BE7612A27BBE81E00A3420B /* AdsHelper.swift in Sources */,
 				617E496F27B5B6D30052F021 /* HighscoreRepository.swift in Sources */,
 				2B56DA7827ABFB7D00AD63E5 /* CoinManager.swift in Sources */,
@@ -577,14 +573,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 58J47MFRH8;
+				DEVELOPMENT_TEAM = 46LT924HJ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bike-Runner/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "No Break";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Need tracking for analytics and to deliver custom ads";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
@@ -614,14 +609,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = 58J47MFRH8;
+				DEVELOPMENT_TEAM = 46LT924HJ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Bike-Runner/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "No Break";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Need tracking for analytics and to deliver custom ads";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
