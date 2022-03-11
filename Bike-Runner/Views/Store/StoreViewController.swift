@@ -34,7 +34,8 @@ class StoreViewController: UIViewController {
     
     lazy var moreCoinsButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .appBrown1
+        button.setImage(.moreButton, for: .normal)
+        button.setImage(.moreButtonPressed, for: .highlighted)
         return button
     }()
     
@@ -67,17 +68,17 @@ class StoreViewController: UIViewController {
     
     lazy var ambientImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .green
+        imageView.image = .shopAmbient
         return imageView
     }()
     
-    lazy var bikeImageView: UIImageView = {
+    lazy var bikerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    lazy var bikerImageView: UIImageView = {
+    lazy var bikeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -130,6 +131,32 @@ class StoreViewController: UIViewController {
         return view
     }()
     
+    lazy var riderTextView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    lazy var riderNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = .kenneyFont.withSize(24)
+        label.textColor = .appBrown2
+        label.text = bikerManager?.getSelectedBiker().name
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    lazy var riderDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .kenneyFont.withSize(18)
+        label.textColor = .appBrown2
+        label.text = bikerManager?.getSelectedBiker().description
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
     lazy var confirmationPopUpView: ConfirmationPopUpView = {
         let view = ConfirmationPopUpView(parent: self)
         view.alpha = 0
@@ -150,7 +177,16 @@ class StoreViewController: UIViewController {
         setupRidersCollection()
         
         setupBackgroundView()
+        
         setupAmbientImageView()
+        setupBikerImageView()
+        setupBikeImageView()
+        
+        setupRiderInfoView()
+        setupSelectButton()
+        setupPriceView()
+        
+        setupRiderTextView()
         
         setupConfirmationPopUpView()
         
@@ -163,7 +199,7 @@ class StoreViewController: UIViewController {
         backButton.snp.makeConstraints { make in
             make.width.equalTo(40)
             make.height.equalTo(40)
-            make.leading.equalToSuperview().offset(22)
+            make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(22)
         }
     }
@@ -206,7 +242,7 @@ class StoreViewController: UIViewController {
         view.addSubview(ridersCollection)
         ridersCollection.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(8)
-            make.leading.equalTo(backButton.snp.trailing).offset(20)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.width.equalTo(166)
             make.bottom.equalToSuperview()
         }
@@ -218,7 +254,7 @@ class StoreViewController: UIViewController {
             make.top.equalTo(backButton.snp.bottom).offset(8)
             make.leading.equalTo(ridersCollection.snp.trailing).offset(16)
             make.trailing.equalTo(moreCoinsButton)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-8)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
     }
     
@@ -232,13 +268,46 @@ class StoreViewController: UIViewController {
         }
     }
     
+    private func setupBikerImageView() {
+        ambientImageView.addSubview(bikerImageView)
+        bikerImageView.snp.makeConstraints { make in
+            make.trailing.equalTo(ambientImageView.snp.centerX)
+            make.leading.equalToSuperview().offset(16)
+            make.height.equalTo(bikerImageView.snp.width)
+            make.bottom.equalToSuperview().multipliedBy(0.87)
+        }
+    }
+    
+    private func setupBikeImageView() {
+        ambientImageView.addSubview(bikeImageView)
+        bikeImageView.snp.makeConstraints { make in
+            make.leading.equalTo(ambientImageView.snp.centerX)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(bikerImageView.snp.width)
+            make.bottom.equalToSuperview().multipliedBy(0.87)
+        }
+    }
+    
+    private func setupRiderInfoView() {
+        backgroundView.addSubview(riderInfoView)
+        riderInfoView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.leading.equalTo(ambientImageView.snp.trailing)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-8)
+        }
+    }
+    
     private func setupSelectButton() {
         riderInfoView.addSubview(selectButton)
+        riderInfoView.setNeedsLayout()
+        riderInfoView.layoutIfNeeded()
         selectButton.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.width.equalTo(180)
-            make.bottom.equalToSuperview()
+            print(min(180, riderInfoView.frame.size.height - 16))
+            make.width.lessThanOrEqualTo(min(180, riderInfoView.frame.size.width - 16))
             make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.height.equalTo(selectButton.snp.width).multipliedBy(0.3333333333)
         }
     }
     
@@ -247,10 +316,42 @@ class StoreViewController: UIViewController {
         priceView.snp.makeConstraints { make in
             make.centerX.equalTo(selectButton)
             make.bottom.equalTo(selectButton.snp.top).offset(-4)
-            make.top.equalToSuperview()
             make.height.equalTo(24)
         }
     }
+    
+    private func setupRiderTextView() {
+        riderInfoView.addSubview(riderTextView)
+        riderTextView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalTo(selectButton.snp.top)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
+        }
+        
+        setupRiderNameLabel()
+        setupRiderDescriptionLabel()
+    }
+    
+    private func setupRiderNameLabel() {
+        riderTextView.addSubview(riderNameLabel)
+        riderNameLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(riderTextView.snp.centerY).offset(-5)
+        }
+    }
+    
+    private func setupRiderDescriptionLabel() {
+        riderTextView.addSubview(riderDescriptionLabel)
+        riderDescriptionLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.top.equalTo(riderTextView.snp.centerY).offset(5)
+        }
+    }
+    
+    
     
     private func setupConfirmationPopUpView() {
         view.addSubview(confirmationPopUpView)

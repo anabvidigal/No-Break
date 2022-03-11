@@ -55,11 +55,11 @@ class Constants {
     
     static let roadAngle = CGFloat(-15)
     
-    static let bikeBottomLane = CGFloat(-49)
-    static let bikeTopLane = CGFloat(1)
+    static let bikeBottomLane = CGFloat(-74)
+    static let bikeTopLane = CGFloat(-24)
     
-    static let carBottomLane = CGFloat(-504)
-    static let carTopLane = CGFloat(-458)
+    static let carBottomLane = CGFloat(-534)
+    static let carTopLane = CGFloat(-488)
     
     // ads
     static let interstitialAdUnitID: String = "ca-app-pub-6812178981373996/7920800585"
