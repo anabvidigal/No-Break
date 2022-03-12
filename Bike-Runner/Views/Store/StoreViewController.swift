@@ -77,6 +77,7 @@ class StoreViewController: UIViewController {
         case .bought:
             bikerManager?.selectShowingBiker()
             setButtonToSelected()
+            playSound(sound: "select", type: "wav")
         case .forSale:
             showConfirmationPopUp()
         default:

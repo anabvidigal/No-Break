@@ -53,6 +53,7 @@ class GameOverView: UIView {
     }()
     @objc func extraLifeButtonClicked() {
         parent.showRewardedAd()
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var playAgainButton: UIButton = {
@@ -65,6 +66,7 @@ class GameOverView: UIView {
     @objc func playAgainButtonClicked() {
         parent.hideGameOver()
         parent.gameScene?.reset()
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var outerRectangleView: UIView = {
@@ -90,6 +92,7 @@ class GameOverView: UIView {
         vc.coinManager = parent.coinManager
         vc.modalPresentationStyle = .fullScreen
         parent.present(vc, animated: false, completion: nil)
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var shopLabel: UILabel = {
@@ -112,6 +115,7 @@ class GameOverView: UIView {
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
         parent.present(vc, animated: true, completion: nil)
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var scoresLabel: UILabel = {
@@ -135,6 +139,7 @@ class GameOverView: UIView {
         vc.gameCenterDelegate = parent
         GKAchievement.loadAchievements()
         parent.present(vc, animated: true, completion: nil)
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var awardsLabel: UILabel = {

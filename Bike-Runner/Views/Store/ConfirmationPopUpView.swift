@@ -66,6 +66,7 @@ class ConfirmationPopUpView: UIView {
         bikerManager.selectShowingBiker()
         parent.setButtonToSelected()
         alpha = 0
+        playSound(sound: "success_sound_2", type: "wav")
     }
     
     lazy var cancelButton: UIButton = {
