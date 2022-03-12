@@ -41,8 +41,8 @@ class HomeView: UIView {
         guard let introNode = parent.gameScene?.introNode else { return }
         parent.gameScene?.addChild(introNode)
         parent.gameScene?.status = .intro
-
         alpha = 0
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var playLabel: UILabel = {
@@ -66,6 +66,7 @@ class HomeView: UIView {
         vc.gameCenterDelegate = parent
         GKAchievement.loadAchievements()
         parent.present(vc, animated: true, completion: nil)
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var awardLabel: UILabel = {
@@ -88,6 +89,7 @@ class HomeView: UIView {
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
         parent.present(vc, animated: true, completion: nil)
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var scoresLabel: UILabel = {
@@ -112,6 +114,7 @@ class HomeView: UIView {
         vc.coinManager = parent.coinManager
         vc.modalPresentationStyle = .fullScreen
         parent.present(vc, animated: false, completion: nil)
+//        playSound(sound: "tap", type: "wav")
     }
     
     lazy var shopLabel: UILabel = {

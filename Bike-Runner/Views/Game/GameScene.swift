@@ -146,11 +146,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
         score()
+        playSound(sound: "coin", type: "wav")
     }
     
     private func gameOver() {
         status = .gameOver
         player.die()
+        playSound(sound: "player-die", type: "wav")
         carSpawner?.stopCarsAnimation()
         scoreManager?.setHighscore()
         gameDelegate?.gameIsOver(self)
