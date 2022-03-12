@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftySound
 
 class StoreViewController: UIViewController {
     var bikerManager: BikerManager?
@@ -77,7 +78,7 @@ class StoreViewController: UIViewController {
         case .bought:
             bikerManager?.selectShowingBiker()
             setButtonToSelected()
-            playSound(sound: "select", type: "wav")
+            Sound.play(file: "select.wav")
         case .forSale:
             showConfirmationPopUp()
         default:

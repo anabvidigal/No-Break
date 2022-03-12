@@ -11,6 +11,7 @@ import GameplayKit
 import SnapKit
 import GameKit
 import GoogleMobileAds
+import SwiftySound
 
 protocol GameSceneDelegate: AnyObject {
     func gameIsOver(_ sender: GameScene)
@@ -79,6 +80,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         collectedCoinsView.alpha = 0
         
         hideGameOver()
+        Sound.play(file: "menu-music.wav")
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -9,6 +9,7 @@ import SpriteKit
 import GameplayKit
 import GameKit
 import SnapKit
+import SwiftySound
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -146,13 +147,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
         score()
-        playSound(sound: "coin", type: "wav")
+        Sound.play(file: "coin.wav")
     }
     
     private func gameOver() {
         status = .gameOver
         player.die()
-        playSound(sound: "player-die", type: "wav")
+        Sound.play(file: "player-die.wav")
+        Sound.stop(file: "game-music.mp3")
         carSpawner?.stopCarsAnimation()
         scoreManager?.setHighscore()
         gameDelegate?.gameIsOver(self)

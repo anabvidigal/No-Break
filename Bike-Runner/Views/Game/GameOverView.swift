@@ -9,6 +9,7 @@ import UIKit
 import GameKit
 import SnapKit
 import GoogleMobileAds
+import SwiftySound
 
 class GameOverView: UIView {
     
@@ -66,7 +67,7 @@ class GameOverView: UIView {
     @objc func playAgainButtonClicked() {
         parent.hideGameOver()
         parent.gameScene?.reset()
-//        playSound(sound: "tap", type: "wav")
+        Sound.play(file: "game-music.mp3")
     }
     
     lazy var outerRectangleView: UIView = {

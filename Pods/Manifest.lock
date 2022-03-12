@@ -112,6 +112,7 @@ PODS:
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
   - SnapKit (5.0.1)
+  - SwiftySound (1.2.0)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -121,6 +122,7 @@ DEPENDENCIES:
   - Firebase/Crashlytics
   - Google-Mobile-Ads-SDK
   - SnapKit (~> 5.0)
+  - SwiftySound
 
 SPEC REPOS:
   trunk:
@@ -143,6 +145,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SnapKit
+    - SwiftySound
 
 SPEC CHECKSUMS:
   FBAEMKit: 955ca52eba8219c20f90774e8c6ff8bc7b3192a3
@@ -164,7 +167,8 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftySound: 9eb28bb14edb601b40027e44319e0ef8383f88bf
 
-PODFILE CHECKSUM: 4d788ac24c657819a50ac24d925a957d4f87b013
+PODFILE CHECKSUM: b56c01694281316cdb2445dbe8fb37af006effcc
 
 COCOAPODS: 1.11.2

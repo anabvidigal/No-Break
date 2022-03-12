@@ -12,6 +12,7 @@ import AdSupport
 import AppTrackingTransparency
 import FirebaseAnalytics
 import Firebase
+import SwiftySound
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

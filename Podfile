@@ -13,6 +13,7 @@ target 'Bike-Runner' do
   pod 'FBSDKShareKit'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
+  pod 'SwiftySound'
 
 
   # Pods for Bike-Runner

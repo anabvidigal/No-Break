@@ -8,6 +8,7 @@
 import UIKit
 import GameKit
 import SnapKit
+import SwiftySound
 
 class HomeView: UIView {
     private var parent: GameViewController
@@ -43,6 +44,9 @@ class HomeView: UIView {
         parent.gameScene?.status = .intro
         alpha = 0
 //        playSound(sound: "tap", type: "wav")
+        
+        Sound.play(file: "game-music", fileExtension: "mp3")
+        Sound.stop(file: "menu-music", fileExtension: "wav")
     }
     
     lazy var playLabel: UILabel = {
@@ -146,6 +150,9 @@ class HomeView: UIView {
         setupShopLabel()
         
         setupLogoImageView()
+        
+        Sound.play(file: "menu-music", fileExtension: "wav")
+
     }
     
     private func setupButtonsView() {

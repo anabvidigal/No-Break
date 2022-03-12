@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftySound
 
 class ConfirmationPopUpView: UIView {
     var parent: StoreViewController
@@ -66,7 +67,9 @@ class ConfirmationPopUpView: UIView {
         bikerManager.selectShowingBiker()
         parent.setButtonToSelected()
         alpha = 0
-        playSound(sound: "success_sound_2", type: "wav")
+        
+        Sound.play(file: "success-sound-1.wav")
+
     }
     
     lazy var cancelButton: UIButton = {
