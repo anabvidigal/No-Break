@@ -154,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         status = .gameOver
         player.die()
         Sound.play(file: "player-die.wav")
-        Sound.stop(file: "game-music.mp3")
+        Sound.stop(file: "game-music.wav")
         carSpawner?.stopCarsAnimation()
         scoreManager?.setHighscore()
         gameDelegate?.gameIsOver(self)

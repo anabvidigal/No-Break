@@ -45,7 +45,7 @@ class HomeView: UIView {
         alpha = 0
 //        playSound(sound: "tap", type: "wav")
         
-        Sound.play(file: "game-music", fileExtension: "mp3")
+        Sound.play(file: "game-music", fileExtension: "wav")
         Sound.stop(file: "menu-music", fileExtension: "wav")
     }
     
