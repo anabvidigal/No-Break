@@ -45,10 +45,7 @@ class HomeView: UIView {
         parent.gameScene?.addChild(introNode)
         parent.gameScene?.status = .intro
         alpha = 0
-        soundManager?.playTapSound()
-        
-//        playSound(sound: "tap", type: "wav")
-        
+        Sound.play(file: "tap", fileExtension: "wav")
         Sound.play(file: "game-music", fileExtension: "wav")
         Sound.stop(file: "menu-music", fileExtension: "wav")
     }
@@ -74,7 +71,8 @@ class HomeView: UIView {
         vc.gameCenterDelegate = parent
         GKAchievement.loadAchievements()
         parent.present(vc, animated: true, completion: nil)
-        soundManager?.playTapSound()    }
+        Sound.play(file: "tap", fileExtension: "wav")
+    }
     
     lazy var awardLabel: UILabel = {
         let label = UILabel()
@@ -96,7 +94,8 @@ class HomeView: UIView {
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
         parent.present(vc, animated: true, completion: nil)
-        soundManager?.playTapSound()    }
+        Sound.play(file: "tap", fileExtension: "wav")
+    }
     
     lazy var scoresLabel: UILabel = {
         let label = UILabel()
@@ -120,7 +119,8 @@ class HomeView: UIView {
         vc.coinManager = parent.coinManager
         vc.modalPresentationStyle = .fullScreen
         parent.present(vc, animated: false, completion: nil)
-        soundManager?.playTapSound()    }
+        Sound.play(file: "tap", fileExtension: "wav")
+    }
     
     lazy var shopLabel: UILabel = {
         let label = UILabel()

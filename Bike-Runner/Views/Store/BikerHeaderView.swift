@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftySound
 
 class BikerHeaderView: UIView {
     private var parent: StoreViewController
@@ -22,6 +23,7 @@ class BikerHeaderView: UIView {
     @objc func clickedPreviousButton() {
         guard let previousBiker = parent.bikerManager?.getPreviousBiker() else { return }
         parent.show(biker: previousBiker)
+        Sound.play(file: "tap.wav")
     }
     
     lazy var nameLabel: UILabel = {
@@ -51,6 +53,7 @@ class BikerHeaderView: UIView {
     @objc func clickedNextButton() {
         guard let nextBiker = parent.bikerManager?.getNextBiker() else { return }
         parent.show(biker: nextBiker)
+        Sound.play(file: "tap.wav")
     }
     
     init(frame: CGRect = .zero, parent: StoreViewController) {

@@ -67,9 +67,7 @@ class ConfirmationPopUpView: UIView {
         bikerManager.selectShowingBiker()
         parent.setButtonToSelected()
         alpha = 0
-        
         Sound.play(file: "success-sound-1.wav")
-
     }
     
     lazy var cancelButton: UIButton = {
@@ -81,6 +79,7 @@ class ConfirmationPopUpView: UIView {
     }()
     @objc func clickedCancelButton() {
         alpha = 0
+        Sound.play(file: "tap.wav")
     }
     
     lazy var okButton: UIButton = {
@@ -92,6 +91,7 @@ class ConfirmationPopUpView: UIView {
     }()
     @objc func clickedOkButton() {
         alpha = 0
+        Sound.play(file: "tap.wav")
     }
     
     

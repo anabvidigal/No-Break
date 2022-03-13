@@ -16,7 +16,7 @@ class SoundManager {
     
     func playTapSound() {
         if playBool == true {
-            Sound.play(file: "tap.wav")
+            Sound.play(file: "tap", fileExtension: "wav")
         } else {
             print("Tap sound disabled. Enable in SoundManager")
         }

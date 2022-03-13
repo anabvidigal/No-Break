@@ -22,6 +22,7 @@ class StoreViewController: UIViewController {
     }()
     @objc func backButtonClicked() {
         dismiss(animated: false, completion: nil)
+        Sound.play(file: "select.wav")
     }
     
     lazy var playerCoinsView: CoinsView = {
@@ -81,6 +82,7 @@ class StoreViewController: UIViewController {
             Sound.play(file: "select.wav")
         case .forSale:
             showConfirmationPopUp()
+            Sound.play(file: "tap.wav")
         default:
             break
         }
