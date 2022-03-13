@@ -11,10 +11,11 @@
 		16B3FF2427DC780E000CD988 /* menu-music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2327DC780E000CD988 /* menu-music.wav */; };
 		16B3FF2627DC7827000CD988 /* player-die.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2527DC7826000CD988 /* player-die.wav */; };
 		16B3FF2827DC7836000CD988 /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2727DC7836000CD988 /* coin.wav */; };
-		16B3FF2A27DC7844000CD988 /* tap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2927DC7844000CD988 /* tap.wav */; };
-		16B3FF2C27DC7853000CD988 /* select.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2B27DC7853000CD988 /* select.wav */; };
 		16B3FF2E27DC785D000CD988 /* success-sound-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2D27DC785D000CD988 /* success-sound-2.wav */; };
 		16B3FF3027DC786B000CD988 /* success-sound-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2F27DC786B000CD988 /* success-sound-1.wav */; };
+		16B3FF3227DD6D0A000CD988 /* tap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF3127DD6D0A000CD988 /* tap.wav */; };
+		16B3FF3427DD6D16000CD988 /* select.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF3327DD6D16000CD988 /* select.wav */; };
+		16B3FF3627DD6D28000CD988 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FF3527DD6D27000CD988 /* SoundManager.swift */; };
 		2B1B1BBD27A9F344008A9792 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B1BBC27A9F344008A9792 /* Car.swift */; };
 		2B23A52427B34AF4000B6C9D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23A52327B34AF4000B6C9D /* UIFont+.swift */; };
 		2B41B10D27BE80F2007556B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B41B10C27BE80F2007556B5 /* GoogleService-Info.plist */; };
@@ -64,10 +65,11 @@
 		16B3FF2327DC780E000CD988 /* menu-music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "menu-music.wav"; sourceTree = "<group>"; };
 		16B3FF2527DC7826000CD988 /* player-die.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "player-die.wav"; sourceTree = "<group>"; };
 		16B3FF2727DC7836000CD988 /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin.wav; sourceTree = "<group>"; };
-		16B3FF2927DC7844000CD988 /* tap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tap.wav; sourceTree = "<group>"; };
-		16B3FF2B27DC7853000CD988 /* select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = select.wav; sourceTree = "<group>"; };
 		16B3FF2D27DC785D000CD988 /* success-sound-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "success-sound-2.wav"; sourceTree = "<group>"; };
 		16B3FF2F27DC786B000CD988 /* success-sound-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "success-sound-1.wav"; sourceTree = "<group>"; };
+		16B3FF3127DD6D0A000CD988 /* tap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap.wav; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Documents/AnaSchueda - Bike Runner/sounds/tap.wav"; sourceTree = "<group>"; };
+		16B3FF3327DD6D16000CD988 /* select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = select.wav; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Documents/AnaSchueda - Bike Runner/sounds/select.wav"; sourceTree = "<group>"; };
+		16B3FF3527DD6D27000CD988 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		2B1B1BBC27A9F344008A9792 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2B23A52327B34AF4000B6C9D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		2B41B10C27BE80F2007556B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -135,11 +137,11 @@
 			isa = PBXGroup;
 			children = (
 				16B3FF2727DC7836000CD988 /* coin.wav */,
+				16B3FF3327DD6D16000CD988 /* select.wav */,
 				16B3FF2527DC7826000CD988 /* player-die.wav */,
+				16B3FF3127DD6D0A000CD988 /* tap.wav */,
 				16B3FF2F27DC786B000CD988 /* success-sound-1.wav */,
 				16B3FF2D27DC785D000CD988 /* success-sound-2.wav */,
-				16B3FF2927DC7844000CD988 /* tap.wav */,
-				16B3FF2B27DC7853000CD988 /* select.wav */,
 				16B3FF2127DC7724000CD988 /* game-music.wav */,
 				16B3FF2327DC780E000CD988 /* menu-music.wav */,
 			);
@@ -231,6 +233,7 @@
 				61A7D90B27BA8C44008F8539 /* BikerManager.swift */,
 				2B99C06D27A3B321003606C9 /* Scenery.swift */,
 				2B56DA6027AAAFD700AD63E5 /* ScoreDetector.swift */,
+				16B3FF3527DD6D27000CD988 /* SoundManager.swift */,
 				6131BB1527BDB62C000D3400 /* ScoreManager.swift */,
 				2B99C07127A3BC69003606C9 /* SpeedManager.swift */,
 				2B6D73B227AD7416002B56C7 /* GameCenter.swift */,
@@ -364,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B3FF3227DD6D0A000CD988 /* tap.wav in Resources */,
 				2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */,
 				16B3FF2227DC7724000CD988 /* game-music.wav in Resources */,
 				16B3FF3027DC786B000CD988 /* success-sound-1.wav in Resources */,
@@ -371,9 +375,8 @@
 				2B41B10D27BE80F2007556B5 /* GoogleService-Info.plist in Resources */,
 				16B3FF2627DC7827000CD988 /* player-die.wav in Resources */,
 				2B56DA7627AB383D00AD63E5 /* LaunchScreen.storyboard in Resources */,
-				16B3FF2A27DC7844000CD988 /* tap.wav in Resources */,
 				2B99C06227A3A352003606C9 /* Assets.xcassets in Resources */,
-				16B3FF2C27DC7853000CD988 /* select.wav in Resources */,
+				16B3FF3427DD6D16000CD988 /* select.wav in Resources */,
 				16B3FF2827DC7836000CD988 /* coin.wav in Resources */,
 				16B3FF2427DC780E000CD988 /* menu-music.wav in Resources */,
 				16B3FF2E27DC785D000CD988 /* success-sound-2.wav in Resources */,
@@ -481,6 +484,7 @@
 				617E496927B54EBD0052F021 /* UIImage+.swift in Sources */,
 				2B58BD6627A8146800DCF69D /* Constants.swift in Sources */,
 				2B99C06E27A3B321003606C9 /* Scenery.swift in Sources */,
+				16B3FF3627DD6D28000CD988 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
