@@ -27,9 +27,11 @@ class HomeView: UIView {
     lazy var playButton: UIButton = {
         let button = UIButton()
         button.setImage(.playButton, for: .normal)
+        button.alpha = 0
         button.setImage(.playButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
         parent.coinManager?.hitTheJackpot()
+        button.alpha = 0
         return button
     }()
     @objc func playButtonClicked() {
@@ -49,6 +51,7 @@ class HomeView: UIView {
         button.setImage(.achievementButton, for: .normal)
         button.setImage(.achievementButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(achievementButtonClicked), for: .touchUpInside)
+        button.alpha = 0
         return button
     }()
     @objc func achievementButtonClicked() {
@@ -64,6 +67,7 @@ class HomeView: UIView {
         button.setImage(.leaderboardButton, for: .normal)
         button.setImage(.leaderboardButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(leaderboardButtonClicked), for: .touchUpInside)
+        button.alpha = 0
         return button
     }()
     @objc func leaderboardButtonClicked() {
@@ -78,6 +82,7 @@ class HomeView: UIView {
         button.setImage(.bikeButton, for: .normal)
         button.setImage(.bikeButtonPressed, for: .highlighted)
         button.addTarget(self, action: #selector(bikeButtonClicked), for: .touchUpInside)
+        button.alpha = 0
         return button
     }()
     @objc func bikeButtonClicked() {
