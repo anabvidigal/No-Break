@@ -85,7 +85,7 @@ class GameOverView: UIView {
         return button
     }()
     @objc func shopButtonClicked() {
-        let vc = StoreViewController()
+        let vc = ShopViewController()
         vc.bikerManager = parent.bikerManager
         vc.coinManager = parent.coinManager
         vc.modalPresentationStyle = .fullScreen

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class StoreViewController: UIViewController {
+class ShopViewController: UIViewController {
     var bikerManager: BikerManager?
     var coinManager: CoinManager?
     
@@ -54,10 +54,18 @@ class StoreViewController: UIViewController {
         return label
     }()
 
-    lazy var ridersCollection: UIView = {
-        let collection = UIView()
-        collection.backgroundColor = .red
-        return collection
+    lazy var ridersCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = .init(top: 0, left: 0, bottom: 16, right: 0)
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(ShopCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        return collectionView
     }()
     
     lazy var backgroundView: UIView = {
@@ -239,11 +247,11 @@ class StoreViewController: UIViewController {
     }
     
     private func setupRidersCollection() {
-        view.addSubview(ridersCollection)
-        ridersCollection.snp.makeConstraints { make in
+        view.addSubview(ridersCollectionView)
+        ridersCollectionView.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(8)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.width.equalTo(166)
+            make.width.equalTo(168)
             make.bottom.equalToSuperview()
         }
     }
@@ -252,7 +260,7 @@ class StoreViewController: UIViewController {
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(8)
-            make.leading.equalTo(ridersCollection.snp.trailing).offset(16)
+            make.leading.equalTo(ridersCollectionView.snp.trailing).offset(16)
             make.trailing.equalTo(moreCoinsButton)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
@@ -387,5 +395,25 @@ class StoreViewController: UIViewController {
         priceView.alpha = 0
         selectButton.isEnabled = false
         selectButton.setImage(.selectedButton, for: .disabled)
+    }
+}
+
+extension ShopViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        bikerManager?.bikers.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ShopCollectionViewCell
+        if let biker = bikerManager?.bikers[indexPath.row] {
+            cell.set(biker: biker)
+        }
+        return cell
+    }
+}
+
+extension ShopViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 80, height: 80)
     }
 }

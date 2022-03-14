@@ -107,7 +107,7 @@ class HomeView: UIView {
         return button
     }()
     @objc func bikeButtonClicked() {
-        let vc = StoreViewController()
+        let vc = ShopViewController()
         vc.bikerManager = parent.bikerManager
         vc.coinManager = parent.coinManager
         vc.modalPresentationStyle = .fullScreen

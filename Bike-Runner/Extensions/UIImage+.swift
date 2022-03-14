@@ -159,4 +159,8 @@ extension UIImage {
     open class var moreButtonPressed: UIImage { get {
         UIImage(named: "moreButtonPressed")!
     }}
+    
+    open class var check: UIImage { get {
+        UIImage(named: "check")!
+    }}
 }

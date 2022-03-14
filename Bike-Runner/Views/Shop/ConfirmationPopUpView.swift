@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class ConfirmationPopUpView: UIView {
-    var parent: StoreViewController
+    var parent: ShopViewController
 
     lazy var darkeningView: UIView = {
         let view = UIView()
@@ -91,7 +91,7 @@ class ConfirmationPopUpView: UIView {
     }
     
     
-    init(frame: CGRect = .zero, parent: StoreViewController) {
+    init(frame: CGRect = .zero, parent: ShopViewController) {
         self.parent = parent
         super.init(frame: frame)
         
