@@ -163,4 +163,11 @@ extension UIImage {
     open class var check: UIImage { get {
         UIImage(named: "check")!
     }}
+    
+    open class var homeButton: UIImage { get {
+        UIImage(named: "homeButton")!
+    }}
+    open class var homeButtonPressed: UIImage { get {
+        UIImage(named: "homeButtonPressed")!
+    }}
 }

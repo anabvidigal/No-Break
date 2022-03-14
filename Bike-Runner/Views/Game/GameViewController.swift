@@ -66,15 +66,15 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         return view
     }()
     
-    lazy var backButton: UIButton = {
+    lazy var homeButton: UIButton = {
         let button = UIButton()
-        button.setImage(.backButton, for: .normal)
-        button.setImage(.backButtonPressed, for: .highlighted)
-        button.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
+        button.setImage(.homeButton, for: .normal)
+        button.setImage(.homeButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(homeButtonClicked), for: .touchUpInside)
         button.alpha = 0
         return button
     }()
-    @objc func backButtonClicked() {
+    @objc func homeButtonClicked() {
         gameScene?.reset()
         gameScene?.status = .animating
         gameScene?.introNode.removeFromParent()
@@ -116,7 +116,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         setupScoreView()
         setupCoinsView()
         setupGameOverView()
-        setupBackButton()
+        setupHomeButton()
     
         gameCenter?.authenticateUser(self)
     }
@@ -176,9 +176,9 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         }
     }
     
-    private func setupBackButton() {
-        view.addSubview(backButton)
-        backButton.snp.makeConstraints { make in
+    private func setupHomeButton() {
+        view.addSubview(homeButton)
+        homeButton.snp.makeConstraints { make in
             make.width.equalTo(40)
             make.height.equalTo(40)
             make.top.equalTo(gameOverView)
@@ -223,7 +223,7 @@ extension GameViewController: GameSceneDelegate {
     private func showGameOver() {
         guard let scoreManager = scoreManager else { return }
         gameOverView.alpha = 1
-        backButton.alpha = 1
+        homeButton.alpha = 1
         gameOverView.collectedCoinsView.set(collectedCoins: coinManager?.collectedCoins ?? 0)
         gameOverView.playerCoinsView.set(coins: coinManager?.playerCoins ?? 0, fontSize: 16)
         gameOverView.scoreLabel.text = "Score: \(scoreManager.currentScore)"
@@ -251,7 +251,7 @@ extension GameViewController: GameSceneDelegate {
     
     func hideGameOver() {
         gameOverView.alpha = 0
-        backButton.alpha = 0
+        homeButton.alpha = 0
         gameOverView.extraLifeButton.isEnabled = true
     }
 }
@@ -259,7 +259,7 @@ extension GameViewController: GameSceneDelegate {
 extension GameViewController: AdShower {
     func rewardedWasShowed() {
         gameOverView.alpha = 0
-        backButton.alpha = 0
+        homeButton.alpha = 0
         gameScene?.continueGame()
         gameOverView.extraLifeButton.isEnabled = false
     }

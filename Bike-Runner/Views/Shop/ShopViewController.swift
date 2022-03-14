@@ -371,8 +371,8 @@ class ShopViewController: UIViewController {
     func show(biker: Biker) {
         bikerNameLabel.text = biker.name
         bikerDescriptionLabel.text = biker.description
-        bikeImageView.image = UIImage(named: "\(biker.id)_bike")
-        bikerImageView.image = UIImage(named: "\(biker.id)_rider")
+        bikeImageView.image = UIImage(named: "\(biker.id)_bike_border")
+        bikerImageView.image = UIImage(named: "\(biker.id)_rider_border")
         priceView.priceLabel.text = "\(biker.price)"
         
         switch biker.status {
