@@ -20,8 +20,6 @@ class ConfirmationPopUpView: UIView {
     lazy var popUpView: UIView = {
         let view = UIView()
         view.backgroundColor = .appBrown2
-        view.layer.borderColor = UIColor.appBrown1.cgColor
-        view.layer.borderWidth = 3
         return view
     }()
     
