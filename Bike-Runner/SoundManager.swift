@@ -22,5 +22,33 @@ class SoundManager {
         }
     }
     
+    func playSelectSound() {
+        Sound.stop(file: "select", fileExtension: "wav")
+    }
+    
+    func playCoinSound() {
+        Sound.play(file: "coin", fileExtension: "wav")
+    }
+    
+    func playPlayerDieSound() {
+        Sound.play(file: "player-die", fileExtension: "wav")
+    }
+    
+    func playGameMusic() {
+        Sound.play(file: "game-music", fileExtension: "wav")
+    }
+    
+    func stopGameMusic() {
+        Sound.stop(file: "game-music", fileExtension: "wav")
+    }
+    
+    func playMenuMusic() {
+        Sound.play(file: "menu-music", fileExtension: "wav")
+    }
+    
+    func stopMenuMusic() {
+        Sound.stop(file: "menu-music", fileExtension: "wav")
+    }
+    
     
 }

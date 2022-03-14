@@ -23,7 +23,6 @@ class BikerHeaderView: UIView {
     @objc func clickedPreviousButton() {
         guard let previousBiker = parent.bikerManager?.getPreviousBiker() else { return }
         parent.show(biker: previousBiker)
-        Sound.play(file: "tap.wav")
     }
     
     lazy var nameLabel: UILabel = {

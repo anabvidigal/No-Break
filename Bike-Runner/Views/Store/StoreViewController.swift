@@ -12,6 +12,7 @@ import SwiftySound
 class StoreViewController: UIViewController {
     var bikerManager: BikerManager?
     var coinManager: CoinManager?
+    var soundManager: SoundManager?
     
     lazy var backButton: UIButton = {
         let button = UIButton()
@@ -22,7 +23,7 @@ class StoreViewController: UIViewController {
     }()
     @objc func backButtonClicked() {
         dismiss(animated: false, completion: nil)
-        Sound.play(file: "select.wav")
+        soundManager?.playTapSound()
     }
     
     lazy var playerCoinsView: CoinsView = {
@@ -79,10 +80,10 @@ class StoreViewController: UIViewController {
         case .bought:
             bikerManager?.selectShowingBiker()
             setButtonToSelected()
-            Sound.play(file: "select.wav")
+            soundManager?.playSelectSound()
         case .forSale:
             showConfirmationPopUp()
-            Sound.play(file: "tap.wav")
+            soundManager?.playTapSound()
         default:
             break
         }

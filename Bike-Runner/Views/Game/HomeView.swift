@@ -13,8 +13,6 @@ import SwiftySound
 class HomeView: UIView {
     private var parent: GameViewController
     
-    var soundManager: SoundManager?
-    
     lazy var logoView: UIView = {
         let view = UIView()
         return view
@@ -45,9 +43,9 @@ class HomeView: UIView {
         parent.gameScene?.addChild(introNode)
         parent.gameScene?.status = .intro
         alpha = 0
-        Sound.play(file: "tap", fileExtension: "wav")
-        Sound.play(file: "game-music", fileExtension: "wav")
-        Sound.stop(file: "menu-music", fileExtension: "wav")
+        parent.soundManager?.playGameMusic()
+        parent.soundManager?.stopMenuMusic()
+        parent.soundManager?.playTapSound()
     }
     
     lazy var playLabel: UILabel = {
@@ -71,7 +69,7 @@ class HomeView: UIView {
         vc.gameCenterDelegate = parent
         GKAchievement.loadAchievements()
         parent.present(vc, animated: true, completion: nil)
-        Sound.play(file: "tap", fileExtension: "wav")
+        parent.soundManager?.playTapSound()
     }
     
     lazy var awardLabel: UILabel = {
@@ -94,7 +92,7 @@ class HomeView: UIView {
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
         parent.present(vc, animated: true, completion: nil)
-        Sound.play(file: "tap", fileExtension: "wav")
+        parent.soundManager?.playTapSound()
     }
     
     lazy var scoresLabel: UILabel = {
@@ -106,20 +104,21 @@ class HomeView: UIView {
     }()
     
     
-    lazy var bikeButton: UIButton = {
+    lazy var shopButton: UIButton = {
         let button = UIButton()
         button.setImage(.bikeButton, for: .normal)
         button.setImage(.bikeButtonPressed, for: .highlighted)
-        button.addTarget(self, action: #selector(bikeButtonClicked), for: .touchUpInside)
+        button.addTarget(self, action: #selector(shopButtonClicked), for: .touchUpInside)
         return button
     }()
-    @objc func bikeButtonClicked() {
+    @objc func shopButtonClicked() {
         let vc = StoreViewController()
         vc.bikerManager = parent.bikerManager
         vc.coinManager = parent.coinManager
+        vc.soundManager = parent.soundManager
         vc.modalPresentationStyle = .fullScreen
         parent.present(vc, animated: false, completion: nil)
-        Sound.play(file: "tap", fileExtension: "wav")
+        parent.soundManager?.playTapSound()
     }
     
     lazy var shopLabel: UILabel = {
@@ -152,7 +151,7 @@ class HomeView: UIView {
         
         setupLogoImageView()
         
-        Sound.play(file: "menu-music", fileExtension: "wav")
+        parent.soundManager?.playMenuMusic()
 
     }
     
@@ -222,8 +221,8 @@ class HomeView: UIView {
     }
     
     private func setupBikeButton() {
-        buttonsView.addSubview(bikeButton)
-        bikeButton.snp.makeConstraints { make in
+        buttonsView.addSubview(shopButton)
+        shopButton.snp.makeConstraints { make in
             make.width.equalTo(180)
             make.height.equalTo(80)
             make.leading.equalTo(playButton.snp.trailing).offset(5)
@@ -235,8 +234,8 @@ class HomeView: UIView {
     private func setupShopLabel() {
         buttonsView.addSubview(shopLabel)
         shopLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(bikeButton)
-            make.top.equalTo(bikeButton.snp.bottom)
+            make.centerX.equalTo(shopButton)
+            make.top.equalTo(shopButton.snp.bottom)
             make.bottom.equalToSuperview().offset(-2)
         }
     }

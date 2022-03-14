@@ -28,6 +28,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     var coinManager: CoinManager?
     var bikerManager: BikerManager?
     var scoreManager: ScoreManager?
+    var soundManager: SoundManager?
     var gameCenter: GameCenter?
     
     private var interstitialAd: GADInterstitialAd?
@@ -201,6 +202,7 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             scene.bikerManager = bikerManager
             scene.scoreManager = scoreManager
             scene.gameCenter = gameCenter
+            scene.soundManager = soundManager
             skView.presentScene(scene)
         }
         skView.ignoresSiblingOrder = true

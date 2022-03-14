@@ -22,11 +22,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var coinSpawner: CoinSpawner?
     var speedManager = SpeedManager()
     
-    
     var gameCenter: GameCenter?
     var scoreManager: ScoreManager?
     var coinManager: CoinManager?
     var bikerManager: BikerManager?
+    var soundManager: SoundManager?
     
     
     var status: GameStatus = .animating
@@ -147,14 +147,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coinManager?.incrementCoins()
         gameDelegate?.catchCoin(self)
         score()
-        Sound.play(file: "coin.wav")
+        soundManager?.playCoinSound()
     }
     
     private func gameOver() {
         status = .gameOver
         player.die()
-        Sound.play(file: "player-die.wav")
-        Sound.stop(file: "game-music.wav")
+        soundManager?.playPlayerDieSound()
+        soundManager?.stopGameMusic()
         carSpawner?.stopCarsAnimation()
         scoreManager?.setHighscore()
         gameDelegate?.gameIsOver(self)

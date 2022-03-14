@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc?.coinManager = CoinManager(repository: UserDefaultsCoinsRepository())
         vc?.scoreManager = ScoreManager(gameCenter: gameCenter, repository: UserDefaultsHighscoreRepository())
         vc?.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
+        vc?.soundManager = SoundManager()
         vc?.gameCenter = gameCenter
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
