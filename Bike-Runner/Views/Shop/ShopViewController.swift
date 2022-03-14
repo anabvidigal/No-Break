@@ -54,7 +54,7 @@ class ShopViewController: UIViewController {
         return label
     }()
 
-    lazy var ridersCollectionView: UICollectionView = {
+    lazy var bikersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = .init(top: 0, left: 0, bottom: 16, right: 0)
         layout.minimumLineSpacing = 8
@@ -92,7 +92,7 @@ class ShopViewController: UIViewController {
         return imageView
     }()
     
-    lazy var riderInfoView: UIView = {
+    lazy var bikerInfoView: UIView = {
         let view = UIView()
         return view
     }()
@@ -108,6 +108,7 @@ class ShopViewController: UIViewController {
         switch bikerManager?.showingBiker.status {
         case .bought:
             bikerManager?.selectShowingBiker()
+            bikersCollectionView.reloadData()
             setButtonToSelected()
         case .forSale:
             showConfirmationPopUp()
@@ -139,12 +140,12 @@ class ShopViewController: UIViewController {
         return view
     }()
     
-    lazy var riderTextView: UIView = {
+    lazy var bikerTextView: UIView = {
         let view = UIView()
         return view
     }()
     
-    lazy var riderNameLabel: UILabel = {
+    lazy var bikerNameLabel: UILabel = {
         let label = UILabel()
         label.font = .kenneyFont.withSize(24)
         label.textColor = .appBrown2
@@ -155,7 +156,7 @@ class ShopViewController: UIViewController {
         return label
     }()
     
-    lazy var riderDescriptionLabel: UILabel = {
+    lazy var bikerDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .kenneyFont.withSize(18)
         label.textColor = .appBrown2
@@ -182,7 +183,7 @@ class ShopViewController: UIViewController {
         setupPlayerCoinsView()
         setupWalletLabel()
         
-        setupRidersCollection()
+        setupBikersCollection()
         
         setupBackgroundView()
         
@@ -190,11 +191,11 @@ class ShopViewController: UIViewController {
         setupBikerImageView()
         setupBikeImageView()
         
-        setupRiderInfoView()
+        setupBikerInfoView()
         setupSelectButton()
         setupPriceView()
         
-        setupRiderTextView()
+        setupBikerTextView()
         
         setupConfirmationPopUpView()
         
@@ -246,9 +247,9 @@ class ShopViewController: UIViewController {
         }
     }
     
-    private func setupRidersCollection() {
-        view.addSubview(ridersCollectionView)
-        ridersCollectionView.snp.makeConstraints { make in
+    private func setupBikersCollection() {
+        view.addSubview(bikersCollectionView)
+        bikersCollectionView.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(8)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.width.equalTo(168)
@@ -260,7 +261,7 @@ class ShopViewController: UIViewController {
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(8)
-            make.leading.equalTo(ridersCollectionView.snp.trailing).offset(16)
+            make.leading.equalTo(bikersCollectionView.snp.trailing).offset(16)
             make.trailing.equalTo(moreCoinsButton)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
@@ -296,9 +297,9 @@ class ShopViewController: UIViewController {
         }
     }
     
-    private func setupRiderInfoView() {
-        backgroundView.addSubview(riderInfoView)
-        riderInfoView.snp.makeConstraints { make in
+    private func setupBikerInfoView() {
+        backgroundView.addSubview(bikerInfoView)
+        bikerInfoView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
             make.leading.equalTo(ambientImageView.snp.trailing)
             make.trailing.equalToSuperview()
@@ -307,12 +308,12 @@ class ShopViewController: UIViewController {
     }
     
     private func setupSelectButton() {
-        riderInfoView.addSubview(selectButton)
-        riderInfoView.setNeedsLayout()
-        riderInfoView.layoutIfNeeded()
+        bikerInfoView.addSubview(selectButton)
+        bikerInfoView.setNeedsLayout()
+        bikerInfoView.layoutIfNeeded()
         selectButton.snp.makeConstraints { make in
-            print(min(180, riderInfoView.frame.size.height - 16))
-            make.width.lessThanOrEqualTo(min(180, riderInfoView.frame.size.width - 16))
+            print(min(180, bikerInfoView.frame.size.height - 16))
+            make.width.lessThanOrEqualTo(min(180, bikerInfoView.frame.size.width - 16))
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview()
             make.height.equalTo(selectButton.snp.width).multipliedBy(0.3333333333)
@@ -320,7 +321,7 @@ class ShopViewController: UIViewController {
     }
     
     private func setupPriceView() {
-        riderInfoView.addSubview(priceView)
+        bikerInfoView.addSubview(priceView)
         priceView.snp.makeConstraints { make in
             make.centerX.equalTo(selectButton)
             make.bottom.equalTo(selectButton.snp.top).offset(-4)
@@ -328,34 +329,34 @@ class ShopViewController: UIViewController {
         }
     }
     
-    private func setupRiderTextView() {
-        riderInfoView.addSubview(riderTextView)
-        riderTextView.snp.makeConstraints { make in
+    private func setupBikerTextView() {
+        bikerInfoView.addSubview(bikerTextView)
+        bikerTextView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.bottom.equalTo(selectButton.snp.top)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
         }
         
-        setupRiderNameLabel()
-        setupRiderDescriptionLabel()
+        setupBikerNameLabel()
+        setupBikerDescriptionLabel()
     }
     
-    private func setupRiderNameLabel() {
-        riderTextView.addSubview(riderNameLabel)
-        riderNameLabel.snp.makeConstraints { make in
+    private func setupBikerNameLabel() {
+        bikerTextView.addSubview(bikerNameLabel)
+        bikerNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(riderTextView.snp.centerY).offset(-5)
+            make.bottom.equalTo(bikerTextView.snp.centerY).offset(-5)
         }
     }
     
-    private func setupRiderDescriptionLabel() {
-        riderTextView.addSubview(riderDescriptionLabel)
-        riderDescriptionLabel.snp.makeConstraints { make in
+    private func setupBikerDescriptionLabel() {
+        bikerTextView.addSubview(bikerDescriptionLabel)
+        bikerDescriptionLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.top.equalTo(riderTextView.snp.centerY).offset(5)
+            make.top.equalTo(bikerTextView.snp.centerY).offset(5)
         }
     }
     
@@ -369,6 +370,8 @@ class ShopViewController: UIViewController {
     }
     
     func show(biker: Biker) {
+        bikerNameLabel.text = biker.name
+        bikerDescriptionLabel.text = biker.description
         bikeImageView.image = UIImage(named: "\(biker.id)_bike")
         bikerImageView.image = UIImage(named: "\(biker.id)_rider")
         priceView.priceLabel.text = "\(biker.price)"
@@ -395,6 +398,14 @@ class ShopViewController: UIViewController {
         priceView.alpha = 0
         selectButton.isEnabled = false
         selectButton.setImage(.selectedButton, for: .disabled)
+    }
+}
+
+extension ShopViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let biker = bikerManager?.bikers[indexPath.row] else { return }
+        show(biker: biker)
+        bikerManager?.setShowing(biker: biker)
     }
 }
 

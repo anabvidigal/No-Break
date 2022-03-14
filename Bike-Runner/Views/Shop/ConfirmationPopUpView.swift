@@ -64,6 +64,7 @@ class ConfirmationPopUpView: UIView {
         coinManager.spend(coins: bikerManager.showingBiker.price)
         parent.playerCoinsView.set(coins: coinManager.playerCoins)
         bikerManager.selectShowingBiker()
+        parent.bikersCollectionView.reloadData()
         parent.setButtonToSelected()
         alpha = 0
     }

@@ -16,11 +16,11 @@ protocol BikersRepository {
 
 class UserDefaultsBikersRepository: BikersRepository {
     let defaultBikers = [
-        Biker(name: "James", description: "The boy is an artist", id: "fixed", price: 0, status: .selected, index: 0),
-        Biker(name: "Nati", description: "She's really into dinosaurs", id: "fixie", price: 0, status: .bought, index: 1),
-        Biker(name: "Carol", description: "I think she likes the president", id: "MTB", price: 150, status: .forSale, index: 2),
-        Biker(name: "Gabe", description: "He loves his cats", id: "BMX", price: 500, status: .forSale, index: 3),
-        Biker(name: "Oil Man", description: "What's with the swim suit tho?", id: "barra_forte", price: 1000, status: .forSale, index: 4)
+        Biker(name: "James", description: "The boy is an artist", id: "fixed", price: 0, status: .selected),
+        Biker(name: "Nati", description: "She's really into dinosaurs", id: "fixie", price: 0, status: .bought),
+        Biker(name: "Carol", description: "I think she likes the president", id: "MTB", price: 150, status: .forSale),
+        Biker(name: "Gabe", description: "He loves his cats", id: "BMX", price: 500, status: .forSale),
+        Biker(name: "Oil Man", description: "What's with the swim suit tho?", id: "barra_forte", price: 1000, status: .forSale)
     ]
     
     var playerBikers: [Biker] = []
