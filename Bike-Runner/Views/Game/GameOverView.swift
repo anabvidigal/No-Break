@@ -52,7 +52,7 @@ class GameOverView: UIView {
         return button
     }()
     @objc func extraLifeButtonClicked() {
-        parent.showRewardedAd()
+        parent.adManager?.showRewardedAd(parent)
     }
     
     lazy var playAgainButton: UIButton = {
@@ -88,6 +88,7 @@ class GameOverView: UIView {
         let vc = ShopViewController()
         vc.bikerManager = parent.bikerManager
         vc.coinManager = parent.coinManager
+        vc.adManager = parent.adManager
         vc.modalPresentationStyle = .fullScreen
         parent.present(vc, animated: false, completion: nil)
     }

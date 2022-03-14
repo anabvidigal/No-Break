@@ -20,7 +20,12 @@ protocol GameSceneDelegate: AnyObject {
     func reset()
 }
 
-class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenContentDelegate {
+protocol AdShower: UIViewController {
+    func rewardedWasShowed()
+    func rewardedWasNotShowed()
+}
+
+class GameViewController: UIViewController, GADFullScreenContentDelegate {
 
     var gameScene: GameScene?
     
@@ -28,10 +33,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
     var bikerManager: BikerManager?
     var scoreManager: ScoreManager?
     var gameCenter: GameCenter?
+    var adManager: AdManager?
     var hapticsManager: HapticsManager?
-    
-    private var interstitialAd: GADInterstitialAd?
-    private var rewardedAd: GADRewardedAd?
     
     lazy var skView: SKView = {
         let view = SKView()
@@ -99,8 +102,8 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         
         super.viewDidLoad()
         
-        requestInterstitial()
-        requestRewarded()
+        adManager?.requestInterstitial()
+        adManager?.requestRewarded()
         
         view.backgroundColor = .appBrown1
         
@@ -116,71 +119,6 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         setupBackButton()
     
         gameCenter?.authenticateUser(self)
-    }
-    
-    func requestInterstitial() {
-        let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID: Constants.testInterstitialAdUnitID, request: request, completionHandler: { [self] ad, error in
-            if let error = error {
-              print("Failed to load interstitial ad with error: \(error.localizedDescription)")
-              return
-            }
-            interstitialAd = ad
-            interstitialAd?.fullScreenContentDelegate = self
-          }
-        )
-    }
-    
-    func requestRewarded() {
-        let request = GADRequest()
-        GADRewardedAd.load(withAdUnitID: Constants.testRewardedAdUnitID, request: request, completionHandler: { [self] ad, error in
-            if let error = error {
-              print("Failed to load rewarded ad with error: \(error.localizedDescription)")
-              return
-            }
-            rewardedAd = ad
-            rewardedAd?.fullScreenContentDelegate = self
-          }
-        )
-    }
-    
-    /// Tells the delegate that the ad failed to present full screen content.
-    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-      print("Ad did fail to present full screen content.")
-    }
-
-    /// Tells the delegate that the ad presented full screen content.
-    func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-      print("Ad did present full screen content.")
-    }
-
-    /// Tells the delegate that the ad dismissed full screen content.
-    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-      print("Ad did dismiss full screen content.")
-        requestInterstitial()
-        requestRewarded()
-    }
-    
-    func showInterstitialAd() {
-        if interstitialAd != nil {
-            interstitialAd!.present(fromRootViewController: self)
-          } else {
-            print("Ad wasn't ready")
-          }
-    }
-    
-    func showRewardedAd() {
-        if rewardedAd != nil {
-            rewardedAd!.present(fromRootViewController: self, userDidEarnRewardHandler: {
-                self.gameOverView.alpha = 0
-                self.backButton.alpha = 0
-                self.gameScene?.continueGame()
-                self.gameOverView.extraLifeButton.isEnabled = false
-            })
-          } else {
-              self.gameOverView.extraLifeButton.isEnabled = false
-              print("Ad wasn't ready")
-          }
     }
     
     private func setupSkView() {
@@ -247,13 +185,33 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
             make.trailing.equalTo(gameOverView.snp.leading).offset(-8)
         }
     }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+}
+
+extension GameViewController: GKGameCenterControllerDelegate {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension GameViewController: GameSceneDelegate {
     func gameIsOver(_ sender: GameScene) {
         hideStats()
         coinManager?.addCollectedCoins()
         showGameOver()
         if scoreManager?.currentScore ?? 0 % 7 == 0 {
-            showInterstitialAd()
+            adManager?.showInterstitialAd(self)
         }
     }
     
@@ -272,17 +230,6 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         gameOverView.highscoreLabel.alpha = scoreManager.currentScoreIsHighscore ? 1 : 0
     }
     
-    func hideGameOver() {
-        gameOverView.alpha = 0
-        backButton.alpha = 0
-        gameOverView.extraLifeButton.isEnabled = true
-    }
-    
-    func showStats() {
-        collectedCoinsView.alpha = 1
-        scoreView.alpha = 1
-    }
-    
     func score(_ sender: GameScene) {
         guard let scoreManager = scoreManager else { return }
         scoreView.scoreLabel.text = "\(scoreManager.currentScore)"
@@ -292,26 +239,32 @@ class GameViewController: UIViewController, GameSceneDelegate, GADFullScreenCont
         collectedCoinsView.set(coins: coinManager?.collectedCoins ?? 0)
     }
     
+    func showStats() {
+        collectedCoinsView.alpha = 1
+        scoreView.alpha = 1
+    }
+    
     func reset() {
         scoreView.scoreLabel.text = "0"
         collectedCoinsView.coinsLabel.text = "0"
     }
     
-    override var shouldAutorotate: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscapeRight
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
+    func hideGameOver() {
+        gameOverView.alpha = 0
+        backButton.alpha = 0
+        gameOverView.extraLifeButton.isEnabled = true
     }
 }
 
-extension GameViewController: GKGameCenterControllerDelegate {
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true, completion: nil)
+extension GameViewController: AdShower {
+    func rewardedWasShowed() {
+        gameOverView.alpha = 0
+        backButton.alpha = 0
+        gameScene?.continueGame()
+        gameOverView.extraLifeButton.isEnabled = false
+    }
+    
+    func rewardedWasNotShowed() {
+        self.gameOverView.extraLifeButton.isEnabled = false
     }
 }

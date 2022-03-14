@@ -11,6 +11,7 @@ import SnapKit
 class ShopViewController: UIViewController {
     var bikerManager: BikerManager?
     var coinManager: CoinManager?
+    var adManager: AdManager?
     
     lazy var backButton: UIButton = {
         let button = UIButton()
@@ -36,8 +37,13 @@ class ShopViewController: UIViewController {
         let button = UIButton()
         button.setImage(.moreButton, for: .normal)
         button.setImage(.moreButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(moreCoinsButtonClicked), for: .touchUpInside)
         return button
     }()
+    @objc func moreCoinsButtonClicked() {
+        adManager?.showRewardedAd(self)
+    }
+    
     
     lazy var playerCoinsView: CoinsView = {
         let view = CoinsView(width: 120)
@@ -121,17 +127,10 @@ class ShopViewController: UIViewController {
         guard let playerCoins = coinManager?.playerCoins,
               let bikerPrice = bikerManager?.showingBiker.price else { return }
         
-        confirmationPopUpView.alpha = 1
         if playerCoins >= bikerPrice {
-            confirmationPopUpView.titleLabel.text = "Are you sure?"
-            confirmationPopUpView.textLabel.text = "This will cost \(bikerPrice) coins"
-            confirmationPopUpView.okButton.alpha = 0
-            confirmationPopUpView.buttonsStack.alpha = 1
+            confirmationPopUpView.showBuyConfirmation(for: bikerPrice)
         } else {
-            confirmationPopUpView.titleLabel.text = "Not enough coins!"
-            confirmationPopUpView.textLabel.text = "You need more \(bikerPrice - playerCoins) coins"
-            confirmationPopUpView.buttonsStack.alpha = 0
-            confirmationPopUpView.okButton.alpha = 1
+            confirmationPopUpView.showNotEnoughCoins(for: bikerPrice, with: playerCoins)
         }
     }
     
@@ -401,6 +400,7 @@ class ShopViewController: UIViewController {
     }
 }
 
+
 extension ShopViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let biker = bikerManager?.bikers[indexPath.row] else { return }
@@ -426,5 +426,20 @@ extension ShopViewController: UICollectionViewDataSource {
 extension ShopViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 80, height: 80)
+    }
+}
+
+
+extension ShopViewController: AdShower {
+    func rewardedWasShowed() {
+        let earnedCoins = Int.random(in: 8...13)
+        coinManager?.notAddedCollectedCoins = earnedCoins
+        coinManager?.addCollectedCoins()
+        playerCoinsView.set(coins: coinManager?.playerCoins ?? 0)
+        confirmationPopUpView.showRewardsEarned(for: earnedCoins)
+    }
+    
+    func rewardedWasNotShowed() {
+        moreCoinsButton.isEnabled = false
     }
 }

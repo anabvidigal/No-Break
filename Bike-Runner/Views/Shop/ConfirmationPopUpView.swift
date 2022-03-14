@@ -177,6 +177,30 @@ class ConfirmationPopUpView: UIView {
         }
     }
     
+    func showBuyConfirmation(for price: Int) {
+        alpha = 1
+        titleLabel.text = "Are you sure?"
+        textLabel.text = "This will cost \(price) coins"
+        okButton.alpha = 0
+        buttonsStack.alpha = 1
+    }
+    
+    func showNotEnoughCoins(for price: Int, with coins: Int) {
+        alpha = 1
+        titleLabel.text = "Not enough coins!"
+        textLabel.text = "You need more \(price - coins) coins"
+        buttonsStack.alpha = 0
+        okButton.alpha = 1
+    }
+
+    func showRewardsEarned(for coins: Int) {
+        alpha = 1
+        titleLabel.text = "Well done!"
+        textLabel.text = "You have earned \(coins) coins"
+        buttonsStack.alpha = 0
+        okButton.alpha = 1
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
