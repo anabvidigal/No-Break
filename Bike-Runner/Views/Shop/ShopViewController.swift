@@ -48,6 +48,7 @@ class ShopViewController: UIViewController {
     lazy var playerCoinsView: CoinsView = {
         let view = CoinsView(width: 120)
         view.set(coins: coinManager?.playerCoins ?? 0)
+        view.coinIcon.image = .coins
         return view
     }()
     
@@ -311,7 +312,6 @@ class ShopViewController: UIViewController {
         bikerInfoView.setNeedsLayout()
         bikerInfoView.layoutIfNeeded()
         selectButton.snp.makeConstraints { make in
-            print(min(180, bikerInfoView.frame.size.height - 16))
             make.width.lessThanOrEqualTo(min(180, bikerInfoView.frame.size.width - 16))
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview()
