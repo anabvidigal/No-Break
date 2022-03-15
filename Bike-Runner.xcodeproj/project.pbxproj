@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1629B7C027E0DEE100AD3BC8 /* select.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1629B7BF27E0DEE100AD3BC8 /* select.wav */; };
 		1629B7C227E0DEEE00AD3BC8 /* tap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1629B7C127E0DEEE00AD3BC8 /* tap.wav */; };
-		16B3FF2227DC7724000CD988 /* game-music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2127DC7724000CD988 /* game-music.wav */; };
+		1629B7C427E0F7D800AD3BC8 /* game-music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1629B7C327E0F7D800AD3BC8 /* game-music.wav */; };
 		16B3FF2427DC780E000CD988 /* menu-music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2327DC780E000CD988 /* menu-music.wav */; };
 		16B3FF2627DC7827000CD988 /* player-die.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2527DC7826000CD988 /* player-die.wav */; };
 		16B3FF2827DC7836000CD988 /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 16B3FF2727DC7836000CD988 /* coin.wav */; };
@@ -65,7 +65,7 @@
 /* Begin PBXFileReference section */
 		1629B7BF27E0DEE100AD3BC8 /* select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = select.wav; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Documents/AnaSchueda - Bike Runner/sounds/select.wav"; sourceTree = "<group>"; };
 		1629B7C127E0DEEE00AD3BC8 /* tap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap.wav; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Documents/AnaSchueda - Bike Runner/sounds/tap.wav"; sourceTree = "<group>"; };
-		16B3FF2127DC7724000CD988 /* game-music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-music.wav"; sourceTree = "<group>"; };
+		1629B7C327E0F7D800AD3BC8 /* game-music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-music.wav"; sourceTree = "<group>"; };
 		16B3FF2327DC780E000CD988 /* menu-music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "menu-music.wav"; sourceTree = "<group>"; };
 		16B3FF2527DC7826000CD988 /* player-die.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "player-die.wav"; sourceTree = "<group>"; };
 		16B3FF2727DC7836000CD988 /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin.wav; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 				16B3FF2527DC7826000CD988 /* player-die.wav */,
 				16B3FF2F27DC786B000CD988 /* success-sound-1.wav */,
 				16B3FF2D27DC785D000CD988 /* success-sound-2.wav */,
-				16B3FF2127DC7724000CD988 /* game-music.wav */,
+				1629B7C327E0F7D800AD3BC8 /* game-music.wav */,
 				16B3FF2327DC780E000CD988 /* menu-music.wav */,
 			);
 			path = Sounds;
@@ -375,8 +375,8 @@
 			files = (
 				1629B7C027E0DEE100AD3BC8 /* select.wav in Resources */,
 				2B56DA6427AABCF800AD63E5 /* Kenney Mini.ttf in Resources */,
-				16B3FF2227DC7724000CD988 /* game-music.wav in Resources */,
 				16B3FF3027DC786B000CD988 /* success-sound-1.wav in Resources */,
+				1629B7C427E0F7D800AD3BC8 /* game-music.wav in Resources */,
 				2B99C05727A3A350003606C9 /* GameScene.sks in Resources */,
 				2B41B10D27BE80F2007556B5 /* GoogleService-Info.plist in Resources */,
 				16B3FF2627DC7827000CD988 /* player-die.wav in Resources */,
