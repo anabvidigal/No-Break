@@ -210,7 +210,7 @@ extension GameViewController: GameSceneDelegate {
         hideStats()
         coinManager?.addCollectedCoins()
         showGameOver()
-        if scoreManager?.currentScore ?? 0 % 7 == 0 {
+        if Int.random(in: 1...4) == 4 {
             adManager?.showInterstitialAd(self)
         }
     }
