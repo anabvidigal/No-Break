@@ -23,7 +23,11 @@ class SoundManager {
     }
     
     func playSelectSound() {
-        Sound.stop(file: "select", fileExtension: "wav")
+        Sound.play(file: "select", fileExtension: "wav")
+    }
+    
+    func playSuccessSound() {
+        Sound.play(file: "success-sound-1", fileExtension: "wav")
     }
     
     func playCoinSound() {
@@ -35,7 +39,7 @@ class SoundManager {
     }
     
     func playGameMusic() {
-        Sound.play(file: "game-music", fileExtension: "wav")
+        Sound.play(file: "game-music", fileExtension: "wav", numberOfLoops: -1)
     }
     
     func stopGameMusic() {
@@ -43,7 +47,7 @@ class SoundManager {
     }
     
     func playMenuMusic() {
-        Sound.play(file: "menu-music", fileExtension: "wav")
+        Sound.play(file: "menu-music", fileExtension: "wav", numberOfLoops: -1)
     }
     
     func stopMenuMusic() {

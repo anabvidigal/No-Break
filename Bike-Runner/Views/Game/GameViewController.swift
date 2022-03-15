@@ -85,7 +85,8 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         collectedCoinsView.alpha = 0
         
         hideGameOver()
-        Sound.play(file: "menu-music.wav")
+        soundManager?.playTapSound()
+        soundManager?.playMenuMusic()
     }
     
     override func viewWillAppear(_ animated: Bool) {

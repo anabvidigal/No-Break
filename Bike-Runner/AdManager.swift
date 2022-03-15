@@ -12,7 +12,6 @@ class AdManager: NSObject, GADFullScreenContentDelegate {
     private var interstitialAd: GADInterstitialAd?
     private var rewardedAd: GADRewardedAd?
     
-    
     func requestInterstitial() {
         let request = GADRequest()
         GADInterstitialAd.load(withAdUnitID: Constants.testInterstitialAdUnitID, request: request, completionHandler: { [self] ad, error in

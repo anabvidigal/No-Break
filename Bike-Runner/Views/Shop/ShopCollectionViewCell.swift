@@ -7,9 +7,11 @@
 
 import UIKit
 import SnapKit
+import SwiftySound
 
 class ShopCollectionViewCell: UICollectionViewCell {
     var biker: Biker?
+    var soundManager: SoundManager?
     
     lazy var headBackground: UIView = {
         let view = UIView()

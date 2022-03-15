@@ -47,4 +47,5 @@ class BikerManager {
     func setShowing(biker: Biker) {
         showingBiker = biker
     }
+    
 }

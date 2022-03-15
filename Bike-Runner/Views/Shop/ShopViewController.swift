@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftySound
 
 class ShopViewController: UIViewController {
     var bikerManager: BikerManager?
@@ -23,6 +24,7 @@ class ShopViewController: UIViewController {
     }()
     @objc func backButtonClicked() {
         dismiss(animated: false, completion: nil)
+        soundManager?.playTapSound()
     }
     
     lazy var shopLabel: UILabel = {
@@ -43,6 +45,8 @@ class ShopViewController: UIViewController {
     }()
     @objc func moreCoinsButtonClicked() {
         adManager?.showRewardedAd(self)
+        soundManager?.playTapSound()
+        soundManager?.stopMenuMusic()
     }
     
     
@@ -117,8 +121,10 @@ class ShopViewController: UIViewController {
             bikerManager?.selectShowingBiker()
             bikersCollectionView.reloadData()
             setButtonToSelected()
+            soundManager?.playSelectSound()
         case .forSale:
             showConfirmationPopUp()
+            soundManager?.playTapSound()
         default:
             break
         }
@@ -407,6 +413,7 @@ extension ShopViewController: UICollectionViewDelegate {
         guard let biker = bikerManager?.bikers[indexPath.row] else { return }
         show(biker: biker)
         bikerManager?.setShowing(biker: biker)
+        soundManager?.playTapSound()
     }
 }
 
@@ -438,9 +445,11 @@ extension ShopViewController: AdShower {
         coinManager?.addCollectedCoins()
         playerCoinsView.set(coins: coinManager?.playerCoins ?? 0)
         confirmationPopUpView.showRewardsEarned(for: earnedCoins)
+        soundManager?.playMenuMusic()
     }
     
     func rewardedWasNotShowed() {
         moreCoinsButton.isEnabled = false
+//        soundManager?.playMenuMusic()
     }
 }
