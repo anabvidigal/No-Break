@@ -132,7 +132,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     private func setupScene() {
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             gameScene = scene
-            scene.scaleMode = .aspectFit
+            scene.scaleMode = .aspectFill
             scene.gameDelegate = self
             scene.coinManager = coinManager
             scene.bikerManager = bikerManager

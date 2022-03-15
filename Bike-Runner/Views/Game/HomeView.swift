@@ -85,7 +85,6 @@ class HomeView: UIView {
         return button
     }()
     @objc func leaderboardButtonClicked() {
-        parent.coinManager?.hitTheJackpot()
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
         parent.present(vc, animated: true, completion: nil)
