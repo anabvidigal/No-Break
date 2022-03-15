@@ -10,7 +10,7 @@ import SnapKit
 import SwiftySound
 
 class ConfirmationPopUpView: UIView {
-    var parent: StoreViewController
+    var parent: ShopViewController
 
     lazy var darkeningView: UIView = {
         let view = UIView()
@@ -21,8 +21,6 @@ class ConfirmationPopUpView: UIView {
     lazy var popUpView: UIView = {
         let view = UIView()
         view.backgroundColor = .appBrown2
-        view.layer.borderColor = UIColor.appBrown1.cgColor
-        view.layer.borderWidth = 3
         return view
     }()
     
@@ -65,6 +63,7 @@ class ConfirmationPopUpView: UIView {
         coinManager.spend(coins: bikerManager.showingBiker.price)
         parent.playerCoinsView.set(coins: coinManager.playerCoins)
         bikerManager.selectShowingBiker()
+        parent.bikersCollectionView.reloadData()
         parent.setButtonToSelected()
         alpha = 0
         Sound.play(file: "success-sound-1.wav")
@@ -95,7 +94,7 @@ class ConfirmationPopUpView: UIView {
     }
     
     
-    init(frame: CGRect = .zero, parent: StoreViewController) {
+    init(frame: CGRect = .zero, parent: ShopViewController) {
         self.parent = parent
         super.init(frame: frame)
         
@@ -180,6 +179,30 @@ class ConfirmationPopUpView: UIView {
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-8)
         }
+    }
+    
+    func showBuyConfirmation(for price: Int) {
+        alpha = 1
+        titleLabel.text = "Are you sure?"
+        textLabel.text = "This will cost \(price) coins"
+        okButton.alpha = 0
+        buttonsStack.alpha = 1
+    }
+    
+    func showNotEnoughCoins(for price: Int, with coins: Int) {
+        alpha = 1
+        titleLabel.text = "Not enough coins!"
+        textLabel.text = "You need more \(price - coins) coins"
+        buttonsStack.alpha = 0
+        okButton.alpha = 1
+    }
+
+    func showRewardsEarned(for coins: Int) {
+        alpha = 1
+        titleLabel.text = "Well done!"
+        textLabel.text = "You have earned \(coins) coins"
+        buttonsStack.alpha = 0
+        okButton.alpha = 1
     }
     
     required init?(coder: NSCoder) {

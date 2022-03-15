@@ -13,15 +13,13 @@ class Biker {
     var description: String
     var price: Int
     var status: Status
-    var index: Int
     
-    init(name: String, description: String, id: String, price: Int, status: Status, index: Int) {
+    init(name: String, description: String, id: String, price: Int, status: Status) {
         self.name = name
         self.description = description
         self.id = id
         self.price = price
         self.status = status
-        self.index = index
     }
     
     enum Status: Int {

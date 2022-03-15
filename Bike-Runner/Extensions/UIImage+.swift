@@ -148,4 +148,26 @@ extension UIImage {
     open class var playAgainButtonPressed: UIImage { get {
         UIImage(named: "playAgainButtonPressed")!
     }}
+    
+    open class var shopAmbient: UIImage { get {
+        UIImage(named: "shopAmbient")!
+    }}
+    
+    open class var moreButton: UIImage { get {
+        UIImage(named: "moreButton")!
+    }}
+    open class var moreButtonPressed: UIImage { get {
+        UIImage(named: "moreButtonPressed")!
+    }}
+    
+    open class var check: UIImage { get {
+        UIImage(named: "check")!
+    }}
+    
+    open class var homeButton: UIImage { get {
+        UIImage(named: "homeButton")!
+    }}
+    open class var homeButtonPressed: UIImage { get {
+        UIImage(named: "homeButtonPressed")!
+    }}
 }

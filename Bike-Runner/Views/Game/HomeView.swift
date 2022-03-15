@@ -89,6 +89,7 @@ class HomeView: UIView {
         return button
     }()
     @objc func leaderboardButtonClicked() {
+        parent.coinManager?.hitTheJackpot()
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
         parent.present(vc, animated: true, completion: nil)
@@ -112,10 +113,11 @@ class HomeView: UIView {
         return button
     }()
     @objc func shopButtonClicked() {
-        let vc = StoreViewController()
+        let vc = ShopViewController()
         vc.bikerManager = parent.bikerManager
         vc.coinManager = parent.coinManager
         vc.soundManager = parent.soundManager
+        vc.adManager = parent.adManager
         vc.modalPresentationStyle = .fullScreen
         parent.present(vc, animated: false, completion: nil)
         parent.soundManager?.playTapSound()

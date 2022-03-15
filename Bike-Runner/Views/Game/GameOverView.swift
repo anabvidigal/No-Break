@@ -53,9 +53,8 @@ class GameOverView: UIView {
         return button
     }()
     @objc func extraLifeButtonClicked() {
-        Sound.play(file: "tap.wav")
-        parent.showRewardedAd()
         parent.soundManager?.playTapSound()
+        parent.adManager?.showRewardedAd(parent)
     }
     
     lazy var playAgainButton: UIButton = {
@@ -90,10 +89,11 @@ class GameOverView: UIView {
         return button
     }()
     @objc func shopButtonClicked() {
-        let vc = StoreViewController()
+        let vc = ShopViewController()
         vc.bikerManager = parent.bikerManager
         vc.coinManager = parent.coinManager
         vc.soundManager = parent.soundManager
+        vc.adManager = parent.adManager
         vc.modalPresentationStyle = .fullScreen
         parent.present(vc, animated: false, completion: nil)
         parent.soundManager?.playTapSound()

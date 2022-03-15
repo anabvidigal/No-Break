@@ -34,11 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         vc = GameViewController()
         let gameCenter = GameCenter()
+        vc?.gameCenter = gameCenter
         vc?.coinManager = CoinManager(repository: UserDefaultsCoinsRepository())
         vc?.scoreManager = ScoreManager(gameCenter: gameCenter, repository: UserDefaultsHighscoreRepository())
         vc?.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
         vc?.soundManager = SoundManager()
         vc?.gameCenter = gameCenter
+        vc?.adManager = AdManager()
+        vc?.hapticsManager = HapticsManager()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         

@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var coinManager: CoinManager?
     var bikerManager: BikerManager?
     var soundManager: SoundManager?
+    var hapticsManager: HapticsManager?
     
     
     var status: GameStatus = .animating
@@ -77,6 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             introTouched()
         case .playing:
             player.changeLane()
+            hapticsManager?.changeLaneVibrate()
         case .gameOver:
             break
         }
@@ -130,8 +132,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score()
         } else if contact.bodyB == coinSpawner?.coins.first?.node.physicsBody {
             catchCoin()
+            hapticsManager?.catchCoinVibrate()
         } else {
             gameOver()
+            hapticsManager?.playerDiedVibrate(for: .error)
         }
     }
     
