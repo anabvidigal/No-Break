@@ -78,6 +78,7 @@ class GameOverView: UIView {
     
     lazy var playerCoinsView: CoinsView = {
         let view = CoinsView(width: 86, height: 30)
+        view.coinIcon.image = .coins
         return view
     }()
     

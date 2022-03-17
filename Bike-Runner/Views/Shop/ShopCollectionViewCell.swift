@@ -15,7 +15,7 @@ class ShopCollectionViewCell: UICollectionViewCell {
     
     lazy var headBackground: UIView = {
         let view = UIView()
-        view.backgroundColor = .appGray
+        view.backgroundColor = .appWhite
         return view
     }()
     
@@ -24,7 +24,7 @@ class ShopCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = .check
-        imageView.backgroundColor = .appGray
+        imageView.backgroundColor = .appWhite
         return imageView
     }()
     
@@ -38,14 +38,14 @@ class ShopCollectionViewCell: UICollectionViewCell {
     
     lazy var lockedOverlayView: UIView = {
         let view = UIView()
-        view.backgroundColor = .appGray.withAlphaComponent(0.7)
+        view.backgroundColor = .appWhite.withAlphaComponent(0.7)
         return view
     }()
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         
-        backgroundColor = .appGray
+        backgroundColor = .appWhite
         
         setupHeadBackground()
         setupCheckImageView()
@@ -93,7 +93,7 @@ class ShopCollectionViewCell: UICollectionViewCell {
             backgroundColor = .appBrightGreen
             checkImageView.alpha = 1
         } else {
-            backgroundColor = .appGray
+            backgroundColor = .appWhite
             checkImageView.alpha = 0
 
         }

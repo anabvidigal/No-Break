@@ -136,7 +136,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     private func setupScene() {
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             gameScene = scene
-            scene.scaleMode = .aspectFit
+            scene.scaleMode = .aspectFill
             scene.gameDelegate = self
             scene.coinManager = coinManager
             scene.bikerManager = bikerManager
@@ -215,7 +215,7 @@ extension GameViewController: GameSceneDelegate {
         hideStats()
         coinManager?.addCollectedCoins()
         showGameOver()
-        if scoreManager?.currentScore ?? 0 % 7 == 0 {
+        if Int.random(in: 1...4) == 4 {
             adManager?.showInterstitialAd(self)
         }
     }

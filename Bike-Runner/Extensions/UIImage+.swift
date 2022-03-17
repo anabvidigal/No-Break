@@ -71,6 +71,9 @@ extension UIImage {
     open class var coin: UIImage { get {
         UIImage(named: "coin_1")!
     }}
+    open class var coins: UIImage { get {
+        UIImage(named: "coins")!
+    }}
     
     open class var previousButton: UIImage { get {
         UIImage(named: "previousButton")!
