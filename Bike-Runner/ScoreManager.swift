@@ -41,6 +41,9 @@ class ScoreManager {
         if currentScore == 30 {
             gameCenter.unlock30PointsAchievement()
         }
+        if currentScore == 50 {
+            gameCenter.unlock50PointsAchievement()
+        }
     }
     
     private func checkHighscore() {
