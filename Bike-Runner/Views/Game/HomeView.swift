@@ -11,7 +11,7 @@ import SnapKit
 import SwiftySound
 
 class HomeView: UIView {
-    private var parent: GameViewController
+    private weak var parent: GameViewController?
     
     lazy var logoView: UIView = {
         let view = UIView()
@@ -39,13 +39,13 @@ class HomeView: UIView {
         return button
     }()
     @objc func playButtonClicked() {
-        guard let introNode = parent.gameScene?.introNode else { return }
-        parent.gameScene?.addChild(introNode)
-        parent.gameScene?.status = .intro
+        guard let introNode = parent?.gameScene?.introNode else { return }
+        parent?.gameScene?.addChild(introNode)
+        parent?.gameScene?.status = .intro
         alpha = 0
-        parent.soundManager?.playGameMusic()
-        parent.soundManager?.stopMenuMusic()
-        parent.soundManager?.playTapSound()
+        parent?.soundManager?.playGameMusic()
+        parent?.soundManager?.stopMenuMusic()
+        parent?.soundManager?.playTapSound()
     }
     
     lazy var playLabel: UILabel = {
@@ -68,8 +68,8 @@ class HomeView: UIView {
         let vc = GKGameCenterViewController(state: .achievements)
         vc.gameCenterDelegate = parent
         GKAchievement.loadAchievements()
-        parent.present(vc, animated: true, completion: nil)
-        parent.soundManager?.playTapSound()
+        parent?.present(vc, animated: true, completion: nil)
+        parent?.soundManager?.playTapSound()
     }
     
     lazy var awardLabel: UILabel = {
@@ -91,8 +91,8 @@ class HomeView: UIView {
     @objc func leaderboardButtonClicked() {
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
-        parent.present(vc, animated: true, completion: nil)
-        parent.soundManager?.playTapSound()
+        parent?.present(vc, animated: true, completion: nil)
+        parent?.soundManager?.playTapSound()
     }
     
     lazy var scoresLabel: UILabel = {
@@ -113,13 +113,13 @@ class HomeView: UIView {
     }()
     @objc func shopButtonClicked() {
         let vc = ShopViewController()
-        vc.bikerManager = parent.bikerManager
-        vc.coinManager = parent.coinManager
-        vc.soundManager = parent.soundManager
-        vc.adManager = parent.adManager
+        vc.bikerManager = parent?.bikerManager
+        vc.coinManager = parent?.coinManager
+        vc.soundManager = parent?.soundManager
+        vc.adManager = parent?.adManager
         vc.modalPresentationStyle = .fullScreen
-        parent.present(vc, animated: false, completion: nil)
-        parent.soundManager?.playTapSound()
+        parent?.present(vc, animated: false, completion: nil)
+        parent?.soundManager?.playTapSound()
     }
     
     lazy var shopLabel: UILabel = {

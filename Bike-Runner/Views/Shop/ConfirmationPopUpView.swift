@@ -10,7 +10,7 @@ import SnapKit
 import SwiftySound
 
 class ConfirmationPopUpView: UIView {
-    var parent: ShopViewController
+    private weak var parent: ShopViewController?
 
     lazy var darkeningView: UIView = {
         let view = UIView()
@@ -58,15 +58,15 @@ class ConfirmationPopUpView: UIView {
         return button
     }()
     @objc func clickedConfirmButton() {
-        guard let bikerManager = parent.bikerManager,
-              let coinManager = parent.coinManager else { return }
+        guard let bikerManager = parent?.bikerManager,
+              let coinManager = parent?.coinManager else { return }
         coinManager.spend(coins: bikerManager.showingBiker.price)
-        parent.playerCoinsView.set(coins: coinManager.playerCoins)
+        parent?.playerCoinsView.set(coins: coinManager.playerCoins)
         bikerManager.selectShowingBiker()
-        parent.bikersCollectionView.reloadData()
-        parent.setButtonToSelected()
+        parent?.bikersCollectionView.reloadData()
+        parent?.setButtonToSelected()
         alpha = 0
-        parent.soundManager?.playSuccessSound()
+        parent?.soundManager?.playSuccessSound()
     }
     
     lazy var cancelButton: UIButton = {
@@ -78,7 +78,7 @@ class ConfirmationPopUpView: UIView {
     }()
     @objc func clickedCancelButton() {
         alpha = 0
-        parent.soundManager?.playTapSound()
+        parent?.soundManager?.playTapSound()
     }
     
     lazy var okButton: UIButton = {
@@ -90,7 +90,7 @@ class ConfirmationPopUpView: UIView {
     }()
     @objc func clickedOkButton() {
         alpha = 0
-        parent.soundManager?.playTapSound()
+        parent?.soundManager?.playTapSound()
     }
     
     

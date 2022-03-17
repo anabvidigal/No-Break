@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class ScoreView: UIView {
-    private var parent: GameViewController
+    private weak var parent: GameViewController?
     
     private lazy var scoreTitleLabel: UILabel = {
         let label = UILabel()

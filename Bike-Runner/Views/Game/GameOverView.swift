@@ -13,7 +13,7 @@ import SwiftySound
 
 class GameOverView: UIView {
     
-    private var parent: GameViewController
+    private weak var parent: GameViewController?
     
     lazy var innerRectangleView: UIView = {
         let view = UIView()
@@ -53,6 +53,7 @@ class GameOverView: UIView {
         return button
     }()
     @objc func extraLifeButtonClicked() {
+        guard let parent = parent else { return }
         parent.soundManager?.playTapSound()
         parent.adManager?.showRewardedAd(parent)
     }
@@ -65,10 +66,10 @@ class GameOverView: UIView {
         return button
     }()
     @objc func playAgainButtonClicked() {
-        parent.hideGameOver()
-        parent.gameScene?.reset()
-        parent.soundManager?.playTapSound()
-        parent.soundManager?.playGameMusic()
+        parent?.hideGameOver()
+        parent?.gameScene?.reset()
+        parent?.soundManager?.playTapSound()
+        parent?.soundManager?.playGameMusic()
     }
     
     lazy var outerRectangleView: UIView = {
@@ -91,13 +92,13 @@ class GameOverView: UIView {
     }()
     @objc func shopButtonClicked() {
         let vc = ShopViewController()
-        vc.bikerManager = parent.bikerManager
-        vc.coinManager = parent.coinManager
-        vc.soundManager = parent.soundManager
-        vc.adManager = parent.adManager
+        vc.bikerManager = parent?.bikerManager
+        vc.coinManager = parent?.coinManager
+        vc.soundManager = parent?.soundManager
+        vc.adManager = parent?.adManager
         vc.modalPresentationStyle = .fullScreen
-        parent.present(vc, animated: false, completion: nil)
-        parent.soundManager?.playTapSound()
+        parent?.present(vc, animated: false, completion: nil)
+        parent?.soundManager?.playTapSound()
     }
     
     lazy var shopLabel: UILabel = {
@@ -119,8 +120,8 @@ class GameOverView: UIView {
     @objc func leaderboardButtonClicked() {
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
-        parent.present(vc, animated: true, completion: nil)
-        parent.soundManager?.playTapSound()
+        parent?.present(vc, animated: true, completion: nil)
+        parent?.soundManager?.playTapSound()
     }
     
     lazy var scoresLabel: UILabel = {
@@ -143,8 +144,8 @@ class GameOverView: UIView {
         let vc = GKGameCenterViewController(state: .achievements)
         vc.gameCenterDelegate = parent
         GKAchievement.loadAchievements()
-        parent.present(vc, animated: true, completion: nil)
-        parent.soundManager?.playTapSound()
+        parent?.present(vc, animated: true, completion: nil)
+        parent?.soundManager?.playTapSound()
     }
     
     lazy var awardsLabel: UILabel = {
