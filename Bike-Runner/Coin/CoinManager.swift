@@ -17,7 +17,7 @@ class CoinManager {
     init(repository: CoinsRepository) {
         self.repository = repository
         playerCoins = repository.getCoins()
-        hitTheJackpot()
+//        hitTheJackpot()
     }
     
     func incrementCoins() {
