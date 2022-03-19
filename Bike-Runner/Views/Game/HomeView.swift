@@ -25,6 +25,16 @@ class HomeView: UIView {
         return imageView
     }()
     
+    lazy var configButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.configButton, for: .normal)
+        button.setImage(.configButtonPressed, for: .highlighted)
+        button.addTarget(self, action: #selector(configButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    @objc private func configButtonClicked() {  
+    }
+    
     lazy var buttonsView: UIView = {
         let view = UIView()
         view.backgroundColor = .appBrown1.withAlphaComponent(0.7)
@@ -38,7 +48,7 @@ class HomeView: UIView {
         button.addTarget(self, action: #selector(playButtonClicked), for: .touchUpInside)
         return button
     }()
-    @objc func playButtonClicked() {
+    @objc private func playButtonClicked() {
         guard let introNode = parent?.gameScene?.introNode else { return }
         parent?.gameScene?.addChild(introNode)
         parent?.gameScene?.status = .intro
@@ -64,7 +74,7 @@ class HomeView: UIView {
         button.addTarget(self, action: #selector(achievementButtonClicked), for: .touchUpInside)
         return button
     }()
-    @objc func achievementButtonClicked() {
+    @objc private func achievementButtonClicked() {
         let vc = GKGameCenterViewController(state: .achievements)
         vc.gameCenterDelegate = parent
         GKAchievement.loadAchievements()
@@ -88,7 +98,7 @@ class HomeView: UIView {
         button.addTarget(self, action: #selector(leaderboardButtonClicked), for: .touchUpInside)
         return button
     }()
-    @objc func leaderboardButtonClicked() {
+    @objc private func leaderboardButtonClicked() {
         let vc = GKGameCenterViewController.init(state: .leaderboards)
         vc.gameCenterDelegate = parent
         parent?.present(vc, animated: true, completion: nil)
@@ -111,7 +121,7 @@ class HomeView: UIView {
         button.addTarget(self, action: #selector(shopButtonClicked), for: .touchUpInside)
         return button
     }()
-    @objc func shopButtonClicked() {
+    @objc private func shopButtonClicked() {
         let vc = ShopViewController()
         vc.bikerManager = parent?.bikerManager
         vc.coinManager = parent?.coinManager
@@ -151,6 +161,8 @@ class HomeView: UIView {
         setupShopLabel()
         
         setupLogoImageView()
+        
+        setupConfigButton()
         
         parent.soundManager?.playMenuMusic()
 
@@ -255,6 +267,16 @@ class HomeView: UIView {
             make.center.equalToSuperview()
             make.width.equalTo(400)
             make.height.equalTo(80)
+        }
+    }
+    
+    private func setupConfigButton() {
+        addSubview(configButton)
+        configButton.snp.makeConstraints { make in
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+            make.top.equalToSuperview().offset(22)
+            make.trailing.equalToSuperview().offset(-22)
         }
     }
     

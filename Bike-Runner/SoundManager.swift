@@ -9,37 +9,49 @@ import Foundation
 import SwiftySound
 
 class SoundManager {
+    private var repository: ConfigRepository
+    var musicIsOn = true
+    var soundIsOn = true
     
-    var playBool = true
-    
-    // habilitar ou desabilitar os sons de taps em botoes pra testar se fica legal
+    init(repository: ConfigRepository) {
+        self.repository = repository
+        Sound.category = .playback
+    }
     
     func playTapSound() {
-        if playBool == true {
+        if soundIsOn {
             Sound.play(file: "tap", fileExtension: "wav")
-        } else {
-            print("Tap sound disabled. Enable in SoundManager")
         }
     }
     
     func playSelectSound() {
-        Sound.play(file: "select", fileExtension: "wav")
+        if soundIsOn {
+            Sound.play(file: "select", fileExtension: "wav")
+        }
     }
     
     func playSuccessSound() {
-        Sound.play(file: "success-sound-1", fileExtension: "wav")
+        if soundIsOn {
+            Sound.play(file: "success-sound-1", fileExtension: "wav")
+        }
     }
     
     func playCoinSound() {
-        Sound.play(file: "coin", fileExtension: "wav")
+        if soundIsOn {
+            Sound.play(file: "coin", fileExtension: "wav")
+        }
     }
     
     func playPlayerDieSound() {
-        Sound.play(file: "player-die", fileExtension: "wav")
+        if soundIsOn {
+            Sound.play(file: "player-die", fileExtension: "wav")            
+        }
     }
     
     func playGameMusic() {
-        Sound.play(file: "game-music", fileExtension: "wav", numberOfLoops: -1)
+        if musicIsOn {
+            Sound.play(file: "game-music", fileExtension: "wav", numberOfLoops: -1)
+        }
     }
     
     func stopGameMusic() {
@@ -47,7 +59,9 @@ class SoundManager {
     }
     
     func playMenuMusic() {
-        Sound.play(file: "menu-music", fileExtension: "wav", numberOfLoops: -1)
+        if musicIsOn {
+            Sound.play(file: "menu-music", fileExtension: "wav", numberOfLoops: -1)
+        }
     }
     
     func stopMenuMusic() {

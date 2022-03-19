@@ -34,7 +34,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     var bikerManager: BikerManager?
     var scoreManager: ScoreManager?
     var soundManager: SoundManager?
-    var gameCenter: GameCenter?
+    var gameCenterManager: GameCenterManager?
     var adManager: AdManager?
     var hapticsManager: HapticsManager?
     
@@ -122,7 +122,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         setupGameOverView()
         setupHomeButton()
     
-        gameCenter?.authenticateUser(self)
+        gameCenterManager?.authenticateUser(self)
     }
     
     private func setupSkView() {
@@ -141,7 +141,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
             scene.coinManager = coinManager
             scene.bikerManager = bikerManager
             scene.scoreManager = scoreManager
-            scene.gameCenter = gameCenter
+            scene.gameCenterManager = gameCenterManager
             scene.soundManager = soundManager
             scene.hapticsManager = hapticsManager
             skView.presentScene(scene)

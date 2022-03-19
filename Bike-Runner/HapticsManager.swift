@@ -8,25 +8,41 @@
 import UIKit
 
 class HapticsManager {
+    private var repository: ConfigRepository
+    var vibrationIsOn = true
+    
+    init(repository: ConfigRepository) {
+        self.repository = repository
+    }
+    
+    func toggleVibration() {
+        vibrationIsOn = !vibrationIsOn
+    }
     
     func changeLaneVibrate() {
-        DispatchQueue.main.async {
-            let changeLaneFeedbackGenerator = UISelectionFeedbackGenerator()
-            changeLaneFeedbackGenerator.prepare()
-            changeLaneFeedbackGenerator.selectionChanged()
+        if vibrationIsOn {
+            DispatchQueue.main.async {
+                let changeLaneFeedbackGenerator = UISelectionFeedbackGenerator()
+                changeLaneFeedbackGenerator.prepare()
+                changeLaneFeedbackGenerator.selectionChanged()
+            }
         }
     }
     
     func playerDiedVibrate(for type: UINotificationFeedbackGenerator.FeedbackType) {
-        let notificationGenerator = UINotificationFeedbackGenerator()
-        notificationGenerator.prepare()
-        notificationGenerator.notificationOccurred(type)
+        if vibrationIsOn {
+            let notificationGenerator = UINotificationFeedbackGenerator()
+            notificationGenerator.prepare()
+            notificationGenerator.notificationOccurred(type)
+        }
     }
     
     func catchCoinVibrate() {
-        let catchCoinVibrateGenerator = UIImpactFeedbackGenerator(style: .medium)
-        catchCoinVibrateGenerator.prepare()
-        catchCoinVibrateGenerator.impactOccurred()
+        if vibrationIsOn {
+            let catchCoinVibrateGenerator = UIImpactFeedbackGenerator(style: .medium)
+            catchCoinVibrateGenerator.prepare()
+            catchCoinVibrateGenerator.impactOccurred()            
+        }
     }
     
 }

@@ -8,16 +8,16 @@
 import Foundation
 
 class ScoreManager {
-    private var gameCenter: GameCenter
+    private var gameCenterManager: GameCenterManager
     private var repository: HighscoreRepository
     
     var highscore: Int
     var currentScore: Int = 0
     var currentScoreIsHighscore = false
     
-    init(gameCenter: GameCenter, repository: HighscoreRepository){
+    init(gameCenterManager: GameCenterManager, repository: HighscoreRepository){
         self.repository = repository
-        self.gameCenter = gameCenter
+        self.gameCenterManager = gameCenterManager
         
         highscore = repository.getHighscore()
     }
@@ -36,13 +36,13 @@ class ScoreManager {
     
     private func checkAchievements() {
         if currentScore == 10 {
-            gameCenter.unlock10PointsAchievement()
+            gameCenterManager.unlock10PointsAchievement()
         }
         if currentScore == 30 {
-            gameCenter.unlock30PointsAchievement()
+            gameCenterManager.unlock30PointsAchievement()
         }
         if currentScore == 50 {
-            gameCenter.unlock50PointsAchievement()
+            gameCenterManager.unlock50PointsAchievement()
         }
     }
     

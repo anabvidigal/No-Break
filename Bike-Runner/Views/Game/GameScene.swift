@@ -22,7 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var coinSpawner: CoinSpawner?
     var speedManager = SpeedManager()
     
-    var gameCenter: GameCenter?
+    var gameCenterManager: GameCenterManager?
     var scoreManager: ScoreManager?
     var coinManager: CoinManager?
     var bikerManager: BikerManager?
@@ -165,7 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func reset() {
-        gameCenter?.submitScore(score: scoreManager?.currentScore ?? 0)
+        gameCenterManager?.submitScore(score: scoreManager?.currentScore ?? 0)
         status = .intro
         carSpawner?.reset()
         player.reset()

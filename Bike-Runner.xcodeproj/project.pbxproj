@@ -39,10 +39,11 @@
 		2B99C06C27A3AD64003606C9 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C06B27A3AD64003606C9 /* Player.swift */; };
 		2B99C06E27A3B321003606C9 /* Scenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C06D27A3B321003606C9 /* Scenery.swift */; };
 		2B99C07227A3BC69003606C9 /* SpeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B99C07127A3BC69003606C9 /* SpeedManager.swift */; };
-		2BE7612A27BBE81E00A3420B /* AdsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7612927BBE81E00A3420B /* AdsHelper.swift */; };
+		610195DC27E62F920051266B /* ConfigRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610195DB27E62F920051266B /* ConfigRepository.swift */; };
 		6114A62B27AD7CA4002290EB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114A62A27AD7CA4002290EB /* GameScene.swift */; };
 		6114A62D27AD7CBE002290EB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114A62C27AD7CBE002290EB /* GameViewController.swift */; };
 		6131BB1627BDB62C000D3400 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131BB1527BDB62C000D3400 /* ScoreManager.swift */; };
+		6137DC1227E62B0600542398 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6137DC1127E62B0600542398 /* ConfigView.swift */; };
 		617E496327B3E7CD0052F021 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496227B3E7CD0052F021 /* UIColor+.swift */; };
 		617E496927B54EBD0052F021 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496827B54EBD0052F021 /* UIImage+.swift */; };
 		617E496B27B5533C0052F021 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E496A27B5533C0052F021 /* HomeView.swift */; };
@@ -97,10 +98,11 @@
 		2B99C06B27A3AD64003606C9 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2B99C06D27A3B321003606C9 /* Scenery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenery.swift; sourceTree = "<group>"; };
 		2B99C07127A3BC69003606C9 /* SpeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedManager.swift; sourceTree = "<group>"; };
-		2BE7612927BBE81E00A3420B /* AdsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsHelper.swift; sourceTree = "<group>"; };
+		610195DB27E62F920051266B /* ConfigRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigRepository.swift; sourceTree = "<group>"; };
 		6114A62A27AD7CA4002290EB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		6114A62C27AD7CBE002290EB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		6131BB1527BDB62C000D3400 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
+		6137DC1127E62B0600542398 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		617E496227B3E7CD0052F021 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		617E496827B54EBD0052F021 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		617E496A27B5533C0052F021 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				2B99C05627A3A350003606C9 /* GameScene.sks */,
 				6114A62A27AD7CA4002290EB /* GameScene.swift */,
 				6114A62C27AD7CBE002290EB /* GameViewController.swift */,
+				6137DC1127E62B0600542398 /* ConfigView.swift */,
 				617E496A27B5533C0052F021 /* HomeView.swift */,
 				617E497527B6DA5C0052F021 /* ScoreView.swift */,
 				617E496C27B565DE0052F021 /* GameOverView.swift */,
@@ -200,6 +203,7 @@
 				2B56DA7927ABFBD700AD63E5 /* CoinsRepository.swift */,
 				2B56DA7B27ABFBF200AD63E5 /* BikersRepository.swift */,
 				617E496E27B5B6D30052F021 /* HighscoreRepository.swift */,
+				610195DB27E62F920051266B /* ConfigRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -250,7 +254,6 @@
 				2B23A52227B34AD4000B6C9D /* Extensions */,
 				16B3FF1027DC617A000CD988 /* Sounds */,
 				2B56DA6227AABC8300AD63E5 /* Fonts */,
-				2BE7612927BBE81E00A3420B /* AdsHelper.swift */,
 			);
 			path = "Bike-Runner";
 			sourceTree = "<group>";
@@ -457,12 +460,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BE7612A27BBE81E00A3420B /* AdsHelper.swift in Sources */,
 				617E496F27B5B6D30052F021 /* HighscoreRepository.swift in Sources */,
 				2B56DA7827ABFB7D00AD63E5 /* CoinManager.swift in Sources */,
 				2B99C06C27A3AD64003606C9 /* Player.swift in Sources */,
 				61A7D90627B9D102008F8539 /* CoinsView.swift in Sources */,
 				617E497627B6DA5C0052F021 /* ScoreView.swift in Sources */,
+				610195DC27E62F920051266B /* ConfigRepository.swift in Sources */,
+				6137DC1227E62B0600542398 /* ConfigView.swift in Sources */,
 				61A7D90427B9CA2F008F8539 /* ShopViewController.swift in Sources */,
 				2B40501A27D78B3200A7DE67 /* HapticsManager.swift in Sources */,
 				61A7D90A27B9F7F5008F8539 /* Biker.swift in Sources */,

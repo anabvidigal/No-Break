@@ -1,5 +1,5 @@
 //
-//  GameCenter.swift
+//  GameCenterManager.swift
 //  Bike-Runner
 //
 //  Created by Ana Bittencourt Vidigal on 04/02/22.
@@ -9,7 +9,7 @@ import Foundation
 import GameKit
 
 
-class GameCenter {
+class GameCenterManager {
     
     // Leaderboards
     func submitScore(score: Int) {

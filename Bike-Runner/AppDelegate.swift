@@ -33,15 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window = UIWindow()
         vc = GameViewController()
-        let gameCenter = GameCenter()
-        vc?.gameCenter = gameCenter
+        let gameCenterManager = GameCenterManager()
+        vc?.gameCenterManager = gameCenterManager
         vc?.coinManager = CoinManager(repository: UserDefaultsCoinsRepository())
-        vc?.scoreManager = ScoreManager(gameCenter: gameCenter, repository: UserDefaultsHighscoreRepository())
+        vc?.scoreManager = ScoreManager(gameCenterManager: gameCenterManager, repository: UserDefaultsHighscoreRepository())
         vc?.bikerManager = BikerManager(repository: UserDefaultsBikersRepository())
-        vc?.soundManager = SoundManager()
-        vc?.gameCenter = gameCenter
+        vc?.soundManager = SoundManager(repository: UserDefaultsConfigRepository())
+        vc?.gameCenterManager = gameCenterManager
         vc?.adManager = AdManager()
-        vc?.hapticsManager = HapticsManager()
+        vc?.hapticsManager = HapticsManager(repository: UserDefaultsConfigRepository())
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
