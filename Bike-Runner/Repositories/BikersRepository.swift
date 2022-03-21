@@ -20,6 +20,7 @@ class UserDefaultsBikersRepository: BikersRepository {
         Biker(name: "Nati", description: "She's really into dinosaurs", id: "fixie", price: 0, status: .bought),
         Biker(name: "Carol", description: "I think she likes the president", id: "MTB", price: 150, status: .forSale),
         Biker(name: "Gabe", description: "He loves his cats", id: "BMX", price: 500, status: .forSale),
+        Biker(name: "Robson", description: "Is he a real Panda or a guy in a costume?", id: "bear", price: 750, status: .forSale),
         Biker(name: "Oil Man", description: "What's with the swim suit tho?", id: "barra_forte", price: 1000, status: .forSale)
     ]
     

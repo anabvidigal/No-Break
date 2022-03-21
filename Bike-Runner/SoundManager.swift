@@ -10,13 +10,32 @@ import SwiftySound
 
 class SoundManager {
     private var repository: ConfigRepository
-    var musicIsOn = true
-    var soundIsOn = true
+    var musicIsOn: Bool
+    var soundIsOn: Bool
     
     init(repository: ConfigRepository) {
         self.repository = repository
         Sound.category = .playback
+        
+        musicIsOn = repository.musicIsOn()
+        soundIsOn = repository.soundIsOn()
     }
+    
+    func toggleMusic() {
+        musicIsOn = !musicIsOn
+        repository.save(musicIsOn: musicIsOn)
+        if !musicIsOn {
+            stopMenuMusic()            
+        } else {
+            playMenuMusic()
+        }
+    }
+    
+    func toggleSound() {
+        soundIsOn = !soundIsOn
+        repository.save(soundIsOn: soundIsOn)
+    }
+    
     
     func playTapSound() {
         if soundIsOn {

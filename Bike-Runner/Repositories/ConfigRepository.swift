@@ -20,13 +20,17 @@ class UserDefaultsConfigRepository: ConfigRepository {
     private let hapticsKey = "haptics"
     private let soundKey = "sound"
     private let musicKey = "music"
+    private let sessionsCountKey = "sessionsCount"
     
     func save(hapticsIsOn: Bool) {
         UserDefaults.standard.setValue(hapticsIsOn, forKey: hapticsKey)
     }
     
     func hapticsIsOn() -> Bool {
-        UserDefaults.standard.bool(forKey: hapticsKey)
+        if getSessionCount() > 1 {
+            return UserDefaults.standard.bool(forKey: hapticsKey)
+        }
+        return true
     }
     
     func save(soundIsOn: Bool) {
@@ -34,7 +38,10 @@ class UserDefaultsConfigRepository: ConfigRepository {
     }
     
     func soundIsOn() -> Bool {
-        UserDefaults.standard.bool(forKey: soundKey)
+        if getSessionCount() > 1 {
+            return UserDefaults.standard.bool(forKey: soundKey)
+        }
+        return true
     }
     
     func save(musicIsOn: Bool) {
@@ -42,6 +49,19 @@ class UserDefaultsConfigRepository: ConfigRepository {
     }
     
     func musicIsOn() -> Bool {
-        UserDefaults.standard.bool(forKey: musicKey)
+        if getSessionCount() > 1 {
+            return UserDefaults.standard.bool(forKey: musicKey)
+        }
+        return true
+    }
+    
+    func incrementSessionCount() {
+        var sessionCount = UserDefaults.standard.integer(forKey: sessionsCountKey)
+        sessionCount += 1
+        UserDefaults.standard.setValue(sessionCount, forKey: sessionsCountKey)
+    }
+    
+    func getSessionCount() -> Int {
+        UserDefaults.standard.integer(forKey: sessionsCountKey)
     }
 }

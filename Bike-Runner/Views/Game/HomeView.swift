@@ -32,7 +32,8 @@ class HomeView: UIView {
         button.addTarget(self, action: #selector(configButtonClicked), for: .touchUpInside)
         return button
     }()
-    @objc private func configButtonClicked() {  
+    @objc private func configButtonClicked() {
+        parent?.showConfig()
     }
     
     lazy var buttonsView: UIView = {

@@ -180,4 +180,43 @@ extension UIImage {
     open class var configButtonPressed: UIImage { get {
         UIImage(named: "configButtonPressed")!
     }}
+    
+    open class var soundButtonOn: UIImage { get {
+        UIImage(named: "soundButtonOn")!
+    }}
+    open class var soundButtonOnPressed: UIImage { get {
+        UIImage(named: "soundButtonOnPressed")!
+    }}
+    open class var soundButtonOff: UIImage { get {
+        UIImage(named: "soundButtonOff")!
+    }}
+    open class var soundButtonOffPressed: UIImage { get {
+        UIImage(named: "soundButtonOffPressed")!
+    }}
+    
+    open class var musicButtonOn: UIImage { get {
+        UIImage(named: "musicButtonOn")!
+    }}
+    open class var musicButtonOnPressed: UIImage { get {
+        UIImage(named: "musicButtonOnPressed")!
+    }}
+    open class var musicButtonOff: UIImage { get {
+        UIImage(named: "musicButtonOff")!
+    }}
+    open class var musicButtonOffPressed: UIImage { get {
+        UIImage(named: "musicButtonOffPressed")!
+    }}
+    
+    open class var vibrationButtonOn: UIImage { get {
+        UIImage(named: "vibrationButtonOn")!
+    }}
+    open class var vibrationButtonOnPressed: UIImage { get {
+        UIImage(named: "vibrationButtonOnPressed")!
+    }}
+    open class var vibrationButtonOff: UIImage { get {
+        UIImage(named: "vibrationButtonOff")!
+    }}
+    open class var vibrationButtonOffPressed: UIImage { get {
+        UIImage(named: "vibrationButtonOffPressed")!
+    }}
 }

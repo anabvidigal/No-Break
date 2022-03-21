@@ -50,6 +50,12 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         return view
     }()
     
+    lazy var configView: ConfigView = {
+        let view = ConfigView(parent: self, hapticsManager: hapticsManager, soundManager: soundManager)
+        view.alpha = 0
+        return view
+    }()
+    
     lazy var scoreView: ScoreView = {
         let view = ScoreView(parent: self)
         view.alpha = 0
@@ -87,7 +93,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         hideGameOver()
         soundManager?.playTapSound()
         soundManager?.playMenuMusic()
-    }
+    }   
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -117,6 +123,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         
         setupSkView()
         setupHomeView()
+        setupConfigView()
         setupScoreView()
         setupCoinsView()
         setupGameOverView()
@@ -152,6 +159,13 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     private func setupHomeView() {
         view.addSubview(homeView)
         homeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func setupConfigView() {
+        view.addSubview(configView)
+        configView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -235,6 +249,7 @@ extension GameViewController: GameSceneDelegate {
         gameOverView.highscoreLabel.alpha = scoreManager.currentScoreIsHighscore ? 1 : 0
     }
     
+    
     func score(_ sender: GameScene) {
         guard let scoreManager = scoreManager else { return }
         scoreView.scoreLabel.text = "\(scoreManager.currentScore)"
@@ -258,6 +273,16 @@ extension GameViewController: GameSceneDelegate {
         gameOverView.alpha = 0
         homeButton.alpha = 0
         gameOverView.extraLifeButton.isEnabled = true
+    }
+    
+    func showConfig() {
+        homeView.alpha = 0
+        configView.alpha = 1
+    }
+    
+    func hideConfig() {
+        homeView.alpha = 1
+        configView.alpha = 0
     }
 }
 

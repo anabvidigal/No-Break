@@ -162,10 +162,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         carSpawner?.stopCarsAnimation()
         scoreManager?.setHighscore()
         gameDelegate?.gameIsOver(self)
+        gameCenterManager?.submitScore(score: scoreManager?.currentScore ?? 0)
     }
     
     func reset() {
-        gameCenterManager?.submitScore(score: scoreManager?.currentScore ?? 0)
         status = .intro
         carSpawner?.reset()
         player.reset()
